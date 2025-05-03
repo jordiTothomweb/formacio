@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recepta de patates fregides</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    main { padding: 2rem; }
+    footer { background-color: #ddd; padding: 1rem; text-align: center; }
+    table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+    table th, table td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+    ul, ol { padding-left: 1.5rem; }
+    h2 { font-size: 1.5rem; font-weight: bold; margin-top: 1rem; }
+    h3 { font-size: 1.25rem; font-weight: bold; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <!-- Capçalera semàntica -->
+  <header>
+    <h1>Benvingut</h1>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./estructura-divs.html">Estructura incorrecte</a></li>
+        <li><a href="./estructura-semantica.html">Estructura correcte</a></li>
+        <li><a href="./estructura-aria.html">Estructura ARIA</a></li>
+        <li class="menu-dret">
+          <button id="menu-toggle" aria-label="Obrir menú d'usuari" aria-haspopup="true" aria-expanded="false">☰</button>
+          <ul id="menu-usuari" class="menu-usuari" hidden>
+            <li><a href="#iniciarsessio">Iniciar sessió</a></li>
+            <li><a href="#usuari/configuracio">Configuració</a></li>
+            <li><a href="#usuari/productes">Els meus productes</a></li>
+            <li><a href="#usuari/compres">Les meves compres</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contingut amb etiquetes semàntiques -->
+  <main>
+    <section>
+        <img style="width: 400px; height: 250px;" src="https://cdn.pixabay.com/photo/2016/11/20/09/06/bowl-1842294_1280.jpg" alt="Bol de patates fregides" class="img-fluid">
+    </section>
+    <section>
+      <h2>Ingredients (per a 4 persones)</h2>
+      <ul>
+        <li>700g de patates</li>
+        <li>Oli d'oliva</li>
+        <li>Sal</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Elaboració</h2>
+      <ol>
+        <li>Pela i talla les patates en tires.</li>
+        <li>Posa-les en un recipient amb aigua durant 5 minuts per eliminar el midó.</li>
+        <li>Escalfa oli en una paella.</li>
+        <li>Afegeix les patates tallades i la sal.</li>
+        <li>Fes-les fregir al gust.</li>
+        <li>Serveix-les en un plat.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Pressupost</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Producte</th>
+            <th>Quantitat</th>
+            <th>Preu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Patates</td>
+            <td>1kg</td>
+            <td>1,70 €</td>
+          </tr>
+          <tr>
+            <td>Oli d'oliva</td>
+            <td>1 l</td>
+            <td>10,00 €</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>-</td>
+            <td>11,70 €</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Peu de pàgina -->
+  <footer>
+    <p>© 2025 Receptes amb ARIA</p>
+  </footer>
+</body>
+</html>
