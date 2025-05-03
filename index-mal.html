@@ -1,0 +1,42 @@
+<!-- index-mal.html - Versió amb errors d'accessibilitat -->
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo amb errors d'accessibilitat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Benvingut</h1>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="#">Fes clic aquí</a></li>
+        <li><a href="#">Més informació</a></li>
+        <li class="menu-dret">
+          <button id="bad-menu-toggle">☰</button>
+          <ul class="menu-usuari tancat">
+            <li><a href="#iniciarsessio">Iniciar sessió</a></li>
+            <li><a href="#usuari/configuracio">Configuració</a></li>
+            <li><a href="#usuari/productes">Els meus productes</a></li>
+            <li><a href="#usuari/compres">Les meves compres</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <img src="img/exemple.jpg">
+
+      <form>
+        <input type="text" name="nom">
+        <input type="submit" value="Envia">
+      </form>
+    </section>
+  </main>
+</body>
+</html>

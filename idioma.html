@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Idioma i accessibilitat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Benvingut</h1>
+        <nav>
+          <ul class="nav-bar">
+            <li><a href="#serveis">Consulta els nostres serveis</a></li>
+            <li><a href="#contacte">Contacta amb nosaltres</a></li>
+            <li class="menu-dret">
+              <button id="menu-toggle" aria-label="Obrir menú d'usuari" aria-haspopup="true" aria-expanded="false">☰</button>
+              <ul id="menu-usuari" class="menu-usuari" hidden>
+                <li><a href="#iniciarsessio">Iniciar sessió</a></li>
+                <li><a href="#usuari/configuracio">Configuració</a></li>
+                <li><a href="#usuari/productes">Els meus productes</a></li>
+                <li><a href="#usuari/compres">Les meves compres</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+  <main class="idioma-exemples">
+
+    <section class="card incorrecte">
+      <h2>Exemple incorrecte: frase en anglès sense especificar idioma</h2>
+      <p>This paragraph is written in English.</p>
+      <pre><code>&lt;p&gt;This paragraph is written in English.&lt;/p&gt;</code></pre>
+    </section>
+
+    <section class="card correcte">
+      <h2>Exemple correcte: paràgraf amb lang="en"</h2>
+      <p lang="en">This paragraph is written in English.</p>
+      <pre><code>&lt;p lang="en"&gt;This paragraph is written in English.&lt;/p&gt;</code></pre>
+    </section>
+
+    <section class="card incorrecte">
+      <h2>Exemple incorrecte: barreja d'idiomes sense <code>lang</code></h2>
+      <div class="hero-text" style="background-image: url('img/exemple.jpg'); background-size: cover; background-position: center; padding: 5rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <div style="color: white; font-size: 70px; font-family: sans-serif; font-weight: 400; line-height: 84px;">Your Own Playground</div>
+        <div style="color: white; font-size: 20px; font-family: sans-serif; font-weight: 400; line-height: 20px;">Nueva colección SS25</div>
+      </div>
+      <pre><code>&lt;div style="..."&gt;Your Own Playground&lt;/div&gt;
+&lt;div style="..."&gt;Nueva colección SS25&lt;/div&gt;</code></pre>
+    </section>
+
+    <section class="card correcte">
+      <h2>Exemple correcte: combinació d'idiomes (anglès i espanyol)</h2>
+      <div class="hero-text" style="background-image: url('img/exemple.jpg'); background-size: cover; background-position: center; padding: 5rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <div lang="en" style="color: white; font-size: 70px; font-family: sans-serif; font-weight: 400; line-height: 84px;">Your Own Playground</div>
+        <div lang="es" style="color: white; font-size: 20px; font-family: sans-serif; font-weight: 400; line-height: 20px;">Nueva colección SS25</div>
+      </div>
+      <pre><code>&lt;div style="..." lang="en"&gt;Your Own Playground&lt;/div&gt;
+&lt;div style="..." lang="es"&gt;Nueva colección SS25&lt;/div&gt;</code></pre>
+    </section>
+
+    <section class="card incorrecte">
+      <h2>Formulari amb idioma mal configurat</h2>
+      <p>En aquest formulari, l'idioma no està indicat. Tot i que està escrit en anglès, el lector de pantalla l'interpretarà com si fos català (idioma global de la pàgina).</p>
+      <form>
+        <label for="input-mistake">Price:</label>
+        <input type="number" id="input-mistake" value="1234.56" />
+
+        <label for="date-mistake">Date:</label>
+        <input type="date" id="date-mistake" />
+
+        <label for="text-mistake">Comment:</label>
+        <textarea id="text-mistake">Please enter your feedback</textarea>
+      </form>
+      <pre><code>&lt;form&gt;
+  &lt;label for="input-mistake"&gt;Price:&lt;/label&gt;
+  &lt;input type="number" id="input-mistake" value="1234.56" /&gt;
+
+  &lt;label for="date-mistake"&gt;Date:&lt;/label&gt;
+  &lt;input type="date" id="date-mistake" /&gt;
+
+  &lt;label for="text-mistake"&gt;Comment:&lt;/label&gt;
+  &lt;textarea id="text-mistake"&gt;Please enter your feedback&lt;/textarea&gt;
+&lt;/form&gt;</code></pre>
+    </section>
+
+    <section class="card correcte">
+      <h2>Formulari amb idioma ben configurat (anglès US)</h2>
+      <p>En aquest formulari, l'idioma està configurat correctament amb lang="en-US" per garantir una lectura adequada i el format correcte de números.</p>
+      <form lang="en-US">
+        <label for="input-correct">Price (USD):</label>
+        <input type="number" id="input-correct" value="1234.56" />
+
+        <label for="date-correct">Date:</label>
+        <input type="date" id="date-correct" />
+
+        <label for="text-correct">Comment:</label>
+        <textarea id="text-correct">Please enter your feedback</textarea>
+      </form>
+      <pre><code>&lt;form lang="en-US"&gt;
+  &lt;label for="input-correct"&gt;Price (USD):&lt;/label&gt;
+  &lt;input type="number" id="input-correct" value="1234.56" /&gt;
+
+  &lt;label for="date-correct"&gt;Date:&lt;/label&gt;
+  &lt;input type="date" id="date-correct" /&gt;
+
+  &lt;label for="text-correct"&gt;Comment:&lt;/label&gt;
+  &lt;textarea id="text-correct"&gt;Please enter your feedback&lt;/textarea&gt;
+&lt;/form&gt;</code></pre>
+    </section>
+  </main>
+</body>
+</html>
