@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemples de Attributes ARIA - Formació</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Estils per als blocs de codi informatius */
+    .code-box {
+      background-color: #e3f2fd;
+      border: 1px solid #90caf9;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    /* Estils per millorar la visibilitat del focus */
+    :focus {
+        outline: 3px solid #ff9800; /* Contorn taronja per destacar el focus */
+        outline-offset: 4px; /* Separa el contorn de l'element */
+    }
+
+    /* Ajustos específics per als botons */
+    .btn:focus,
+    .btn-tab:focus {
+        outline: 3px solid #ff9800;
+        outline-offset: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exemples de Attributes ARIA</h1>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./exemple-aria.html">Exemples de Attributes ARIA</a></li>
+        <li><a href="./exemple-roles.html">Exemples de Rols ARIA</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="aria-exemples">
+    <!-- Exemple 1: aria-label -->
+    <section class="card">
+      <h2>Exemple 1: `aria-label`</h2>
+      <p>Aquest exemple mostra com utilitzar l'atribut <code>aria-label</code> per proporcionar una etiqueta personalitzada a un element.</p>
+      <button class="btn" aria-label="Desa els canvis">💾</button>
+      <div class="code-box">&lt;button class="btn" aria-label="Desa els canvis"&gt;💾&lt;/button&gt;</div>
+    </section>
+
+    <!-- Exemple 2: aria-labelledby -->
+    <section class="card">
+      <h2>Exemple 2: `aria-labelledby`</h2>
+      <p>Aquest exemple mostra com utilitzar l'atribut <code>aria-labelledby</code> per associar un element amb una etiqueta externa.</p>
+      <div>
+        <h3 id="titol-formulari">Formulari de contacte</h3>
+        <form aria-labelledby="titol-formulari">
+          <label for="nom">Nom:</label>
+          <input type="text" id="nom" />
+        </form>
+      </div>
+      <div class="code-box">&lt;h3 id="titol-formulari"&gt;Formulari de contacte&lt;/h3&gt;
+&lt;form aria-labelledby="titol-formulari"&gt;
+    &lt;label for="nom"&gt;Nom:&lt;/label&gt;
+    &lt;input type="text" id="nom" /&gt;
+&lt;/form&gt;</div>
+    </section>
+
+    <!-- Exemple 3: aria-describedby -->
+    <section class="card">
+      <h2>Exemple 3: `aria-describedby`</h2>
+      <p>Aquest exemple mostra com utilitzar l'atribut <code>aria-describedby</code> per proporcionar una descripció addicional a un element.</p>
+      <form>
+        <label for="email">Correu electrònic:</label>
+        <input type="email" id="email" aria-describedby="ajuda-email" />
+        <div id="ajuda-email">Introdueix un correu electrònic vàlid.</div>
+      </form>
+      <div class="code-box">&lt;label for="email"&gt;Correu electrònic:&lt;/label&gt;
+&lt;input type="email" id="email" aria-describedby="ajuda-email" /&gt;
+&lt;div id="ajuda-email"&gt;Introdueix un correu electrònic vàlid.&lt;/div&gt;</div>
+    </section>
+
+    <!-- Exemple 4: aria-hidden -->
+    <section class="card">
+      <h2>Exemple 4: `aria-hidden`</h2>
+      <p>Aquest exemple mostra com utilitzar l'atribut <code>aria-hidden</code> per amagar un element dels lectors de pantalla.</p>
+      <div>
+        <i class="fas fa-star" aria-hidden="true"></i>
+        <span>Valoració: 5 estrelles</span>
+      </div>
+      <div class="code-box">&lt;i class="fas fa-star" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;span&gt;Valoració: 5 estrelles&lt;/span&gt;</div>
+    </section>
+
+    <!-- Exemple 5: aria-live -->
+    <section class="card">
+      <h2>Exemple 5: `aria-live`</h2>
+      <p>Aquest exemple mostra com utilitzar l'atribut <code>aria-live</code> per anunciar canvis dinàmics en una regió de la pàgina.</p>
+      <button class="btn" onclick="actualitzarMissatge()">Actualitza missatge</button>
+      <div aria-live="polite" id="live-region" class="alert-box" hidden></div>
+      <div class="code-box">&lt;button class="btn" onclick="actualitzarMissatge()"&gt;Actualitza missatge&lt;/button&gt;
+&lt;div aria-live="polite" id="live-region" class="alert-box" hidden&gt;&lt;/div&gt;
+
+function actualitzarMissatge() {
+    const liveRegion = document.getElementById('live-region');
+    liveRegion.textContent = 'El contingut s\'ha actualitzat correctament!';
+    liveRegion.hidden = false;
+}</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Formació ARIA i Atributs</p>
+  </footer>
+
+  <script>
+    // Exemple 5: aria-live
+    function actualitzarMissatge() {
+      const liveRegion = document.getElementById('live-region');
+      liveRegion.textContent = 'El contingut s\'ha actualitzat correctament!';
+      liveRegion.hidden = false;
+    }
+  </script>
+</body>
+</html>

@@ -1,49 +1,49 @@
 
-Desarrollo Web 1
-Minutos importantes
-00:00:00 - 00:00:02 - Título
-00:09:13 - Inicio video
-00:09:13 - 00:16:06 - Introducción
-00:16:06 - 00:27:23 - Idioma y contexto
+[x] - Desarrollo Web 1
+[x] - Minutos importantes
+[x] - 00:00:00 - 00:00:02 - Título
+[x] - 00:09:13 - Inicio video
+[x] - 00:09:13 - 00:16:06 - Introducción
+[x] - 00:16:06 - 00:27:23 - Idioma y contexto
 ---------------- 00:00:00 - 00:05:27 - Principios Idioma y contexto
 ---------------- 00:06:12 - 00:11:08 - Ejemplos Idioma y contexto
-00:30:50 - 00:37:15 - Title
-00:37:46 - 00:39:15 - ¿Como definir el title?
-00:39:20 - 00:48:50 - Estructura
+[x] - 00:30:50 - 00:37:15 - Title
+[x] - 00:37:46 - 00:39:15 - ¿Como definir el title?
+[x] - 00:39:20 - 00:48:50 - Estructura
 ---------------- 00:00:00 - 00:02:38 - Principios Estructura
 ---------------- 00:02:38 - 00:09:25 - Ejemplos Estructura
-00:49:20 - 00:57:28 - Aria y roles
-00:57:36 - 01:12:12 - Imágenes y iconos
+[ ] - 00:49:20 - 00:57:28 - Aria y roles
+[ ] - 00:57:36 - 01:12:12 - Imágenes y iconos
 ---------------- 00:00:00 - 00:09:48 - Principios Imágenes y iconos
 ---------------- 00:09:58 - 00:14:26 - Ejemplos Imágenes y iconos
-01:12:18 - 01:19:50 - Cards
-01:19:58 - 01:40:46 - Nombre accesible
+[ ] - 01:12:18 - 01:19:50 - Cards
+[ ] - 01:19:58 - 01:40:46 - Nombre accesible
 ---------------- 00:00:00 - 00:03:52 - Principios Nombre accesible
 ---------------- 00:05:28 - 00:12:36 - Ejemplo Nombre accesible (I)
 ---------------- 00:12:36 - 00:20:49 - Ejemplo Nombre accesible (II)
-01:41:08 - 01:42:45 - Descripción accesible
-01:43:20 - 01:50:02 - Navegación por teclado
-01:50:25 - 01:53:50 - Espaciado de texto
-01:54:19 - 01:55:45 - Preguntas finales
-01:55:45 - Final video
+[ ] - 01:41:08 - 01:42:45 - Descripción accesible
+[ ] - 01:43:20 - 01:50:02 - Navegación por teclado
+[ ] - 01:50:25 - 01:53:50 - Espaciado de texto
+[x] - 01:54:19 - 01:55:45 - Preguntas finales
+[x] - 01:55:45 - Final video
 
 Desarrollo Web 2
-00:00:00 - 00:00:02 - Título
-00:07:00 - Inicio video
-00:07:00 - 00:10:06 - Repaso día anterior
-00:13:02 - 00:18:19 - Introducción foco interactivo
-00:19:47 - 00:30:53 - Ejemplos de teclado: Botón
-00:31:26 - 00:34:44 - Ejemplos de teclado: Listas
-00:34:55 - 00:41:34 - Ejemplos de teclado: Salto al contenido
-00:41:55 - 00:47:34 - Ejemplos de teclado: Cancelación del puntero + foco visible
-00:47:34 - 00:52:23 - Ejemplos de teclado: Navegación por menús
-00:55:14 - 01:09:52 - Anunciado de mensajes
-01:10:39 - 01:22:27 - Modales
-01:22:41 - 01:29:30 - Pestañas
-01:30:28 - 01:40:10 - Carrusel
-01:41:24 - 01:57:20 - Formularios
-01:58:02 - 01:59:23 - Multimedia
-01:59:23 - 02:00:09 - Final video
+[x] - 00:00:00 - 00:00:02 - Título
+[x] - 00:07:00 - Inicio video
+[ ] - 00:07:00 - 00:10:06 - Repaso día anterior
+[ ] - 00:13:02 - 00:18:19 - Introducción foco interactivo
+[ ] - 00:19:47 - 00:30:53 - Ejemplos de teclado: Botón
+[ ] - 00:31:26 - 00:34:44 - Ejemplos de teclado: Listas
+[ ] - 00:34:55 - 00:41:34 - Ejemplos de teclado: Salto al contenido
+[ ] - 00:41:55 - 00:47:34 - Ejemplos de teclado: Cancelación del puntero + foco visible
+[ ] - 00:47:34 - 00:52:23 - Ejemplos de teclado: Navegación por menús
+[ ] - 00:55:14 - 01:09:52 - Anunciado de mensajes
+[ ] - 01:10:39 - 01:22:27 - Modales
+[ ] - 01:22:41 - 01:29:30 - Pestañas
+[ ] - 01:30:28 - 01:40:10 - Carrusel
+[ ] - 01:41:24 - 01:57:20 - Formularios
+[ ] - 01:58:02 - 01:59:23 - Multimedia
+[x] - 01:59:23 - 02:00:09 - Final video
 
 Testea la accesibilidad de tu código
 00:01:57 - 00:07:30 - Inicio y presentación

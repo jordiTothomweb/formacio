@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemples de Rols ARIA - Formació</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Estils per als blocs de codi informatius */
+    .code-box {
+      background-color: #e3f2fd;
+      border: 1px solid #90caf9;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    /* Estils per millorar la visibilitat del focus */
+    :focus {
+      outline: 3px solid #ff9800; /* Contorn taronja per destacar el focus */
+      outline-offset: 4px; /* Separa el contorn de l'element */
+    }
+
+    /* Ajustos específics per als botons */
+    .btn:focus,
+    .btn-tab:focus {
+      outline: 3px solid #ff9800;
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exemples de Rols ARIA</h1>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./exemple-aria.html">Exemples de Attributes ARIA</a></li>
+        <li><a href="./exemple-roles.html">Exemples de Rols ARIA</a></li>
+        <li class="menu-dret">
+            <button id="menu-toggle" aria-label="Obrir menú d'usuari" aria-haspopup="true" aria-expanded="false">☰</button>
+            <ul id="menu-usuari" class="menu-usuari" hidden>
+              <li><a href="#iniciarsessio">Iniciar sessió</a></li>
+              <li><a href="#usuari/configuracio">Configuració</a></li>
+              <li><a href="#usuari/productes">Els meus productes</a></li>
+              <li><a href="#usuari/compres">Les meves compres</a></li>
+            </ul>
+          </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="aria-exemples">
+    <!-- Exemple 1: role="alert" -->
+    <section class="card">
+      <h2>Exemple 1: `role="alert`</h2>
+      <p>Aquest exemple mostra com utilitzar el rol <code>alert</code> per anunciar un missatge important quan es produeix un canvi.</p>
+      <button class="btn" onclick="mostrarAlert()">Mostra alerta</button>
+      <div role="alert" id="alert-box" class="alert-box" hidden></div>
+      <div class="code-box">&lt;button class="btn" onclick="mostrarAlert()"&gt;Mostra alerta&lt;/button&gt;
+&lt;div role="alert" id="alert-box" class="alert-box" hidden&gt;&lt;/div&gt;
+
+function mostrarAlert() {
+    const alertBox = document.getElementById('alert-box');
+    alertBox.textContent = 'Aquest és un missatge d\'alerta important!';
+    alertBox.hidden = false;
+}</div>
+    </section>
+
+    <!-- Exemple 2: role="tablist", "tab", "tabpanel" -->
+    <section class="card">
+      <h2>Exemple 2: Sistema de pestanyes amb `role="tablist"`</h2>
+      <p>Aquest exemple mostra com crear un sistema de pestanyes accessible amb ARIA.</p>
+      <div role="tablist" aria-label="Pestanyes de contingut">
+        <button role="tab" aria-selected="true" aria-controls="panel1" id="tab1" class="btn-tab">Pestanya 1</button>
+        <button role="tab" aria-selected="false" aria-controls="panel2" id="tab2" class="btn-tab">Pestanya 2</button>
+      </div>
+      <div id="panel1" role="tabpanel" aria-labelledby="tab1" class="tabpanel">Contingut de la pestanya 1</div>
+      <div id="panel2" role="tabpanel" aria-labelledby="tab2" class="tabpanel" hidden>Contingut de la pestanya 2</div>
+      <div class="code-box">&lt;div role="tablist" aria-label="Pestanyes de contingut"&gt;
+    &lt;button role="tab" aria-selected="true" aria-controls="panel1" id="tab1" class="btn-tab"&gt;Pestanya 1&lt;/button&gt;
+    &lt;button role="tab" aria-selected="false" aria-controls="panel2" id="tab2" class="btn-tab"&gt;Pestanya 2&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="panel1" role="tabpanel" aria-labelledby="tab1" class="tabpanel"&gt;Contingut de la pestanya 1&lt;/div&gt;
+&lt;div id="panel2" role="tabpanel" aria-labelledby="tab2" class="tabpanel" hidden&gt;Contingut de la pestanya 2&lt;/div&gt;
+
+document.querySelectorAll('[role="tab"]').forEach(tab =&gt; {
+    tab.addEventListener('click', () =&gt; {
+    document.querySelectorAll('[role="tabpanel"]').forEach(panel =&gt; panel.hidden = true);
+    document.querySelectorAll('[role="tab"]').forEach(t =&gt; t.setAttribute('aria-selected', 'false'));
+    const panelId = tab.getAttribute('aria-controls');
+    document.getElementById(panelId).hidden = false;
+    tab.setAttribute('aria-selected', 'true');
+    tab.focus();
+    });
+});</div>
+    </section>
+
+    <!-- Exemple 3: role="dialog" -->
+    <section class="card">
+      <h2>Exemple 3: `role="dialog`</h2>
+      <p>Aquest exemple mostra com utilitzar el rol <code>dialog</code> per crear una finestra modal.</p>
+      <button class="btn" onclick="obrirDialog()">Obre el diàleg</button>
+      <div role="dialog" id="dialog" class="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-desc" hidden>
+        <h2 id="dialog-title">Títol del diàleg</h2>
+        <p id="dialog-desc">Aquest és el contingut del diàleg.</p>
+        <button class="btn" onclick="tancarDialog()">Tanca</button>
+        <button class="btn" onclick="alert('Acció secundària!')">Acció secundària</button>
+      </div>
+      <div class="code-box"> &lt;button class="btn" onclick="obrirDialog()"&gt;Obre el diàleg&lt;/button&gt;
+        &lt;div role="dialog" id="dialog" class="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-desc" hidden&gt;
+    &lt;h2 id="dialog-title"&gt;Títol del diàleg&lt;/h2&gt;
+    &lt;p id="dialog-desc"&gt;Aquest és el contingut del diàleg.&lt;/p&gt;
+    &lt;button class="btn" onclick="tancarDialog()"&gt;Tanca&lt;/button&gt;
+    &lt;button class="btn" onclick="alert('Acció secundària!')"&gt;Acció secundària&lt;/button&gt;
+&lt;/div&gt;
+
+function obrirDialog() {
+    dialog.hidden = false;
+    const focusableContent = dialog.querySelectorAll(focusableElements);
+    firstFocusableElement = focusableContent[0];
+    lastFocusableElement = focusableContent[focusableContent.length - 1];
+    firstFocusableElement.focus();
+    document.addEventListener('keydown', gestionarFocus);
+}
+
+function tancarDialog() {
+    dialog.hidden = true;
+    document.removeEventListener('keydown', gestionarFocus);
+}</div>
+    </section>
+
+    <!-- Exemple 4: role="tooltip" -->
+    <section class="card">
+      <h2>Exemple 4: `role="tooltip`</h2>
+      <p>Aquest exemple mostra com utilitzar el rol <code>tooltip</code> per proporcionar informació addicional.</p>
+      <button class="btn" aria-describedby="tooltip1" onmouseover="mostrarTooltip()" onmouseout="amagarTooltip()" onfocus="mostrarTooltip()" onblur="amagarTooltip()">Passa el ratolí o fes focus</button>
+      <div role="tooltip" id="tooltip1" class="tooltip" hidden>Aquest és un tooltip amb informació addicional.</div>
+      <div class="code-box">&lt;button class="btn" aria-describedby="tooltip1" onmouseover="mostrarTooltip()" onmouseout="amagarTooltip()" onfocus="mostrarTooltip()" onblur="amagarTooltip()"&gt;Passa el ratolí o fes focus&lt;/button&gt;
+&lt;div role="tooltip" id="tooltip1" class="tooltip" hidden&gt;Aquest és un tooltip amb informació addicional.&lt;/div&gt;
+
+function mostrarTooltip() {
+    const tooltip = document.getElementById('tooltip1');
+    tooltip.hidden = false;
+}
+
+function amagarTooltip() {
+    const tooltip = document.getElementById('tooltip1');
+    tooltip.hidden = true;
+}</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Formació ARIA i Rols</p>
+  </footer>
+
+
+  <script>
+    // Exemple 1: Mostrar alerta només quan hi ha contingut
+    function mostrarAlert() {
+      const alertBox = document.getElementById('alert-box');
+      alertBox.textContent = 'Aquest és un missatge d\'alerta important!';
+      alertBox.hidden = false;
+    }
+
+    // Exemple 2: Millorar la lectura de pestanyes
+    document.querySelectorAll('[role="tab"]').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('[role="tabpanel"]').forEach(panel => panel.hidden = true);
+        document.querySelectorAll('[role="tab"]').forEach(t => t.setAttribute('aria-selected', 'false'));
+        const panelId = tab.getAttribute('aria-controls');
+        document.getElementById(panelId).hidden = false;
+        tab.setAttribute('aria-selected', 'true');
+        tab.focus(); // Assegura que el focus es mou a la pestanya seleccionada
+      });
+    });
+
+    // Exemple 3: Bloquejar el focus dins de la modal
+    const dialog = document.getElementById('dialog');
+    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    let firstFocusableElement, lastFocusableElement;
+
+    function obrirDialog() {
+      dialog.hidden = false;
+      const focusableContent = dialog.querySelectorAll(focusableElements);
+      firstFocusableElement = focusableContent[0];
+      lastFocusableElement = focusableContent[focusableContent.length - 1];
+      firstFocusableElement.focus();
+
+      document.addEventListener('keydown', gestionarFocus);
+    }
+
+    function tancarDialog() {
+      dialog.hidden = true;
+      document.removeEventListener('keydown', gestionarFocus);
+    }
+
+    function gestionarFocus(e) {
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusableElement) {
+            e.preventDefault();
+            lastFocusableElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastFocusableElement) {
+            e.preventDefault();
+            firstFocusableElement.focus();
+          }
+        }
+      } else if (e.key === 'Escape') {
+        tancarDialog();
+      }
+    }
+
+    // Exemple 4: Tooltip amb suport per a teclat
+    function mostrarTooltip() {
+      const tooltip = document.getElementById('tooltip1');
+      tooltip.hidden = false;
+    }
+
+    function amagarTooltip() {
+      const tooltip = document.getElementById('tooltip1');
+      tooltip.hidden = true;
+    }
+  </script>
+</body>
+</html>
