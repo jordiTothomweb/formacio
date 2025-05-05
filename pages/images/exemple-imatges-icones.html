@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemples d'Imatges i Icones - Formació</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .code-box {
+      background-color: #e3f2fd;
+      border: 1px solid #90caf9;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .btn {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn:hover {
+      background-color: #1565c0;
+    }
+    .icon-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .info-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+    }
+
+    .info-card i {
+        font-size: 2rem;
+        color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exemples d'Imatges i Icones</h1>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../aria/exemple-aria.html">Exemples de Attributes ARIA</a></li>
+        <li><a href="../aria/exemple-roles.html">Exemples de Rols ARIA</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="aria-exemples">
+    <!-- Exemple 1: Imatges decoratives -->
+    <section class="card">
+      <h2>Exemple 1: Imatges decoratives</h2>
+      <p>Les imatges decoratives no han de ser anunciades pels lectors de pantalla. Això es pot aconseguir amb <code>alt=""</code>.</p>
+      <img src="../img/decorativa.jpg" alt="" />
+      <div class="code-box"><pre><code>&lt;img src="../img/decorativa.jpg" alt="" /&gt;</code></pre></div>
+    </section>
+
+    <!-- Exemple 2: Imatges amb text alternatiu -->
+    <section class="card">
+      <h2>Exemple 2: Imatges amb text alternatiu</h2>
+      <p>Les imatges que transmeten informació han de tenir un text alternatiu descriptiu.</p>
+      <img src="https://via.placeholder.com/300x200?text=Gràfica+de+vendes" alt="Gràfica de vendes del 2025 que mostra un augment del 20% respecte al 2024." />
+      <div class="code-box"><pre><code>&lt;img src="https://via.placeholder.com/300x200?text=Gràfica+de+vendes" alt="Gràfica de vendes del 2025 que mostra un augment del 20% respecte al 2024." /&gt;</code></pre></div>
+    </section>
+
+    <!-- Exemple 3: Icones sense descripció -->
+<section class="card">
+    <h2>Exemple 3: Icones sense descripció</h2>
+    <p>Les icones decoratives han de ser ignorades pels lectors de pantalla utilitzant <code>aria-hidden="true"</code>. Aquí formen part d'una targeta informativa.</p>
+    <div class="info-card">
+      <i class="fas fa-leaf" aria-hidden="true"></i>
+      <div>
+        <h3>Producte ecològic</h3>
+        <p>Aquest producte està fet amb materials 100% reciclats.</p>
+      </div>
+    </div>
+    <div class="code-box"><pre><code>&lt;div class="info-card"&gt;
+&lt;i class="fas fa-leaf" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;div&gt;
+    &lt;h3&gt;Producte ecològic&lt;/h3&gt;
+    &lt;p&gt;Aquest producte està fet amb materials 100% reciclats.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+  </section>
+
+    <!-- Exemple 5: Botons amb icones -->
+    <section class="card">
+      <h2>Exemple 5: Botons amb icones</h2>
+      <p>Els botons amb icones han de tenir una descripció clara utilitzant <code>aria-label</code>. Les icones internes han de tenir <code>aria-hidden="true"</code>.</p>
+      <div>
+        <button class="btn" aria-label="Anterior"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+        <button class="btn" aria-label="Següent"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+      <div class="code-box"><pre><code>&lt;button class="btn" aria-label="Anterior"&gt;&lt;i class="fas fa-arrow-left" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;button class="btn" aria-label="Següent"&gt;&lt;i class="fas fa-arrow-right" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;</code></pre></div>
+    </section>
+
+    <!-- Exemple 6: Botons amb icones i text -->
+    <section class="card">
+      <h2>Exemple 6: Botons amb icones i text</h2>
+      <p>Els botons amb icones poden incloure text visible per millorar l'accessibilitat. Les icones internes han de tenir <code>aria-hidden="true"</code>.</p>
+      <div>
+        <button class="btn icon-btn">
+          <i class="fas fa-arrow-left" aria-hidden="true"></i>
+          <span>Anterior</span>
+        </button>
+        <button class="btn icon-btn">
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          <span>Següent</span>
+        </button>
+      </div>
+      <div class="code-box"><pre><code>&lt;button class="btn icon-btn"&gt;
+  &lt;i class="fas fa-arrow-left" aria-hidden="true"&gt;&lt;/i&gt;
+  &lt;span&gt;Anterior&lt;/span&gt;
+&lt;/button&gt;
+&lt;button class="btn icon-btn"&gt;
+  &lt;i class="fas fa-arrow-right" aria-hidden="true"&gt;&lt;/i&gt;
+  &lt;span&gt;Següent&lt;/span&gt;
+&lt;/button&gt;</code></pre></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Formació Imatges i Icones</p>
+  </footer>
+</body>
+</html>
