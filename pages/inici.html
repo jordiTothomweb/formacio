@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pàgina d'Inici - Formació Accessibilitat</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    main {
+      padding: 1rem;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .card {
+      flex: 1 1 calc(33.333% - 1rem);
+      max-width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card i {
+      font-size: 3rem;
+      color: #1976d2;
+      margin-bottom: 1rem;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      margin: 0.5rem 0;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #555;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: auto;
+      padding: 0.5rem 1rem;
+      background-color: #1976d2;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .card a:hover {
+      background-color: #1565c0;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+          <button disabled class="btn-back" onclick="history.back()" aria-label="Torna enrere">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h1>Pàgina d'Inici</h1>
+        </div>
+        <nav>
+          <ul class="nav-bar">
+            <li><a href="#estructura-idioma">Estructura i Idioma</a></li>
+            <li><a href="#aria">ARIA</a></li>
+            <li><a href="#multimedia">Multimèdia</a></li>
+            <li><a href="#components">Components</a></li>
+          </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Exemples d'Accessibilitat</h2>
+    
+        <!-- Subsecció 1: Estructura i Idioma -->
+        <h3 id="estructura-idioma">Estructura i Idioma</h3>
+        <div class="grid">
+          <div class="card">
+            <i class="fas fa-sitemap"></i>
+            <h2>Structure</h2>
+            <p>Exemples de com estructurar correctament una pàgina HTML.</p>
+            <a href="./structure/estructura-divs.html">Veure Exemple</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-language"></i>
+            <h2>Idioma</h2>
+            <p>Exemples de com gestionar l'atribut d'idioma en HTML.</p>
+            <a href="./others/idioma.html">Veure Exemple</a>
+          </div>
+        </div>
+    
+        <!-- Subsecció 2: ARIA -->
+        <h3 id="aria">ARIA</h3>
+        <div class="grid">
+          <div class="card">
+            <i class="fas fa-universal-access"></i>
+            <h2>Attributes ARIA</h2>
+            <p>Aprèn a utilitzar els atributs ARIA per millorar l'accessibilitat.</p>
+            <a href="./aria/exemple-aria.html">Veure Exemple</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-users"></i>
+            <h2>Rols ARIA</h2>
+            <p>Descobreix com utilitzar els rols ARIA per estructurar millor el contingut.</p>
+            <a href="./aria/exemple-roles.html">Veure Exemple</a>
+          </div>
+        </div>
+    
+        <!-- Subsecció 3: Multimèdia -->
+        <h3 id="multimedia">Multimèdia</h3>
+        <div class="grid">
+          <div class="card">
+            <i class="fas fa-image"></i>
+            <h2>Imatges i Icones</h2>
+            <p>Exemples d'imatges decoratives, informatives i icones accessibles.</p>
+            <a href="./images/exemple-imatges-icones.html">Veure Exemple</a>
+          </div>
+        </div>
+    
+        <!-- Subsecció 4: Components -->
+        <h3 id="components">Components</h3>
+        <div class="grid">
+          <div class="card">
+            <i class="fas fa-th-large"></i>
+            <h2>Cards</h2>
+            <p>Exemples de targetes accessibles amb ARIA i teclat.</p>
+            <a href="./components/cards.html">Veure Exemple</a>
+          </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2025 Formació Accessibilitat</p>
+    </footer>
+</body>
+</html>
