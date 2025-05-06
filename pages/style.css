@@ -178,24 +178,41 @@ pre code {
   background-color: #e7f9e7;
   border: 1px solid #2e7d32;
 }
-.card.correcte::before {
-  content: '✅ Exemple correcte';
-  display: block;
-  font-weight: bold;
-  color: #2e7d32;
-  margin-bottom: 0.5rem;
-}
 
 /* Estil per a caixes incorrectes */
 .card.incorrecte pre code {
   background-color: #ffe5e5;
   border: 1px solid #cc0000;
 }
-.card.incorrecte::before {
-  content: '❌ Exemple incorrecte';
-  display: block;
+
+.card h3 {
+  margin: 0;
+  font-size: 1.25rem;
   font-weight: bold;
-  color: #b00020;
+  color: #333;
+}
+
+.card.correcte h3::before {
+  content: "✅ Exemple correcte";
+  display: block;
+  font-size: 1rem;
+  color: #4caf50;
+  margin-bottom: 0.5rem;
+}
+
+.card.incorrecte h3::before {
+  content: "❌ Exemple incorrecte";
+  display: block;
+  font-size: 1rem;
+  color: #f44336;
+  margin-bottom: 0.5rem;
+}
+
+.card.situacional h3::before {
+  content: "⚠️ Cas situacional";
+  display: block;
+  font-size: 1rem;
+  color: #ff9800;
   margin-bottom: 0.5rem;
 }
 

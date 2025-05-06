@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nom Accessible</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .example {
+      flex: 1;
+    }
+
+    .situacional .code-box {
+      flex: 1;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+
+    pre {
+      margin: 0;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+
+    img {
+      max-width: 50px;
+      height: auto;
+      display: inline-block;
+    }
+
+    .card.correcte {
+      border-left: 5px solid #4caf50; /* Verd per a correctes */
+    }
+
+    .card.incorrecte {
+      border-left: 5px solid #f44336; /* Vermell per a incorrectes */
+    }
+
+    .card.situacional {
+      border-left: 5px solid #ff9800; /* Taronja per a situacionals */
+    }
+
+    .card .description {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <button class="btn-back" onclick="history.back()" aria-label="Torna enrere">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1>Nom Accessible</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../idioma.html">Idioma</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Lectura de noms accessibles</h2>
+
+    <!-- Cas 1: Enllaç amb etiqueta -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enllaç amb etiqueta</h3>
+        <a href="#" id="link1">Inici</a>
+        <p class="description">El nom accessible prové del text visible de l'enllaç.</p>
+      </div>
+      <div class="code-box">
+        <pre><code>&lt;a href="#" id="link1"&gt;Inici&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Cas 2: Enllaç amb etiqueta i title -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enllaç amb etiqueta i title</h3>
+        <a href="#" title="Ves a l'inici">Inici</a>
+        <p class="description">El nom accessible prové del text visible, i el `title` és un complement.</p>
+      </div>
+      <div class="code-box">
+        <pre><code>&lt;a href="#" title="Ves a l'inici"&gt;Inici&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Cas 3: Enllaç amb aria-label -->
+  <div class="card correcte">
+    <div class="example">
+      <h3>Enllaç amb aria-label</h3>
+      <a href="#" aria-label="Inici">
+        <i class="fas fa-home" aria-hidden="true"></i>
+      </a>
+      <p class="description">El nom accessible prové de l'atribut `aria-label`. La icona és visible per a tots els usuaris.</p>
+    </div>
+    <div class="code-box">
+      <pre><code>&lt;a href="#" aria-label="Inici"&gt;
+    &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
+  &lt;/a&gt;</code></pre>
+    </div>
+  </div>
+
+    <!-- Cas 4: Enllaç amb aria-labelledby -->
+  <!-- Cas 4: Enllaç amb aria-labelledby -->
+  <div class="card correcte">
+    <div class="example">
+      <h3>Enllaç amb aria-labelledby</h3>
+      <!-- Text referenciat -->
+      <span id="descripcio_oculta_link" class="visually-hidden" aria-hidden="true">Inici text ocult</span>
+      <!-- Enllaç -->
+      <a href="#" aria-labelledby="descripcio_oculta_link">
+        <i class="fas fa-home" aria-hidden="true"></i>
+      </a>
+      <p class="description">El nom accessible prové de l'element amb `id="link1"`. El text és invisible però llegible per a lectors de pantalla.</p>
+    </div>
+    <div class="code-box">
+      <pre><code>&lt;span id="link1" class="visually-hidden" aria-hidden="true"&gt;
+    Inici text ocult
+&lt;/span&gt;
+&lt;a href="#" aria-labelledby="link1"&gt;
+    &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;</code></pre>
+    </div>
+  </div>
+
+    <!-- Cas 5: Enllaç amb aria-label + etiqueta -->
+    <div class="card situacional">
+      <div class="example">
+        <h3>Enllaç amb aria-label i etiqueta</h3>
+        <a href="#" aria-label="Enllaç">Inici</a>
+        <p class="description">Hi ha un conflicte entre el text visible i el `aria-label`. Els lectors de pantalla prioritzaran el `aria-label`.</p>
+      </div>
+      <div class="code-box">
+        <pre><code>&lt;a href="#" aria-label="Enllaç"&gt;Inici&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Cas 6: Enllaç amb imatge amb alt -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enllaç amb imatge amb alt</h3>
+        <a href="#">
+          <img src="../../img/home_icon.png" alt="Inici">
+        </a>
+        <p class="description">El nom accessible prové del text alternatiu de la imatge (`alt`).</p>
+      </div>
+      <div class="code-box">
+        <pre><code>&lt;a href="#"&gt;
+  &lt;img src="../../img/home_icon.png" alt="Inici"&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Cas 7: Enllaç amb imatge amb alt buit -->
+    <div class="card situacional">
+      <div class="example">
+        <h3>Enllaç amb imatge amb alt buit</h3>
+        <a href="#">
+          <img src="../../img/home_icon.png" alt="">
+        </a>
+        <p class="description">Amb `alt=""`, la imatge és ignorada pels lectors de pantalla. Assegura't que l'enllaç tingui un altre mecanisme per proporcionar un nom accessible.</p>
+      </div>
+      <div class="code-box">
+        <pre><code>&lt;a href="#"&gt;
+  &lt;img src="../../img/home_icon.png" alt=""&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Cas 8: Enllaç amb imatge sense alt -->
+    <div class="card incorrecte">
+      <div class="example">
+        <h3>Enllaç amb imatge sense alt</h3>
+        <a href="#">
+          <img src="../../img/home_icon.png">
+        </a>
+        <p class="description">Sense `alt`, el lector de pantalla pot llegir el nom del fitxer, que no és útil.</p>
+      </div>
+      <div class="code-box">
+        <pre><code>&lt;a href="#"&gt;
+  &lt;img src="../../img/home_icon.png"&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Formació Accessibilitat</p>
+  </footer>
+</body>
+</html>
