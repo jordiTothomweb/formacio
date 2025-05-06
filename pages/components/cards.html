@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemples de Cards de Mobles</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Estils generals per a targetes */
+    .content-card, .example-card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .content-card:hover, .example-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .content-card:focus, .example-card:focus {
+      outline: 2px solid #1976d2;
+      outline-offset: 2px;
+    }
+
+    /* Botó de favorits */
+    .content-card .favorite-btn, .example-card .favorite-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: #f44336;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .content-card .favorite-btn:hover, .example-card .favorite-btn:hover {
+      color: #d32f2f;
+    }
+
+    /* Estils específics per a targetes d'exemple */
+    .example-card.correcte {
+      border-left: 5px solid #4caf50;
+    }
+    .example-card.incorrecte {
+      border-left: 5px solid #f44336;
+    }
+
+    /* Estils per al títol i la descripció del segon cas */
+    .example-card.incorrecte h3 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .example-card.incorrecte p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Estils específics per a targetes de contingut */
+    /* Responsivitat per a les targetes */
+    .content-card {
+      max-width: 100%;
+      width: 400px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .content-card {
+        width: 90%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content-card {
+        width: 100%;
+        padding: 0.5rem;
+      }
+    }
+    .content-card img {
+      width: 100%;
+      border-radius: 4px;
+    }
+    .content-card h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .content-card p {
+      margin: 0;
+      font-size: 1rem;
+      color: #555;
+    }
+    .content-card .tags {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .content-card .tags span {
+      background-color: #e0e0e0;
+      color: #555;
+      font-size: 0.875rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+    .content-card .price {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #1976d2;
+    }
+
+    /* Estils per a les caixes de codi */
+    .code-box {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    /* Estils per al card flotant */
+    /* Estils per al card flotant amb animació */
+    .floating-message {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color: black;
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-size: 1rem;
+      z-index: 1000;
+      display: none; /* Amagat per defecte */
+      opacity: 0; /* Per a l'animació */
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      transform: translateY(-10px);
+    }
+
+    .floating-message.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exemples de Cards de Mobles</h1>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./exemple-aria.html">Exemples de Attributes ARIA</a></li>
+        <li><a href="./exemple-roles.html">Exemples de Rols ARIA</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="aria-exemples">
+    <!-- Exemple Correcte -->
+    <section class="example-card correcte">
+      <h2>Exemple Correcte</h2>
+      <p>Aquesta targeta és accessible perquè:</p>
+      <ul>
+        <li>Els xips són clicables i accessibles amb el teclat.</li>
+        <li>Els atributs <code>aria-labelledby</code> i <code>aria-describedby</code> estan correctament associats.</li>
+        <li>El missatge d'afegir a favorits és anunciat pel lector de pantalla.</li>
+        <li>El descompte està indicat correctament per al lector de pantalla.</li>
+      </ul>
+      <article class="content-card" tabindex="0" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price">
+        <button class="favorite-btn" aria-label="Afegeix a favorits" onclick="event.stopPropagation(); toggleFavorite(this, 'correcte')">
+          <i class="fas fa-heart"></i>
+        </button>
+        <img src="../../img/exemple.jpg" alt="Sofà modern de color gris amb coixins blancs">
+        <h3 id="sofa-title">Sofà Modern</h3>
+        <p id="sofa-desc">Un sofà elegant i còmode, perfecte per a qualsevol sala d'estar moderna.</p>
+        <div class="tags">
+          <span tabindex="0" role="button" aria-label="Etiqueta Modern" onclick="alert('Etiqueta: Modern')">Modern</span>
+          <span tabindex="0" role="button" aria-label="Etiqueta Confortable" onclick="alert('Etiqueta: Confortable')">Confortable</span>
+        </div>
+        <div class="price" id="sofa-price">
+          <span aria-hidden="true" style="text-decoration: line-through; color: #999;">599,99 €</span>
+          <span aria-label="Preu amb descompte: 499,99 euros" style="color: #1976d2; font-weight: bold;">499,99 €</span>
+        </div>
+      </article>
+      <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite" style="display: none;">
+        Sofà Modern afegit als favorits.
+      </div>
+      <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price"&gt;
+  &lt;button class="favorite-btn" aria-label="Afegeix a favorits" onclick="event.stopPropagation(); toggleFavorite(this, 'correcte')"&gt;
+    &lt;i class="fas fa-heart"&gt;&lt;/i&gt;
+  &lt;/button&gt;
+  &lt;img src="../../img/exemple.jpg" alt="Sofà modern de color gris amb coixins blancs"&gt;
+  &lt;h3 id="sofa-title"&gt;Sofà Modern&lt;/h3&gt;
+  &lt;p id="sofa-desc"&gt;Un sofà elegant i còmode, perfecte per a qualsevol sala d'estar moderna.&lt;/p&gt;
+  &lt;div class="tags"&gt;
+    &lt;span tabindex="0" role="button" aria-label="Etiqueta Modern" onclick="alert('Etiqueta: Modern')"&gt;Modern&lt;/span&gt;
+    &lt;span tabindex="0" role="button" aria-label="Etiqueta Confortable" onclick="alert('Etiqueta: Confortable')"&gt;Confortable&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="price" id="sofa-price"&gt;
+    &lt;span aria-hidden="true" style="text-decoration: line-through; color: #999;"&gt;599,99 €&lt;/span&gt;
+    &lt;span aria-label="Preu amb descompte: 499,99 euros" style="color: #1976d2; font-weight: bold;"&gt;499,99 €&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+&lt;div class="message" id="favorite-message-correcte" role="alert" aria-live="polite" style="display: none;"&gt;
+  Sofà Modern afegit als favorits.
+&lt;/div&gt;</code></pre></div>
+    </section>
+    
+    <section class="example-card incorrecte">
+      <h2>Exemple Incorrecte</h2>
+      <p>Aquesta targeta no és accessible perquè:</p>
+      <ul>
+        <li>Els xips són clicables però no accessibles amb el teclat.</li>
+        <li>Els atributs <code>aria-labelledby</code> i <code>aria-describedby</code> no estan correctament associats.</li>
+        <li>El missatge d'afegir a favorits no és anunciat pel lector de pantalla.</li>
+        <li>El descompte no està indicat correctament per al lector de pantalla.</li>
+      </ul>
+      <article class="content-card" tabindex="0" aria-labelledby="sofa-title-incorrecte" aria-describedby="sofa-desc-incorrecte">
+        <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this, 'incorrecte')">
+          <i class="fas fa-heart"></i>
+        </button>
+        <img src="../../img/exemple.jpg" alt="Imatge">
+        <h3 id="sofa-title-incorrecte">Sofà Modern amb un disseny elegant i sofisticat per a qualsevol espai</h3>
+        <p id="sofa-desc-incorrecte">Aquest sofà és perfecte per a qualsevol sala d'estar moderna, amb un estil únic i materials d'alta qualitat.</p>
+        <div class="tags">
+          <span role="button" aria-label="Etiqueta Modern" onclick="alert('Etiqueta: Modern')">Modern</span>
+          <span role="button" aria-label="Etiqueta Confortable" onclick="alert('Etiqueta: Confortable')">Confortable</span>
+        </div>
+        <div class="price">
+          <span style="text-decoration: line-through; color: #999;">599,99 €</span>
+          <span style="color: #1976d2; font-weight: bold;">499,99 €</span>
+        </div>
+      </article>
+      <div class="floating-message" id="favorite-message-incorrecte" style="display: none;">
+        Sofà Modern afegit als favorits.
+      </div>
+      <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="sofa-title-incorrecte" aria-describedby="sofa-desc-incorrecte"&gt;
+  &lt;button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this, 'incorrecte')"&gt;
+    &lt;i class="fas fa-heart"&gt;&lt;/i&gt;
+  &lt;/button&gt;
+  &lt;img src="../../img/exemple.jpg" alt="Imatge"&gt;
+  &lt;h3 id="sofa-title-incorrecte"&gt;Sofà Modern amb un disseny elegant i sofisticat per a qualsevol espai&lt;/h3&gt;
+  &lt;p id="sofa-desc-incorrecte"&gt;Aquest sofà és perfecte per a qualsevol sala d'estar moderna, amb un estil únic i materials d'alta qualitat.&lt;/p&gt;
+  &lt;div class="tags"&gt;
+    &lt;span role="button" aria-label="Etiqueta Modern" onclick="alert('Etiqueta: Modern')"&gt;Modern&lt;/span&gt;
+    &lt;span role="button" aria-label="Etiqueta Confortable" onclick="alert('Etiqueta: Confortable')"&gt;Confortable&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="price"&gt;
+    &lt;span style="text-decoration: line-through; color: #999;"&gt;599,99 €&lt;/span&gt;
+    &lt;span style="color: #1976d2; font-weight: bold;"&gt;499,99 €&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+&lt;div class="message" id="favorite-message-incorrecte" style="display: none;"&gt;
+  Sofà Modern afegit als favorits.
+&lt;/div&gt;</code></pre></div>
+    </section>
+  <footer>
+    <p>© 2025 Formació Cards de Mobles</p>
+  </footer>
+</body>
+</html>
+<script>
+  document.querySelectorAll('.tags').forEach((tagContainer) => {
+    const chips = tagContainer.querySelectorAll('span[role="button"]');
+
+    chips.forEach((chip, index) => {
+      // Navegació amb fletxes
+      chip.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+          // Mou el focus al següent xip
+          const nextChip = chips[index + 1] || chips[0]; // Torna al primer si és l'últim
+          nextChip.focus();
+          event.preventDefault();
+        } else if (event.key === 'ArrowLeft') {
+          // Mou el focus al xip anterior
+          const prevChip = chips[index - 1] || chips[chips.length - 1]; // Torna a l'últim si és el primer
+          prevChip.focus();
+          event.preventDefault();
+        } else if (event.key === 'Enter') {
+          // Simula un clic quan es prem "Enter"
+          chip.click();
+          event.preventDefault();
+        }
+      });
+    });
+  });
+
+  function toggleFavorite(button, type) {
+    // Identifica l'element del missatge segons el tipus
+    const messageId = type === 'correcte' ? 'favorite-message-correcte' : 'favorite-message-incorrecte';
+    const messageElement = document.getElementById(messageId);
+
+    if (!messageElement) {
+      console.error(`No s'ha trobat l'element amb id: ${messageId}`);
+      return;
+    }
+
+    // Canvia l'estat del botó
+    button.classList.toggle('active');
+    if (button.classList.contains('active')) {
+      button.setAttribute('aria-label', 'Eliminat de favorits');
+      messageElement.style.display = 'block'; // Mostra el missatge
+      setTimeout(() => {
+        messageElement.style.display = 'none'; // Amaga el missatge després de 3 segons
+      }, 3000);
+    } else {
+      button.setAttribute('aria-label', 'Afegeix a favorits');
+    }
+  }
+</script>
