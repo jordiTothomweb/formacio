@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Interactiu - Formació Accessibilitat</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Cas 2: Focus natiu insuficient */
+    .focus-insuficient, .focus-personalitzat, .focus-amb-espai, .focus-bicolor {
+      background-color: #015ECC;
+      color: white;
+    }
+
+    /* Cas 3: Focus personalitzat */
+    .focus-personalitzat:focus {
+      outline: 2px solid red; /* Contorn blau */
+    }
+
+    /* Cas 4: Focus amb espai */
+    .focus-amb-espai:focus {
+      outline: 2px solid #1976d2;
+      outline-offset: 4px; /* Espai entre el focus i el botó */
+    }
+
+    /* Cas 5: Focus col·lisionant amb el fons */
+    .focus-colisionant {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+    }
+
+    .focus-colisionant:focus {
+      outline: 2px solid #1976d2; /* El focus es perd amb el fons */
+      outline-offset: 4px; /* Espai entre el focus i el botó */
+    }
+
+    /* Cas 6: Focus bicolor */
+    .focus-bicolor-invertit:focus {
+      outline: 3px solid white;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px black; /* Contorn negre extern */
+    }
+
+    /* Cas 7: Focus bicolor invertit */
+    .focus-bicolor:focus {
+      outline: 3px solid black;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px white; /* Contorn blanc extern */
+    }
+
+
+    pre {
+      margin: 0;
+      font-family: monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap; /* Permet que el text s'ajusti dins de la caixa */
+    }
+    code {
+        overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  
+    <header>
+        <div class="header-left">
+          <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
+            <i class="fas fa-arrow-left"></i>
+          </a>
+          <h1>Focus visible</h1>
+        </div>
+        <nav>
+          <ul class="nav-bar">
+            <li><a href="#estructura-idioma">Estructura i Idioma</a></li>
+            <li><a href="#aria">ARIA</a></li>
+            <li><a href="#multimedia">Multimèdia</a></li>
+            <li><a href="#components">Components</a></li>
+          </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Exemples de Foco Interactiu</h2>
+    
+        <!-- Cas 1: Focus natiu -->
+        <div class="card correcte">
+          <div class="example">
+            <h3>Focus natiu</h3>
+            <button>Botó amb focus natiu</button>
+            <p class="description">Aquest és el comportament per defecte del focus natiu. No cal fer res addicional.</p>
+          </div>
+          <div class="code-box">
+            <pre><code>&lt;button&gt;Botó amb focus natiu&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+    
+        <!-- Cas 2: Focus natiu insuficient -->
+        <div class="card incorrecte">
+          <div class="example">
+            <h3>Focus natiu insuficient</h3>
+            <button class="focus-insuficient">Botó amb focus natiu insuficient</button>
+            <p class="description">El focus natiu no és suficient perquè coincideix amb el color del botó.</p>
+          </div>
+          <div class="code-box">
+            <pre><code>&lt;button class="focus-insuficient"&gt;Botó amb focus natiu insuficient&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-insuficient {
+    background-color: #015ECC;
+    color: white;
+    border: none;
+}
+
+.focus-insuficient:focus {
+    outline: 2px solid #015ECC;
+}
+&lt;/style&gt;</code></pre>
+          </div>
+        </div>
+    
+        <!-- Cas 3: Focus personalitzat -->
+        <div class="card correcte">
+          <div class="example">
+            <h3>Focus personalitzat</h3>
+            <button class="focus-personalitzat">Botó amb focus personalitzat</button>
+            <p class="description">El focus s'adapta al botó i canvia de color per fer-lo més visible.</p>
+          </div>
+          <div class="code-box">
+            <pre><code>&lt;button class="focus-personalitzat"&gt;Botó amb focus personalitzat&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-personalitzat:focus {
+    outline: 2px solid red;
+}
+&lt;/style&gt;</code></pre>
+          </div>
+        </div>
+    
+        <!-- Cas 4: Focus amb espai -->
+        <div class="card correcte">
+          <div class="example">
+            <h3>Focus amb espai</h3>
+            <button class="focus-amb-espai">Botó amb focus amb espai</button>
+            <p class="description">El focus afegeix un espai entre el contorn i el botó per millorar la visibilitat.</p>
+          </div>
+          <div class="code-box">
+            <pre><code>&lt;button class="focus-amb-espai"&gt;Botó amb focus amb espai&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-amb-espai:focus {
+    outline: 2px solid #1976d2;
+    outline-offset: 4px;
+}
+&lt;/style&gt;</code></pre>
+          </div>
+        </div>
+    
+        <!-- Cas 5: Focus col·lisionant amb el fons -->
+        <div class="card incorrecte" style="background-color: #83b7eb;">
+          <div class="example">
+            <h3>Focus col·lisionant amb el fons</h3>
+            <button class="focus-colisionant">Botó amb focus col·lisionant</button>
+            <p class="description">El focus col·lisiona amb el fons i no és prou visible.</p>
+          </div>
+          <div class="code-box">
+            <pre><code>&lt;button class="focus-colisionant"&gt;Botó amb focus col·lisionant&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-colisionant {
+    background-color: #1976d2;
+    color: white;
+    border: none;
+}
+
+.focus-colisionant:focus {
+    outline: 2px solid #1976d2;
+}
+&lt;/style&gt;</code></pre>
+          </div>
+        </div>
+    
+        <!-- Cas 6: Focus bicolor -->
+        <div class="card correcte" style="background-color: #83b7eb;">
+          <div class="example">
+            <h3>Focus bicolor</h3>
+            <button class="focus-bicolor">Botó amb focus bicolor</button>
+            <p class="description">El focus utilitza dos colors (blanc i negre) per destacar-se clarament.</p>
+          </div>
+          <div class="code-box">
+            <pre><code>&lt;button class="focus-bicolor"&gt;Botó amb focus bicolor&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-bicolor:focus {
+    outline: 3px solid white;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px black;
+}
+&lt;/style&gt;</code></pre>
+          </div>
+        </div>
+    
+        <!-- Cas 7: Focus bicolor invertit -->
+        <div class="card correcte" style="background-color: #83b7eb;">
+          <div class="example">
+            <h3>Focus bicolor invertit</h3>
+            <button class="focus-bicolor-invertit">Botó amb focus bicolor invertit</button>
+            <p class="description">El focus utilitza els mateixos colors que el cas anterior, però invertits.</p>
+          </div>
+          <div class="code-box">
+            <pre><code>&lt;button class="focus-bicolor-invertit"&gt;Botó amb focus bicolor invertit&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-bicolor-invertit:focus {
+    outline: 3px solid black;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px white;
+}
+&lt;/style&gt;</code></pre>
+          </div>
+        </div>
+      </main>
+    
+
+  <footer>
+    <p>© 2025 Formació Accessibilitat</p>
+  </footer>
+</body>
+</html>
