@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemples Accessibles</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .container {
+      flex: 3;
+      padding: 2rem;
+    }
+
+    .example {
+      margin-bottom: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      background-color: #f9f9f9;
+    }
+
+    .example h2 {
+      margin-top: 0;
+    }
+
+    .code-box {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+
+    .example-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      background-color: #f5f5f5;
+      margin: 0 auto;
+    }
+
+    .example-container button {
+      position: absolute;
+    }
+
+    .example-container button:focus {
+      outline: 2px solid #1976d2;
+    }
+
+    .dialog {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .dialog.open {
+      display: block;
+    }
+
+    .menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .menu-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-content.open {
+      display: block;
+    }
+
+    .menu-content button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.5rem;
+      border: none;
+      background: none;
+    }
+
+    .menu-content button:focus {
+      outline: 2px solid #1976d2;
+    }
+
+    .menu button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .menu button:focus {
+      outline: 2px solid #1976d2;
+    }
+
+    .tabs button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background: #ddd;
+      cursor: pointer;
+    }
+
+    .tabs button[aria-selected="true"] {
+      background: #1976d2;
+      color: white;
+    }
+
+    .tab-content {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      display: none;
+    }
+
+    .tab-content[aria-hidden="false"] {
+      display: block;
+    }
+
+    .accordion button {
+      width: 100%;
+      text-align: left;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      background: #f5f5f5;
+      cursor: pointer;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-top: none;
+    }
+
+    .accordion-content.open {
+      display: block;
+    }
+
+    .skip-link {
+      
+      position: absolute;
+      top: 0px;
+      right: 10px;
+      transform: translateY(-100%);
+      background: #1976d2;
+      color: white;
+      padding: 0.5rem;
+      text-decoration: none;
+      z-index: 1000;
+      border-radius: 4px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+      outline: 2px solid #1976d2;
+      outline-offset: 2px;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-container input, .form-container textarea, .form-container select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .form-container button {
+      padding: 0.5rem 1rem;
+      background: #1976d2;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Exemples Accessibles</h1>
+
+    <!-- Exemple 0: Saltar al contingut -->
+    <div class="example">
+      <h2>0. Saltar al contingut</h2>
+      <p>Aquest exemple inclou un enllaç que permet saltar part del contingut de la página.</p>
+      <button onclick="focusMenu()" class="skip-link">Saltar a l'exemple 3</a>
+      
+    </div>
+
+    <!-- Exemple 1: Ordre de tabulació -->
+    <div class="example">
+      <h2>1. Ordre de tabulació correcte</h2>
+      <div class="example-container">
+        <button style="top: 1rem; right: 1rem;">Botó 1</button>
+        <button style="bottom: 1rem; right: 5rem;">Botó 2</button>
+        <button style="bottom: 1rem; right: 1rem;">Botó 3</button>
+      </div>
+    </div>
+
+    <!-- Exemple 2: Focus en modals -->
+  <div class="example">
+    <h2>2. Focus en modals</h2>
+    <button onclick="openDialog()">Obrir modal</button>
+    <div class="dialog" id="dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true">
+      <h3 id="dialog-title">Modal accessible</h3>
+      <button onclick="closeDialog()">Tancar</button>
+      <button>Acció</button>
+    </div>
+    <div class="code-box">
+      <code>
+        // Exemple 2: Focus en modals<br>
+        let lastFocusedElement;<br><br>
+        function openDialog() {<br>
+          &nbsp;&nbsp;const dialog = document.getElementById('dialog');<br>
+          &nbsp;&nbsp;lastFocusedElement = document.activeElement;<br>
+          &nbsp;&nbsp;dialog.classList.add('open');<br>
+          &nbsp;&nbsp;dialog.querySelector('button').focus();<br>
+          &nbsp;&nbsp;document.addEventListener('keydown', trapFocus);<br>
+        }<br><br>
+        function closeDialog() {<br>
+          &nbsp;&nbsp;const dialog = document.getElementById('dialog');<br>
+          &nbsp;&nbsp;dialog.classList.remove('open');<br>
+          &nbsp;&nbsp;document.removeEventListener('keydown', trapFocus);<br>
+          &nbsp;&nbsp;if (lastFocusedElement) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;lastFocusedElement.focus();<br>
+          &nbsp;&nbsp;}<br>
+        }<br><br>
+        function trapFocus(event) {<br>
+          &nbsp;&nbsp;const dialog = document.getElementById('dialog');<br>
+          &nbsp;&nbsp;const focusableElements = dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');<br>
+          &nbsp;&nbsp;const firstElement = focusableElements[0];<br>
+          &nbsp;&nbsp;const lastElement = focusableElements[focusableElements.length - 1];<br><br>
+          &nbsp;&nbsp;if (event.key === 'Tab') {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;if (event.shiftKey) {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (document.activeElement === firstElement) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault();<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastElement.focus();<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (document.activeElement === lastElement) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault();<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstElement.focus();<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+          &nbsp;&nbsp;} else if (event.key === 'Escape') {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;closeDialog();<br>
+          &nbsp;&nbsp;}<br>
+        }
+      </code>
+    </div>
+  </div>
+
+  <!-- Exemple 3: Menú d'usuari -->
+  <div class="example" id="menu-example">
+    <h2>3. Menú d'usuari</h2>
+    <div class="menu" id="menu">
+      <button onclick="toggleMenu()"><i class="fas fa-user"></i></button>
+      <div class="menu-content" id="menu-content" role="menu">
+        <button role="menuitem">Opció 1</button>
+        <button role="menuitem">Opció 2</button>
+        <button role="menuitem">Opció 3</button>
+      </div>
+    </div>
+    <div class="code-box">
+      <code>
+        // Exemple 3: Tancar menú amb Escape<br>
+        document.addEventListener('keydown', (event) => {<br>
+          &nbsp;&nbsp;const menuContent = document.getElementById('menu-content');<br>
+          &nbsp;&nbsp;if (menuContent.classList.contains('open') && event.key === 'Escape') {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;menuContent.classList.remove('open');<br>
+          &nbsp;&nbsp;}<br>
+        });
+      </code>
+    </div>
+  </div>
+
+    <!-- Exemple 4: Pestanyes -->
+    <div class="example">
+      <h2>4. Pestanyes</h2>
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" aria-controls="tab1" id="tab1-btn">Pestanya 1</button>
+        <button role="tab" aria-selected="false" aria-controls="tab2" id="tab2-btn">Pestanya 2</button>
+        <button role="tab" aria-selected="false" aria-controls="tab3" id="tab3-btn">Pestanya 3</button>
+      </div>
+      <div id="tab1" class="tab-content" role="tabpanel" aria-hidden="false">
+        <p>Contingut de la pestanya 1.</p>
+        <button>Acció dins pestanya 1</button>
+      </div>
+      <div id="tab2" class="tab-content" role="tabpanel" aria-hidden="true">
+        <p>Contingut de la pestanya 2.</p>
+        <button>Acció dins pestanya 2</button>
+      </div>
+      <div id="tab3" class="tab-content" role="tabpanel" aria-hidden="true">
+        <p>Contingut de la pestanya 3.</p>
+        <button>Acció dins pestanya 3</button>
+      </div>
+    </div>
+
+    <!-- Exemple 5: Acordió -->
+    <div class="example">
+      <h2>5. Acordió</h2>
+      <div class="accordion">
+        <button aria-expanded="false" aria-controls="section1">Secció 1</button>
+        <div id="section1" class="accordion-content">
+          <p>Contingut de la secció 1.</p>
+          <button>Acció dins secció 1</button>
+        </div>
+        <button aria-expanded="false" aria-controls="section2">Secció 2</button>
+        <div id="section2" class="accordion-content">
+          <p>Contingut de la secció 2.</p>
+          <button>Acció dins secció 2</button>
+        </div>
+        <button aria-expanded="false" aria-controls="section3">Secció 3</button>
+        <div id="section3" class="accordion-content">
+          <p>Contingut de la secció 3.</p>
+          <button>Acció dins secció 3</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exemple 6: Formulari Accessible -->
+    <div class="example">
+      <h2>6. Formulari Accessible</h2>
+      <form>
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Correu electrònic</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Missatge</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <label for="topic">Tema</label>
+        <select id="topic" name="topic">
+          <option value="accessibility">Accessibilitat</option>
+          <option value="usability">Usabilitat</option>
+          <option value="design">Disseny</option>
+        </select>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Exemple 0: Saltar al menú d'usuari i enfocar el primer element interactuable
+    function focusMenu() {
+      const menuButton = document.querySelector('#menu button');
+      menuButton.focus();
+    }
+
+
+    // Exemple 2: Focus en modals
+    let lastFocusedElement;
+
+    function openDialog() {
+      const dialog = document.getElementById('dialog');
+      lastFocusedElement = document.activeElement;
+      dialog.classList.add('open');
+      dialog.querySelector('button').focus();
+      document.addEventListener('keydown', trapFocus);
+    }
+
+    function closeDialog() {
+      const dialog = document.getElementById('dialog');
+      dialog.classList.remove('open');
+      document.removeEventListener('keydown', trapFocus);
+      if (lastFocusedElement) {
+        lastFocusedElement.focus();
+      }
+    }
+
+    function trapFocus(event) {
+      const dialog = document.getElementById('dialog');
+      const focusableElements = dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.key === 'Tab') {
+        if (event.shiftKey) {
+          if (document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
+          }
+        }
+      } else if (event.key === 'Escape') {
+        closeDialog();
+      }
+    }
+
+    // Exemple 3: Menú d'usuari
+    function toggleMenu() {
+      const menuContent = document.getElementById('menu-content');
+      menuContent.classList.toggle('open');
+      if (menuContent.classList.contains('open')) {
+        menuContent.querySelector('button').focus();
+      }
+    }
+
+    document.getElementById('menu').addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      const menuContent = document.getElementById('menu-content');
+      if (menuContent.classList.contains('open') && event.key === 'Escape') {
+        menuContent.classList.remove('open');
+      }
+    });
+
+    const menu = document.getElementById('menu');
+    menu.addEventListener('mouseenter', () => {
+      const menuContent = document.getElementById('menu-content');
+      menuContent.classList.add('open');
+    });
+
+    menu.addEventListener('mouseleave', () => {
+      const menuContent = document.getElementById('menu-content');
+      menuContent.classList.remove('open');
+    });
+
+    // Exemple 4: Pestanyes
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.setAttribute('aria-selected', 'false');
+          document.getElementById(t.getAttribute('aria-controls')).setAttribute('aria-hidden', 'true');
+        });
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById(tab.getAttribute('aria-controls')).setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    // Exemple 5: Acordió
+    const accordionButtons = document.querySelectorAll('.accordion button');
+
+    accordionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', !expanded);
+        document.getElementById(button.getAttribute('aria-controls')).classList.toggle('open');
+      });
+    });
+
+    // Exemple 7: Saltar al contingut
+    function scrollToTop() {
+      const firstElement = document.querySelector('h1');
+      firstElement.setAttribute('tabindex', '-1'); // Assegura que es pot enfocar
+      firstElement.focus();
+      firstElement.removeAttribute('tabindex'); // Elimina tabindex després d'enfocar
+    }
+  </script>
+</body>
+</html>
