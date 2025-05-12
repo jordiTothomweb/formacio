@@ -9,10 +9,6 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
     }
 
     .container {
@@ -124,6 +120,10 @@
       outline: 2px solid #1976d2;
     }
 
+    #tab1-btn:focus, #tab2-btn:focus, #tab3-btn:focus {
+      outline-offset: 2px;
+    }
+
     .tabs button {
       padding: 0.5rem 1rem;
       border: none;
@@ -210,8 +210,23 @@
   </style>
 </head>
 <body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Focus visible</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./focus-visible.html">Focus Visible</a></li>
+        <li><a href="./teclat-dolent.html">Teclat Dolent</a></li>
+        <li><a href="./teclat-bo.html">Teclat Bo</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <div class="container">
+  <main class="container">
     <h1>Exemples Accessibles</h1>
 
     <!-- Exemple 0: Saltar al contingut -->
@@ -233,81 +248,85 @@
     </div>
 
     <!-- Exemple 2: Focus en modals -->
-  <div class="example">
-    <h2>2. Focus en modals</h2>
-    <button onclick="openDialog()">Obrir modal</button>
-    <div class="dialog" id="dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true">
-      <h3 id="dialog-title">Modal accessible</h3>
-      <button onclick="closeDialog()">Tancar</button>
-      <button>Acció</button>
-    </div>
-    <div class="code-box">
-      <code>
-        // Exemple 2: Focus en modals<br>
-        let lastFocusedElement;<br><br>
-        function openDialog() {<br>
-          &nbsp;&nbsp;const dialog = document.getElementById('dialog');<br>
-          &nbsp;&nbsp;lastFocusedElement = document.activeElement;<br>
-          &nbsp;&nbsp;dialog.classList.add('open');<br>
-          &nbsp;&nbsp;dialog.querySelector('button').focus();<br>
-          &nbsp;&nbsp;document.addEventListener('keydown', trapFocus);<br>
-        }<br><br>
-        function closeDialog() {<br>
-          &nbsp;&nbsp;const dialog = document.getElementById('dialog');<br>
-          &nbsp;&nbsp;dialog.classList.remove('open');<br>
-          &nbsp;&nbsp;document.removeEventListener('keydown', trapFocus);<br>
-          &nbsp;&nbsp;if (lastFocusedElement) {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;lastFocusedElement.focus();<br>
-          &nbsp;&nbsp;}<br>
-        }<br><br>
-        function trapFocus(event) {<br>
-          &nbsp;&nbsp;const dialog = document.getElementById('dialog');<br>
-          &nbsp;&nbsp;const focusableElements = dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');<br>
-          &nbsp;&nbsp;const firstElement = focusableElements[0];<br>
-          &nbsp;&nbsp;const lastElement = focusableElements[focusableElements.length - 1];<br><br>
-          &nbsp;&nbsp;if (event.key === 'Tab') {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;if (event.shiftKey) {<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (document.activeElement === firstElement) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault();<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastElement.focus();<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (document.activeElement === lastElement) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault();<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstElement.focus();<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-          &nbsp;&nbsp;} else if (event.key === 'Escape') {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;closeDialog();<br>
-          &nbsp;&nbsp;}<br>
-        }
-      </code>
-    </div>
+<div class="example">
+  <h2>2. Focus en modals</h2>
+  <button onclick="openDialog()">Obrir modal</button>
+  <div class="dialog" id="dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true">
+    <h3 id="dialog-title">Modal accessible</h3>
+    <button onclick="closeDialog()">Tancar</button>
+    <button>Acció</button>
   </div>
+  <div class="code-box"><pre><code>// Exemple 2: Focus en modals
+let lastFocusedElement;
+
+function openDialog() {
+  const dialog = document.getElementById('dialog');
+  lastFocusedElement = document.activeElement;
+  dialog.classList.add('open');
+  dialog.querySelector('button').focus();
+  document.addEventListener('keydown', trapFocus);
+}
+
+function closeDialog() {
+  const dialog = document.getElementById('dialog');
+  dialog.classList.remove('open');
+  document.removeEventListener('keydown', trapFocus);
+  if (lastFocusedElement) {
+    lastFocusedElement.focus();
+  }
+}
+
+function trapFocus(event) {
+  const dialog = document.getElementById('dialog');
+  const focusableElements = dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (event.key === 'Tab') {
+    if (event.shiftKey) {
+      if (document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    }
+  } else if (event.key === 'Escape') {
+    closeDialog();
+  }
+}</code></pre></div>
+</div>
 
   <!-- Exemple 3: Menú d'usuari -->
-  <div class="example" id="menu-example">
-    <h2>3. Menú d'usuari</h2>
-    <div class="menu" id="menu">
-      <button onclick="toggleMenu()"><i class="fas fa-user"></i></button>
-      <div class="menu-content" id="menu-content" role="menu">
-        <button role="menuitem">Opció 1</button>
-        <button role="menuitem">Opció 2</button>
-        <button role="menuitem">Opció 3</button>
-      </div>
-    </div>
-    <div class="code-box">
-      <code>
-        // Exemple 3: Tancar menú amb Escape<br>
-        document.addEventListener('keydown', (event) => {<br>
-          &nbsp;&nbsp;const menuContent = document.getElementById('menu-content');<br>
-          &nbsp;&nbsp;if (menuContent.classList.contains('open') && event.key === 'Escape') {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;menuContent.classList.remove('open');<br>
-          &nbsp;&nbsp;}<br>
-        });
-      </code>
+<div class="example" id="menu-example">
+  <h2>3. Menú d'usuari</h2>
+  <div class="menu" id="menu">
+    <button onclick="toggleMenu()"><i class="fas fa-user"></i></button>
+    <div class="menu-content" id="menu-content" role="menu">
+      <button role="menuitem">Opció 1</button>
+      <button role="menuitem">Opció 2</button>
+      <button role="menuitem">Opció 3</button>
     </div>
   </div>
+  <div class="code-box"><pre><code>// Exemple 3: Tancar menú amb Escape
+function toggleMenu() {
+  const menuContent = document.getElementById('menu-content');
+  menuContent.classList.toggle('open');
+  if (menuContent.classList.contains('open')) {
+    menuContent.querySelector('button').focus();
+  }
+}
+
+document.addEventListener('keydown', (event) => {
+  const menuContent = document.getElementById('menu-content');
+  if (menuContent.classList.contains('open') && event.key === 'Escape') {
+    menuContent.classList.remove('open');
+  }
+});</code></pre></div>
+</div>
 
     <!-- Exemple 4: Pestanyes -->
     <div class="example">
@@ -376,7 +395,7 @@
         <button type="submit">Enviar</button>
       </form>
     </div>
-  </div>
+  </main>
 
   <script>
     // Exemple 0: Saltar al menú d'usuari i enfocar el primer element interactuable

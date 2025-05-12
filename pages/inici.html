@@ -62,6 +62,16 @@
     .card a:hover {
       background-color: #1565c0;
     }
+
+    h2, h3 {
+      text-align: center; /* Centra els títols */
+      margin-top: 0.5rem; /* Redueix l'espai superior */
+      margin-bottom: 0rem; /* Redueix l'espai inferior */
+    }
+
+    a:focus {
+      outline-offset: 4px; /* Separa el contorn de l'element */
+    }
   </style>
 </head>
 <body>
@@ -76,7 +86,8 @@
           <ul class="nav-bar">
             <li><a href="#estructura-idioma">Estructura i Idioma</a></li>
             <li><a href="#aria">ARIA</a></li>
-            <li><a href="#multimedia">Multimèdia</a></li>
+            <li><a href="#focus">Focus</a></li>
+            <li><a href="#teclat">Teclat</a></li>
             <li><a href="#components">Components</a></li>
           </ul>
         </nav>
@@ -92,13 +103,19 @@
             <i class="fas fa-sitemap"></i>
             <h2>Structure</h2>
             <p>Exemples de com estructurar correctament una pàgina HTML.</p>
-            <a href="./structure/estructura-divs.html">Veure Exemple</a>
+            <a href="./structure/estructura-divs.html">Explora Estructura</a>
           </div>
           <div class="card">
             <i class="fas fa-language"></i>
             <h2>Idioma</h2>
             <p>Exemples de com gestionar l'atribut d'idioma en HTML.</p>
-            <a href="./others/idioma.html">Veure Exemple</a>
+            <a href="./others/idioma.html">Explora Idioma</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-signature"></i>
+            <h2>Nom</h2>
+            <p>Exemples de com assignar noms accessibles als elements.</p>
+            <a href="./others/nom.html">Explora Nom</a>
           </div>
         </div>
     
@@ -109,35 +126,47 @@
             <i class="fas fa-universal-access"></i>
             <h2>Attributes ARIA</h2>
             <p>Aprèn a utilitzar els atributs ARIA per millorar l'accessibilitat.</p>
-            <a href="./aria/exemple-aria.html">Veure Exemple</a>
+            <a href="./aria/exemple-aria.html">Explora Atributs ARIA</a>
           </div>
           <div class="card">
             <i class="fas fa-users"></i>
             <h2>Rols ARIA</h2>
             <p>Descobreix com utilitzar els rols ARIA per estructurar millor el contingut.</p>
-            <a href="./aria/exemple-roles.html">Veure Exemple</a>
+            <a href="./aria/exemple-roles.html">Explora Rols ARIA</a>
           </div>
         </div>
     
-        <!-- Subsecció 3: Multimèdia -->
-        <h3 id="multimedia">Multimèdia</h3>
+        <!-- Subsecció 4: Teclat -->
+<h3 id="teclat">Teclat</h3>
+<div class="grid">
+  <div class="card">
+    <i class="fas fa-eye"></i>
+    <h2>Focus Visible</h2>
+    <p>Exemples de focus visible i com millorar-lo.</p>
+    <a href="./focus/focus-visible.html">Explora Focus Visible</a>
+  </div>
+  <div class="card">
+    <i class="fas fa-keyboard"></i>
+    <h2>Teclat</h2>
+    <p>Exemples de bon i mal ús del teclat en accessibilitat.</p>
+    <a href="./focus/teclat-bo.html">Explora Teclat</a>
+  </div>
+</div>
+    
+        <!-- Subsecció 5: Components -->
+        <h3 id="components">Components</h3>
         <div class="grid">
           <div class="card">
             <i class="fas fa-image"></i>
             <h2>Imatges i Icones</h2>
             <p>Exemples d'imatges decoratives, informatives i icones accessibles.</p>
-            <a href="./images/exemple-imatges-icones.html">Veure Exemple</a>
+            <a href="./images/exemple-imatges-icones.html">Explora Imatges i Icones</a>
           </div>
-        </div>
-    
-        <!-- Subsecció 4: Components -->
-        <h3 id="components">Components</h3>
-        <div class="grid">
           <div class="card">
             <i class="fas fa-th-large"></i>
             <h2>Cards</h2>
             <p>Exemples de targetes accessibles amb ARIA i teclat.</p>
-            <a href="./components/cards.html">Veure Exemple</a>
+            <a href="./components/cards.html">Explora Cards</a>
           </div>
         </div>
     </main>

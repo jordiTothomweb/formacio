@@ -10,7 +10,6 @@
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
-      padding: 2rem;
     }
 
     .example {
@@ -83,8 +82,22 @@
   </style>
 </head>
 <body>
-
-  <div class="container">
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Focus visible</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./focus-visible.html">Focus Visible</a></li>
+        <li><a href="./teclat-dolent.html">Teclat Dolent</a></li>
+        <li><a href="./teclat-bo.html">Teclat Bo</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
     <h1>Exemples Dolents</h1>
 
     <!-- Exemple 1: Ordre de tabulació incorrecte -->
@@ -189,7 +202,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </mains>
 
   <script>
     // Exemple 2: Focus en modals (no reté el focus)

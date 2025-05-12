@@ -100,13 +100,38 @@ main {
   align-items: stretch;
 }
 
-.card {
-  background-color: #fff;
+/* Estils per centrar els cards i ajustar l'amplada */
+.aria-exemples {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra els cards horitzontalment */
+  gap: 2rem; /* Espai entre els cards */
   padding: 2rem;
+}
+
+.card {
+  width: 80%; /* Amplada del card */
+  max-width: 1000px; /* Amplada màxima */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  max-width: 600px;
-  width: 100%;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.code-box {
+  background-color: #e3f2fd;
+  border: 1px solid #90caf9;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  overflow-x: auto;
 }
 
 img {

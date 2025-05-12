@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Recepta de patates fregides</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     main { padding: 2rem; }
     footer { background-color: #ddd; padding: 1rem; text-align: center; }
@@ -18,21 +19,17 @@
 <body>
   <!-- Capçalera semàntica -->
   <header>
-    <h1>Benvingut</h1>
+    <div class="header-left">
+      <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Estructura correcte</h1>
+    </div>
     <nav>
       <ul class="nav-bar">
         <li><a href="./estructura-divs.html">Estructura incorrecte</a></li>
         <li><a href="./estructura-semantica.html">Estructura correcte</a></li>
         <li><a href="./estructura-aria.html">Estructura ARIA</a></li>
-        <li class="menu-dret">
-          <button id="menu-toggle" aria-label="Obrir menú d'usuari" aria-haspopup="true" aria-expanded="false">☰</button>
-          <ul id="menu-usuari" class="menu-usuari" hidden>
-            <li><a href="#iniciarsessio">Iniciar sessió</a></li>
-            <li><a href="#usuari/configuracio">Configuració</a></li>
-            <li><a href="#usuari/productes">Els meus productes</a></li>
-            <li><a href="#usuari/compres">Les meves compres</a></li>
-          </ul>
-        </li>
       </ul>
     </nav>
   </header>
