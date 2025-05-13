@@ -81,6 +81,7 @@
     }
 
     .menu-content {
+      min-width: 160px;
       display: none;
       position: absolute;
       top: 100%;
@@ -252,9 +253,9 @@
   <h2>2. Focus en modals</h2>
   <button onclick="openDialog()">Obrir modal</button>
   <div class="dialog" id="dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true">
-    <h3 id="dialog-title">Modal accessible</h3>
-    <button onclick="closeDialog()">Tancar</button>
-    <button>Acció</button>
+    <h3 id="dialog-title">Vols borrar tots els elements seleccionats?</h3>
+    <button onclick="closeDialog()">Cancelar</button>
+    <button style="background-color: lightcoral;">Borrar tots</button>
   </div>
   <div class="code-box"><pre><code>// Exemple 2: Focus en modals
 let lastFocusedElement;
@@ -304,11 +305,11 @@ function trapFocus(event) {
 <div class="example" id="menu-example">
   <h2>3. Menú d'usuari</h2>
   <div class="menu" id="menu">
-    <button onclick="toggleMenu()"><i class="fas fa-user"></i></button>
-    <div class="menu-content" id="menu-content" role="menu">
+    <button onclick="toggleMenu()" aria-label="Menú d'usuari"><i class="fas fa-user"></i></button>
+    <div class="menu-content" id="menu-content" role="menu" style="background-color: white; z-index: 10;">
       <button role="menuitem">Opció 1</button>
-      <button role="menuitem">Opció 2</button>
-      <button role="menuitem">Opció 3</button>
+      <button role="menuitem" tabindex="-1">Opció 2</button>
+      <button role="menuitem" tabindex="-1">Opció 3</button>
     </div>
   </div>
   <div class="code-box"><pre><code>// Exemple 3: Tancar menú amb Escape
@@ -333,8 +334,8 @@ document.addEventListener('keydown', (event) => {
       <h2>4. Pestanyes</h2>
       <div class="tabs" role="tablist">
         <button role="tab" aria-selected="true" aria-controls="tab1" id="tab1-btn">Pestanya 1</button>
-        <button role="tab" aria-selected="false" aria-controls="tab2" id="tab2-btn">Pestanya 2</button>
-        <button role="tab" aria-selected="false" aria-controls="tab3" id="tab3-btn">Pestanya 3</button>
+        <button role="tab" aria-selected="false" aria-controls="tab2" id="tab2-btn" tabindex="-1">Pestanya 2</button>
+        <button role="tab" aria-selected="false" aria-controls="tab3" id="tab3-btn" tabindex="-1">Pestanya 3</button>
       </div>
       <div id="tab1" class="tab-content" role="tabpanel" aria-hidden="false">
         <p>Contingut de la pestanya 1.</p>
@@ -377,21 +378,21 @@ document.addEventListener('keydown', (event) => {
       <h2>6. Formulari Accessible</h2>
       <form>
         <label for="name">Nom</label>
-        <input type="text" id="name" name="name" required>
-
+        <input type="text" id="name" name="name" autocomplete="name" required>
+    
         <label for="email">Correu electrònic</label>
-        <input type="email" id="email" name="email" required>
-
+        <input type="email" id="email" name="email" autocomplete="email" required>
+    
         <label for="message">Missatge</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
+        <textarea id="message" name="message" rows="5" autocomplete="on" required></textarea>
+    
         <label for="topic">Tema</label>
-        <select id="topic" name="topic">
+        <select id="topic" name="topic" autocomplete="off">
           <option value="accessibility">Accessibilitat</option>
           <option value="usability">Usabilitat</option>
           <option value="design">Disseny</option>
         </select>
-
+    
         <button type="submit">Enviar</button>
       </form>
     </div>
@@ -448,7 +449,7 @@ document.addEventListener('keydown', (event) => {
       }
     }
 
-    // Exemple 3: Menú d'usuari
+    // Exemple 3: Navegació amb fletxes i activació amb Enter o Espai
     function toggleMenu() {
       const menuContent = document.getElementById('menu-content');
       menuContent.classList.toggle('open');
@@ -458,11 +459,31 @@ document.addEventListener('keydown', (event) => {
     }
 
     document.getElementById('menu').addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
+      const menuContent = document.getElementById('menu-content');
+      const menuItems = menuContent.querySelectorAll('button');
+      let currentIndex = Array.from(menuItems).indexOf(document.activeElement);
+
+      if (event.key === 'ArrowDown') {
         event.preventDefault();
-        toggleMenu();
+        const nextIndex = (currentIndex + 1) % menuItems.length;
+        menuItems[nextIndex].focus();
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        const prevIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+        menuItems[prevIndex].focus();
+      } else if (event.key === 'Escape') {
+        menuContent.classList.remove('open');
+        document.querySelector('#menu button').focus();
+      } else if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        document.activeElement.click();
       }
     });
+
+// Desactivar el focus amb tabulador per als elements del menú
+document.querySelectorAll('#menu-content button').forEach(button => {
+  button.setAttribute('tabindex', '-1');
+});
 
     document.addEventListener('keydown', (event) => {
       const menuContent = document.getElementById('menu-content');
@@ -482,20 +503,42 @@ document.addEventListener('keydown', (event) => {
       menuContent.classList.remove('open');
     });
 
-    // Exemple 4: Pestanyes
-    const tabs = document.querySelectorAll('[role="tab"]');
-    const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+    // Exemple 4: Navegació amb fletxes i activació amb Enter o Espai
+const tabs = document.querySelectorAll('[role="tab"]');
+const tabPanels = document.querySelectorAll('[role="tabpanel"]');
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => {
-          t.setAttribute('aria-selected', 'false');
-          document.getElementById(t.getAttribute('aria-controls')).setAttribute('aria-hidden', 'true');
-        });
-        tab.setAttribute('aria-selected', 'true');
-        document.getElementById(tab.getAttribute('aria-controls')).setAttribute('aria-hidden', 'false');
-      });
+tabs.forEach(tab => {
+    tab.addEventListener('keydown', (event) => {
+        const currentIndex = Array.from(tabs).indexOf(tab);
+
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          const nextTab = tabs[(currentIndex + 1) % tabs.length];
+          nextTab.focus();
+        } else if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          const prevTab = tabs[(currentIndex - 1 + tabs.length) % tabs.length];
+          prevTab.focus();
+        } else if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activarPestanya(tab);
+        }
     });
+
+    // Afegir esdeveniment de clic
+    tab.addEventListener('click', () => {
+        activarPestanya(tab);
+    });
+});
+
+function activarPestanya(tab) {
+  tabs.forEach(t => {
+    t.setAttribute('aria-selected', 'false');
+    document.getElementById(t.getAttribute('aria-controls')).setAttribute('aria-hidden', 'true');
+  });
+  tab.setAttribute('aria-selected', 'true');
+  document.getElementById(tab.getAttribute('aria-controls')).setAttribute('aria-hidden', 'false');
+}
 
     // Exemple 5: Acordió
     const accordionButtons = document.querySelectorAll('.accordion button');

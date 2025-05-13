@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemples de Botons</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .example {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: white;
+    }
+
+    .example h2 {
+      margin-top: 0;
+    }
+
+    .fake-button {
+      display: inline-block;
+      padding: 1rem;
+      background-color: #e0e0e0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .fake-button.disabled {
+      background-color: #f0f0f0;
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    button {
+      padding: 1rem;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+    
+    button:focus {
+        outline-offset: 2px;
+    }
+
+    .split-screen {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .left-panel, .right-panel {
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    .code-box {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-top: 1rem;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        
+            <h1>Exemples de Botons</h1>
+        </div>
+        <nav>
+            <ul class="nav-bar">
+                <li><a href="../components/cards.html">Cards</a></li>
+                <li><a href="../components/buttons.html">Botons</a></li>
+                <li><a href="../components/events.html">Events</a></li>
+            </u l>
+        </nav>
+    </header>
+
+  <main>
+    <section class="example">
+      <h2>Exemple: Divs vs Botons</h2>
+      <p>Aquest exemple mostra com millorar progressivament l'accessibilitat d'un `div` i compara el resultat amb un botó natiu.</p>
+      <div class="split-screen">
+        <!-- Meitat Esquerra: Divs -->
+        <div class="left-panel">
+          <h3>Millores Progressives amb Divs</h3>
+          <div class="step">
+            <h4>Pas 1: Div amb aparença de botó</h4>
+            <div 
+              class="fake-button" 
+              onclick="incrementCounter('div-counter')">
+              Div amb event click
+            </div>
+            <div class="code-box"><pre><code>&lt;div 
+  class="fake-button" 
+  onclick="incrementCounter('div-counter')"&gt;
+  Div amb event click
+&lt;/div&gt;</code></pre></div>
+          </div>
+          <div class="step">
+            <h4>Pas 2: Afegir `role="button"`</h4>
+            <div 
+              class="fake-button" 
+              role="button" 
+              onclick="incrementCounter('div-counter')">
+              Div amb rol de botó
+            </div>
+            <div class="code-box"><pre><code>&lt;div 
+  class="fake-button" 
+  role="button" 
+  onclick="incrementCounter('div-counter')"&gt;
+  Div amb rol de botó
+&lt;/div&gt;</code></pre></div>
+          </div>
+          <div class="step">
+            <h4>Pas 3: Afegir interacció amb teclat</h4>
+            <div 
+              class="fake-button" 
+              role="button" 
+              tabindex="0" 
+              onclick="incrementCounter('div-counter')" 
+              onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
+              Div amb interacció per teclat
+            </div>
+            <div class="code-box"><pre><code>&lt;div 
+  class="fake-button" 
+  role="button" 
+  tabindex="0" 
+  onclick="incrementCounter('div-counter')" 
+  onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"&gt;
+  Div amb interacció per teclat
+&lt;/div&gt;</code></pre></div>
+          </div>
+          <div class="step">
+            <h4>Pas 4: Botó deshabilitat</h4>
+            <div 
+              class="fake-button disabled" 
+              role="button" 
+              tabindex="-1" 
+              aria-disabled="true">
+              Div deshabilitat
+            </div>
+            <div class="code-box"><pre><code>&lt;div 
+  class="fake-button disabled" 
+  role="button" 
+  tabindex="-1" 
+  aria-disabled="true"&gt;
+  Div deshabilitat
+&lt;/div&gt;</code></pre></div>
+          </div>
+          <p>Comptador (Divs): <span id="div-counter">0</span></p>
+        </div>
+
+        <!-- Meitat Dreta: Botó -->
+        <div class="right-panel">
+          <h3>Botó Natiu</h3>
+          <button 
+            onclick="incrementCounter('button-counter')" 
+            style="padding: 1rem; background-color: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Botó amb event click
+          </button>
+          <div class="code-box"><pre><code>&lt;button 
+  onclick="incrementCounter('button-counter')" 
+  style="padding: 1rem; background-color: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;"&gt;
+  Botó amb event click
+&lt;/button&gt;</code></pre></div>
+          <p>Comptador (Botó): <span id="button-counter">0</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function incrementCounter(counterId) {
+      const counter = document.getElementById(counterId);
+      const currentValue = parseInt(counter.textContent, 10);
+      counter.textContent = currentValue + 1;
+    }
+  </script>
+</body>
+</html>

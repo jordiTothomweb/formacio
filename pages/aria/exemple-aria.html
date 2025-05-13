@@ -106,9 +106,9 @@
       <h2>Exemple 5: `aria-live`</h2>
       <p>Aquest exemple mostra com utilitzar l'atribut <code>aria-live</code> per anunciar canvis dinàmics en una regió de la pàgina.</p>
       <button class="btn" onclick="actualitzarMissatge()">Actualitza missatge</button>
-      <div aria-live="polite" id="live-region" class="alert-box" hidden></div>
+      <div aria-live="polite" id="live-region" class="alert-box"></div>
       <div class="code-box">&lt;button class="btn" onclick="actualitzarMissatge()"&gt;Actualitza missatge&lt;/button&gt;
-&lt;div aria-live="polite" id="live-region" class="alert-box" hidden&gt;&lt;/div&gt;
+&lt;div aria-live="polite" id="live-region" class="alert-box"&gt;&lt;/div&gt;
 
 function actualitzarMissatge() {
     const liveRegion = document.getElementById('live-region');

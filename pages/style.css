@@ -210,6 +210,12 @@ pre code {
   border: 1px solid #cc0000;
 }
 
+/* Estil per a caixes correctes */
+.card.situacional pre code {
+  background-color: #f6f9e7;
+  border: 1px solid #ff9500;
+}
+
 .card h3 {
   margin: 0;
   font-size: 1.25rem;

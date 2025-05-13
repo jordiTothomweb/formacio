@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemples d'Events</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .code-box {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-top: 1rem;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .fake-button {
+      display: inline-block;
+      padding: 1rem;
+      background-color: #1976d2;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .fake-button:hover {
+      background-color: #1565c0;
+    }
+
+    .fake-button:focus {
+      outline: 2px solid #1976d2;
+      outline-offset: 2px;
+    }
+
+    button {
+      padding: 1rem;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+
+    button:focus {
+      outline: 2px solid #1976d2;
+      outline-offset: 2px;
+    }
+
+    /* Modal flotant per al comptador */
+    .event-display {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      width: 300px;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .event-display h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .event-display p {
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Exemples d'Events</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../components/cards.html">Cards</a></li>
+        <li><a href="../components/buttons.html">Botons</a></li>
+        <li><a href="../components/events.html">Events</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Modal flotant per mostrar els events -->
+  <section class="event-display">
+    <h2>Events Capturats</h2>
+    <p><strong>Últim Event:</strong> <span id="last-event">Cap</span></p>
+    <p><strong>Comptador de Botons Premuts:</strong> <span id="button-counter">0</span></p>
+  </section>
+
+  <main>
+    <!-- Cards amb botons -->
+    <section class="cards-container">
+      <!-- Card 1: Event Mousedown -->
+      <div class="card">
+        <h3>Event: Mousedown</h3>
+        <div 
+          id="mousedown-div" 
+          class="fake-button" 
+          role="button" 
+          tabindex="0" 
+          onmousedown="document.getElementById('last-event').textContent='Mousedown'; incrementCounter();">
+          Event: Mousedown
+        </div>
+        <div class="code-box">
+          <pre><code>&lt;div id="mousedown-div" class="fake-button" role="button" tabindex="0" onmousedown="document.getElementById('last-event').textContent='Mousedown'; incrementCounter();"&gt;Event: Mousedown&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Card 2: Només Ratolí -->
+      <div class="card">
+        <h3>Només Ratolí</h3>
+        <div 
+          id="mouse-only-div" 
+          class="fake-button" 
+          role="button" 
+          tabindex="0" 
+          onmouseup="document.getElementById('last-event').textContent='Mouseup (Només Ratolí)'; incrementCounter();" 
+          onkeydown="if(event.key === 'Enter' || event.key === ' ') { document.getElementById('last-event').textContent='Teclat Ignorat'; event.preventDefault(); }">
+          Només Ratolí
+        </div>
+        <div class="code-box">
+          <pre><code>&lt;div id="mouse-only-div" class="fake-button" role="button" tabindex="0" onmousedown="document.getElementById('last-event').textContent='Mousedown (Només Ratolí)'; incrementCounter();" onkeydown="if(event.key === 'Enter' || event.key === ' ') { document.getElementById('last-event').textContent='Teclat Ignorat'; event.preventDefault(); }"&gt;Només Ratolí&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Card 3: Funcionament Correcte -->
+      <div class="card">
+        <h3>Funcionament Correcte</h3>
+        <div 
+          id="correct-div" 
+          class="fake-button" 
+          role="button" 
+          tabindex="0" 
+          onclick="document.getElementById('last-event').textContent='Click'; incrementCounter();" 
+          onkeydown="if(event.key === 'Enter' || event.key === ' ') { document.getElementById('last-event').textContent='Teclat (Correcte)'; incrementCounter(); }">
+          Funcionament Correcte
+        </div>
+        <div class="code-box">
+          <pre><code>&lt;div id="correct-div" class="fake-button" role="button" tabindex="0" onclick="document.getElementById('last-event').textContent='Click'; incrementCounter();" onkeydown="if(event.key === 'Enter' || event.key === ' ') { document.getElementById('last-event').textContent='Teclat (Correcte)'; incrementCounter(); }"&gt;Funcionament Correcte&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Card 4: Botó Natiu -->
+      <div class="card">
+        <h3>Botó Natiu</h3>
+        <button 
+          id="native-button" 
+          onclick="document.getElementById('last-event').textContent='Click (Botó Natiu)'; incrementCounter();">
+          Botó Natiu
+        </button>
+        <div class="code-box">
+          <pre><code>&lt;button id="native-button" onclick="document.getElementById('last-event').textContent='Click (Botó Natiu)'; incrementCounter();"&gt;Botó Natiu&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Funció per incrementar el comptador
+    function incrementCounter() {
+      const counter = document.getElementById('button-counter');
+      counter.textContent = parseInt(counter.textContent, 10) + 1;
+    }
+  </script>
+</body>
+</html>

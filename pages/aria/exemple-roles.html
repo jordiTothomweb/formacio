@@ -71,27 +71,49 @@ function mostrarAlert() {
       <p>Aquest exemple mostra com crear un sistema de pestanyes accessible amb ARIA.</p>
       <div role="tablist" aria-label="Pestanyes de contingut">
         <button role="tab" aria-selected="true" aria-controls="panel1" id="tab1" class="btn-tab">Pestanya 1</button>
-        <button role="tab" aria-selected="false" aria-controls="panel2" id="tab2" class="btn-tab">Pestanya 2</button>
+        <button role="tab" aria-selected="false" aria-controls="panel2" id="tab2" class="btn-tab" tabindex="-1">Pestanya 2</button>
       </div>
       <div id="panel1" role="tabpanel" aria-labelledby="tab1" class="tabpanel">Contingut de la pestanya 1</div>
       <div id="panel2" role="tabpanel" aria-labelledby="tab2" class="tabpanel" hidden>Contingut de la pestanya 2</div>
       <div class="code-box">&lt;div role="tablist" aria-label="Pestanyes de contingut"&gt;
-    &lt;button role="tab" aria-selected="true" aria-controls="panel1" id="tab1" class="btn-tab"&gt;Pestanya 1&lt;/button&gt;
-    &lt;button role="tab" aria-selected="false" aria-controls="panel2" id="tab2" class="btn-tab"&gt;Pestanya 2&lt;/button&gt;
+  &lt;button role="tab" aria-selected="true" aria-controls="panel1" id="tab1" class="btn-tab" tabindex="0"&gt;Pestanya 1&lt;/button&gt;
+  &lt;button role="tab" aria-selected="false" aria-controls="panel2" id="tab2" class="btn-tab" tabindex="-1"&gt;Pestanya 2&lt;/button&gt;
 &lt;/div&gt;
 &lt;div id="panel1" role="tabpanel" aria-labelledby="tab1" class="tabpanel"&gt;Contingut de la pestanya 1&lt;/div&gt;
 &lt;div id="panel2" role="tabpanel" aria-labelledby="tab2" class="tabpanel" hidden&gt;Contingut de la pestanya 2&lt;/div&gt;
 
-document.querySelectorAll('[role="tab"]').forEach(tab =&gt; {
-    tab.addEventListener('click', () =&gt; {
-    document.querySelectorAll('[role="tabpanel"]').forEach(panel =&gt; panel.hidden = true);
-    document.querySelectorAll('[role="tab"]').forEach(t =&gt; t.setAttribute('aria-selected', 'false'));
-    const panelId = tab.getAttribute('aria-controls');
-    document.getElementById(panelId).hidden = false;
-    tab.setAttribute('aria-selected', 'true');
-    tab.focus();
-    });
-});</div>
+&lt;script&gt;
+document.querySelectorAll('[role="tab"]').forEach((tab, index, tabs) =&gt; {
+  tab.addEventListener('click', () =&gt; {
+    activarPestanya(tab);
+  });
+
+  tab.addEventListener('keydown', (event) =&gt; {
+    if (event.key === 'ArrowRight') {
+      const nextTab = tabs[(index + 1) % tabs.length];
+      activarPestanya(nextTab);
+      nextTab.focus();
+    } else if (event.key === 'ArrowLeft') {
+      const prevTab = tabs[(index - 1 + tabs.length) % tabs.length];
+      activarPestanya(prevTab);
+      prevTab.focus();
+    }
+  });
+});
+
+function activarPestanya(tab) {
+  document.querySelectorAll('[role="tabpanel"]').forEach(panel =&gt; panel.hidden = true);
+  document.querySelectorAll('[role="tab"]').forEach(t =&gt; {
+    t.setAttribute('aria-selected', 'false');
+    t.setAttribute('tabindex', '-1');
+  });
+
+  const panelId = tab.getAttribute('aria-controls');
+  document.getElementById(panelId).hidden = false;
+  tab.setAttribute('aria-selected', 'true');
+  tab.setAttribute('tabindex', '0');
+}
+&lt;/script&gt;</div>
     </section>
 
     <!-- Exemple 3: role="dialog" -->
@@ -162,24 +184,51 @@ function amagarTooltip() {
       alertBox.hidden = false;
     }
 
-    // Exemple 2: Millorar la lectura de pestanyes
-    document.querySelectorAll('[role="tab"]').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('[role="tabpanel"]').forEach(panel => panel.hidden = true);
-        document.querySelectorAll('[role="tab"]').forEach(t => t.setAttribute('aria-selected', 'false'));
-        const panelId = tab.getAttribute('aria-controls');
-        document.getElementById(panelId).hidden = false;
-        tab.setAttribute('aria-selected', 'true');
-        tab.focus(); // Assegura que el focus es mou a la pestanya seleccionada
-      });
-    });
+    // Exemple 2: Navegació amb les fletxes de control (sense tabulador)
+document.querySelectorAll('[role="tab"]').forEach((tab, index, tabs) => {
+  tab.addEventListener('click', () => {
+    activarPestanya(tab);
+  });
+
+  tab.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+      // Navegar a la següent pestanya
+      const nextTab = tabs[(index + 1) % tabs.length];
+      activarPestanya(nextTab);
+      nextTab.focus();
+    } else if (event.key === 'ArrowLeft') {
+      // Navegar a la pestanya anterior
+      const prevTab = tabs[(index - 1 + tabs.length) % tabs.length];
+      activarPestanya(prevTab);
+      prevTab.focus();
+    }
+  });
+});
+
+function activarPestanya(tab) {
+  // Amagar tots els panells i desactivar totes les pestanyes
+  document.querySelectorAll('[role="tabpanel"]').forEach(panel => panel.hidden = true);
+  document.querySelectorAll('[role="tab"]').forEach(t => {
+    t.setAttribute('aria-selected', 'false');
+    t.setAttribute('tabindex', '-1'); // Desactiva el focus amb tabulador
+  });
+
+  // Mostrar el panell associat i activar la pestanya seleccionada
+  const panelId = tab.getAttribute('aria-controls');
+  document.getElementById(panelId).hidden = false;
+  tab.setAttribute('aria-selected', 'true');
+  tab.setAttribute('tabindex', '0'); // Activa el focus només per a la pestanya seleccionada
+}
 
     // Exemple 3: Bloquejar el focus dins de la modal
     const dialog = document.getElementById('dialog');
     const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-    let firstFocusableElement, lastFocusableElement;
+    let firstFocusableElement, lastFocusableElement, lastFocusedElement;
 
     function obrirDialog() {
+      // Guardar l'element que tenia el focus abans d'obrir el diàleg
+      lastFocusedElement = document.activeElement;
+
       dialog.hidden = false;
       const focusableContent = dialog.querySelectorAll(focusableElements);
       firstFocusableElement = focusableContent[0];
@@ -192,6 +241,11 @@ function amagarTooltip() {
     function tancarDialog() {
       dialog.hidden = true;
       document.removeEventListener('keydown', gestionarFocus);
+
+      // Retornar el focus al botó que va obrir el diàleg
+      if (lastFocusedElement) {
+        lastFocusedElement.focus();
+      }
     }
 
     function gestionarFocus(e) {

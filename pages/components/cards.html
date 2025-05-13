@@ -152,7 +152,17 @@
       opacity: 1;
       transform: translateY(0);
     }
-    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
 </head>
 <body>
@@ -166,7 +176,9 @@
     </div>
     <nav>
       <ul class="nav-bar">
-        <li><a href="./TODO.html">TODO: altres components</a></li>
+        <li><a href="../components/cards.html">Cards</a></li>
+        <li><a href="../components/buttons.html">Botons</a></li>
+        <li><a href="../components/events.html">Events</a></li>
       </ul>
     </nav>
   </header>
@@ -182,20 +194,22 @@
         <li>El missatge d'afegir a favorits és anunciat pel lector de pantalla.</li>
         <li>El descompte està indicat correctament per al lector de pantalla.</li>
       </ul>
-      <article class="content-card" tabindex="0" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price">
+      <article class="content-card" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price">
         <button class="favorite-btn" aria-label="Afegeix a favorits" onclick="event.stopPropagation(); toggleFavorite(this, 'correcte')">
           <i class="fas fa-heart"></i>
         </button>
         <img src="../../img/exemple.jpg" alt="Sofà modern de color gris amb coixins blancs">
-        <h3 id="sofa-title">Sofà Modern</h3>
+        <h3 id="sofa-title">
+          <a href="./producte.html" class="product-link">Sofà Modern</a>
+        </h3>
         <p id="sofa-desc">Un sofà elegant i còmode, perfecte per a qualsevol sala d'estar moderna.</p>
         <div class="tags">
-          <span tabindex="0" role="button" aria-label="Etiqueta Modern" onclick="alert('Etiqueta: Modern')">Modern</span>
-          <span tabindex="0" role="button" aria-label="Etiqueta Confortable" onclick="alert('Etiqueta: Confortable')">Confortable</span>
+          <button onclick="alert('Etiqueta: Modern')">Modern</button>
+          <button onclick="alert('Etiqueta: Confortable')">Confortable</button>
         </div>
         <div class="price" id="sofa-price">
-          <span aria-hidden="true" style="text-decoration: line-through; color: #999;">599,99 €</span>
-          <span aria-label="Preu amb descompte: 499,99 euros" style="color: #1976d2; font-weight: bold;">499,99 €</span>
+          <del style="text-decoration: line-through; color: #999;">599,99 €</del>
+          <ins style="color: #1976d2; font-weight: bold;">499,99 €</ins>
         </div>
       </article>
       <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite" style="display: none;">

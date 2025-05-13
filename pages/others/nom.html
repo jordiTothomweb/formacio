@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nom Accessible</title>
+  <title>Enllaços Accessibles</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -89,19 +89,19 @@
       <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
         <i class="fas fa-arrow-left"></i>
       </a>
-      <h1>Nom</h1>
+      <h1>Enllaços Accessibles</h1>
     </div>
     <nav>
       <ul class="nav-bar">
         <li><a href="../others/idioma.html">Idioma</a></li>
-        <li><a href="../others/nom.html">Nom</a></li>
+        <li><a href="../others/nom.html">Enllaços Accessibles</a></li>
         <li><a href="../images/exemple-imatges-icones.html">Icones</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="container">
-    <h2>Lectura de noms accessibles</h2>
+    <h2>Lectura d'enllaços accessibles</h2>
 
     <!-- Cas 1: Enllaç amb etiqueta -->
     <div class="card correcte">
@@ -110,7 +110,7 @@
         <a href="#" id="link1">Inici</a>
         <p class="description">El nom accessible prové del text visible de l'enllaç.</p>
       </div>
-      <div class="code-box">
+      <div>
         <pre><code>&lt;a href="#" id="link1"&gt;Inici&lt;/a&gt;</code></pre>
       </div>
     </div>
@@ -122,7 +122,7 @@
         <a href="#" title="Ves a l'inici">Inici</a>
         <p class="description">El nom accessible prové del text visible, i el `title` és un complement.</p>
       </div>
-      <div class="code-box">
+      <div>
         <pre><code>&lt;a href="#" title="Ves a l'inici"&gt;Inici&lt;/a&gt;</code></pre>
       </div>
     </div>
@@ -136,7 +136,7 @@
       </a>
       <p class="description">El nom accessible prové de l'atribut `aria-label`. La icona és visible per a tots els usuaris.</p>
     </div>
-    <div class="code-box">
+    <div>
       <pre><code>&lt;a href="#" aria-label="Inici"&gt;
     &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
 &lt;/a&gt;</code></pre>
@@ -156,7 +156,7 @@
       </a>
       <p class="description">El nom accessible prové de l'element amb `id="link1"`. El text és invisible però llegible per a lectors de pantalla.</p>
     </div>
-    <div class="code-box">
+    <div>
       <pre><code>&lt;span id="link1" class="visually-hidden" aria-hidden="true"&gt;
     Inici text ocult
 &lt;/span&gt;
@@ -173,7 +173,7 @@
         <a href="#" aria-label="Enllaç">Inici</a>
         <p class="description">Hi ha un conflicte entre el text visible i el `aria-label`. Els lectors de pantalla prioritzaran el `aria-label`.</p>
       </div>
-      <div class="code-box">
+      <div>
         <pre><code>&lt;a href="#" aria-label="Enllaç"&gt;Inici&lt;/a&gt;</code></pre>
       </div>
     </div>
@@ -187,7 +187,7 @@
         </a>
         <p class="description">El nom accessible prové del text alternatiu de la imatge (`alt`).</p>
       </div>
-      <div class="code-box">
+      <div>
         <pre><code>&lt;a href="#"&gt;
   &lt;img src="../../img/home_icon.png" alt="Inici"&gt;
 &lt;/a&gt;</code></pre>
@@ -203,7 +203,7 @@
         </a>
         <p class="description">Amb `alt=""`, la imatge és ignorada pels lectors de pantalla. Assegura't que l'enllaç tingui un altre mecanisme per proporcionar un nom accessible.</p>
       </div>
-      <div class="code-box">
+      <div>
         <pre><code>&lt;a href="#"&gt;
   &lt;img src="../../img/home_icon.png" alt=""&gt;
 &lt;/a&gt;</code></pre>
@@ -219,7 +219,7 @@
         </a>
         <p class="description">Sense `alt`, el lector de pantalla pot llegir el nom del fitxer, que no és útil.</p>
       </div>
-      <div class="code-box">
+      <div>
         <pre><code>&lt;a href="#"&gt;
   &lt;img src="../../img/home_icon.png"&gt;
 &lt;/a&gt;</code></pre>
