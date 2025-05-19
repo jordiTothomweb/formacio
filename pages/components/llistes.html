@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemples de Llistes</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    main {
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .example {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .example h2 {
+      margin-top: 0;
+    }
+    .code-box {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      font-size: 0.95rem;
+      overflow-x: auto;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1565c0;
+    }
+
+    /* Cards llargs per als elements de la llista */
+    ul.bad-list, ul#good-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem 0;
+    }
+    ul.bad-list li,
+    ul#good-list li {
+      background: #e3eafc;
+      border: 1px solid #b6c6e3;
+      border-radius: 6px;
+      margin-bottom: 0.7rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px #b6c6e322;
+      font-size: 1.1rem;
+    }
+    ul.bad-list li:hover,
+    ul#good-list li:hover {
+      background: #d0e0fa;
+      box-shadow: 0 2px 8px #b6c6e355;
+    }
+    ul.bad-list li:active,
+    ul#good-list li:active {
+      background: #b6c6e3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Exemples de Llistes</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../components/cards.html">Cards</a></li>
+        <li><a href="../components/buttons.html">Botons</a></li>
+        <li><a href="../components/events.html">Events</a></li>
+        <li><a href="../components/llistes.html">Llistes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Exemple 1: Dolent -->
+    <section class="example incorrecte">
+      <h2>Exemple Dolent: Afegir una nova llista sencera</h2>
+      <ul class="bad-list">
+        <li>Element 1</li>
+        <li>Element 2</li>
+        <li>Element 3</li>
+        <li>Element 4</li>
+        <li>Element 5</li>
+      </ul>
+      <button onclick="addBadList()">Afegeix una nova llista</button>
+      <div class="code-box"><pre><code>// Afegir una nova llista sencera (incorrecte)
+function addBadList() {
+  const newUl = document.createElement('ul');
+  for (let i = 1; i &lt;= 5; i++) {
+    const li = document.createElement('li');
+    li.textContent = 'Element ' + i;
+    newUl.appendChild(li);
+  }
+  document.querySelector('.example #bad-list').parentNode.insertBefore(
+    newUl,
+    document.querySelector('.example #bad-list').nextSibling
+  );
+}</code></pre></div>
+    </section>
+
+    <!-- Exemple 2: Correcte -->
+    <section class="example correcte">
+      <h2>Exemple Correcte: Afegir elements a la mateixa llista</h2>
+      <ul id="good-list">
+        <li>Element 1</li>
+        <li>Element 2</li>
+        <li>Element 3</li>
+        <li>Element 4</li>
+        <li>Element 5</li>
+      </ul>
+      <button onclick="addGoodListItems()">Afegeix 5 elements més</button>
+      <div class="code-box"><pre><code>// Afegir elements a la mateixa llista (correcte)
+function addGoodListItems() {
+  const ul = document.getElementById('good-list');
+  const start = ul.children.length + 1;
+  for (let i = start; i &lt; start + 5; i++) {
+    const li = document.createElement('li');
+    li.textContent = 'Element ' + i;
+    ul.appendChild(li);
+  }
+}</code></pre></div>
+    </section>
+  </main>
+
+  <script>
+    // Afegir una nova llista sencera (incorrecte)
+    function addBadList() {
+      const newUl = document.createElement('ul');
+      newUl.className = 'bad-list';
+      for (let i = 1; i <= 5; i++) {
+        const li = document.createElement('li');
+        li.textContent = 'Element ' + i;
+        li.tabIndex = 0;
+        newUl.appendChild(li);
+      }
+      // Inserta la nova llista després de la primera llista dolenta
+      document.querySelector('.example .bad-list').parentNode.insertBefore(
+        newUl,
+        document.querySelector('.example .bad-list').nextSibling
+      );
+    }
+
+    // Afegir elements a la mateixa llista (correcte)
+    function addGoodListItems() {
+      const ul = document.getElementById('good-list');
+      const start = ul.children.length + 1;
+      for (let i = start; i < start + 5; i++) {
+        const li = document.createElement('li');
+        li.textContent = 'Element ' + i;
+        li.tabIndex = 0;
+        ul.appendChild(li);
+      }
+    }
+  </script>
+</body>
+</html>
