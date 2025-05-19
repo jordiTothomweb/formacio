@@ -106,7 +106,7 @@
 
   <main>
     <!-- Exemple 1: Dolent -->
-    <section class="example incorrecte">
+    <section class="card incorrecte">
       <h2>Exemple Dolent: Afegir una nova llista sencera</h2>
       <ul class="bad-list">
         <li>Element 1</li>
@@ -116,7 +116,7 @@
         <li>Element 5</li>
       </ul>
       <button onclick="addBadList()">Afegeix una nova llista</button>
-      <div class="code-box"><pre><code>// Afegir una nova llista sencera (incorrecte)
+      <div><pre><code>// Afegir una nova llista sencera (incorrecte)
 function addBadList() {
   const newUl = document.createElement('ul');
   for (let i = 1; i &lt;= 5; i++) {
@@ -124,7 +124,8 @@ function addBadList() {
     li.textContent = 'Element ' + i;
     newUl.appendChild(li);
   }
-  document.querySelector('.example #bad-list').parentNode.insertBefore(
+  document.querySelector('.example #bad-list')
+    .parentNode.insertBefore(
     newUl,
     document.querySelector('.example #bad-list').nextSibling
   );
@@ -132,7 +133,7 @@ function addBadList() {
     </section>
 
     <!-- Exemple 2: Correcte -->
-    <section class="example correcte">
+    <section class="card correcte">
       <h2>Exemple Correcte: Afegir elements a la mateixa llista</h2>
       <ul id="good-list">
         <li>Element 1</li>
@@ -142,7 +143,7 @@ function addBadList() {
         <li>Element 5</li>
       </ul>
       <button onclick="addGoodListItems()">Afegeix 5 elements més</button>
-      <div class="code-box"><pre><code>// Afegir elements a la mateixa llista (correcte)
+      <div><pre><code>// Afegir elements a la mateixa llista (correcte)
 function addGoodListItems() {
   const ul = document.getElementById('good-list');
   const start = ul.children.length + 1;
