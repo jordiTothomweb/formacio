@@ -195,7 +195,7 @@
     </div>
 
     <!-- Cas 7: Enllaç amb imatge amb alt buit -->
-    <div class="card situacional">
+    <div class="card incorrecte">
       <div class="example">
         <h3>Enllaç amb imatge amb alt buit</h3>
         <a href="#">
@@ -222,6 +222,81 @@
       <div>
         <pre><code>&lt;a href="#"&gt;
   &lt;img src="../../img/home_icon.png"&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Cas 10: Enllaç amb aria-labelledby i etiqueta visible -->
+    <div class="card situacional">
+      <div class="example">
+        <h3>Enllaç amb aria-labelledby i etiqueta visible</h3>
+        <span id="lbl10" class="visually-hidden" aria-hidden="true">Nom via aria-labelledby</span>
+        <a href="#" aria-labelledby="lbl10">
+          Etiqueta visible
+        </a>
+        <p class="description">
+          Si hi ha <code>aria-labelledby</code> i text visible, el lector de pantalla prioritza <strong>aria-labelledby</strong>.<br>
+          <em>En aquest cas, es llegirà: "Nom via aria-labelledby"</em>
+        </p>
+      </div>
+      <div>
+        <pre><code>&lt;span id="lbl10" class="visually-hidden"&gt;
+  Nom via aria-labelledby
+&lt;/span&gt;
+&lt;a
+  href="#"
+  aria-labelledby="lbl10"
+&gt;
+  Etiqueta visible
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Cas 11: Enllaç amb aria-label i etiqueta visible -->
+    <div class="card situacional">
+      <div class="example">
+        <h3>Enllaç amb aria-label i etiqueta visible</h3>
+        <a href="#" aria-label="Nom via aria-label">
+          Etiqueta visible
+        </a>
+        <p class="description">
+          Si hi ha <code>aria-label</code> i text visible, el lector de pantalla prioritza <strong>aria-label</strong>.<br>
+          <em>En aquest cas, es llegirà: "Nom via aria-label"</em>
+        </p>
+      </div>
+      <div>
+        <pre><code>&lt;a
+  href="#"
+  aria-label="Nom via aria-label"
+&gt;
+  Etiqueta visible
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+        <!-- Cas 9: Enllaç amb aria-label, aria-labelledby i etiqueta visible -->
+    <div class="card situacional">
+      <div class="example">
+        <h3>Enllaç amb aria-label, aria-labelledby i etiqueta visible</h3>
+        <span id="lbl9" class="visually-hidden" aria-hidden="true">Enllaç amb label referenciat</span>
+        <a href="#" aria-label="Nom via aria-label" aria-labelledby="lbl9">
+          Etiqueta visible
+        </a>
+        <p class="description">
+          Quan hi ha <code>aria-label</code>, <code>aria-labelledby</code> i text visible, el lector de pantalla prioritza: <strong>aria-label</strong> &gt; <strong>aria-labelledby</strong> &gt; text visible.<br>
+          <em>En aquest cas, es llegirà: "Nom via aria-label"</em>
+        </p>
+      </div>
+      <div>
+        <pre><code>&lt;span id="lbl9" class="visually-hidden"&gt;
+  Enllaç amb label referenciat
+&lt;/span&gt;
+&lt;a
+  href="#"
+  aria-label="Nom via aria-label"
+  aria-labelledby="lbl9"
+&gt;
+  Etiqueta visible
 &lt;/a&gt;</code></pre>
       </div>
     </div>

@@ -106,9 +106,9 @@
 
   <main>
     <!-- Exemple 1: Dolent -->
-    <section class="card incorrecte">
+    <section class="card incorrecte example">
       <h2>Exemple Dolent: Afegir una nova llista sencera</h2>
-      <ul class="bad-list">
+      <ul class="bad-list" id="bad-list">
         <li>Element 1</li>
         <li>Element 2</li>
         <li>Element 3</li>
@@ -168,10 +168,9 @@ function addGoodListItems() {
         newUl.appendChild(li);
       }
       // Inserta la nova llista després de la primera llista dolenta
-      document.querySelector('.example .bad-list').parentNode.insertBefore(
-        newUl,
-        document.querySelector('.example .bad-list').nextSibling
-      );
+      // CORRECCIÓ: utilitza l'id 'bad-list' per trobar la llista original
+      const badList = document.getElementById('bad-list');
+      badList.parentNode.insertBefore(newUl, badList.nextSibling);
     }
 
     // Afegir elements a la mateixa llista (correcte)
