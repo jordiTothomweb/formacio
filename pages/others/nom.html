@@ -128,43 +128,42 @@
     </div>
 
     <!-- Cas 3: Enllaç amb aria-label -->
-  <div class="card correcte">
-    <div class="example">
-      <h3>Enllaç amb aria-label</h3>
-      <a href="#" aria-label="Inici">
-        <i class="fas fa-home" aria-hidden="true"></i>
-      </a>
-      <p class="description">El nom accessible prové de l'atribut `aria-label`. La icona és visible per a tots els usuaris.</p>
-    </div>
-    <div>
-      <pre><code>&lt;a href="#" aria-label="Inici"&gt;
-    &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enllaç amb aria-label</h3>
+        <a href="#" aria-label="Inici">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+        <p class="description">El nom accessible prové de l'atribut `aria-label`. La icona és visible per a tots els usuaris.</p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#" aria-label="Inici"&gt;
+  &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
 &lt;/a&gt;</code></pre>
+      </div>
     </div>
-  </div>
 
     <!-- Cas 4: Enllaç amb aria-labelledby -->
-  <!-- Cas 4: Enllaç amb aria-labelledby -->
-  <div class="card correcte">
-    <div class="example">
-      <h3>Enllaç amb aria-labelledby</h3>
-      <!-- Text referenciat -->
-      <span id="descripcio_oculta_link" class="visually-hidden" aria-hidden="true">Inici text ocult</span>
-      <!-- Enllaç -->
-      <a href="#" aria-labelledby="descripcio_oculta_link">
-        <i class="fas fa-home" aria-hidden="true"></i>
-      </a>
-      <p class="description">El nom accessible prové de l'element amb `id="link1"`. El text és invisible però llegible per a lectors de pantalla.</p>
-    </div>
-    <div>
-      <pre><code>&lt;span id="link1" class="visually-hidden" aria-hidden="true"&gt;
-    Inici text ocult
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enllaç amb aria-labelledby</h3>
+        <!-- Text referenciat -->
+        <span id="descripcio_oculta_link" class="visually-hidden" aria-hidden="true">Inici text ocult</span>
+        <!-- Enllaç -->
+        <a href="#" aria-labelledby="descripcio_oculta_link">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+        <p class="description">El nom accessible prové de l'element amb `id="link1"`. El text és invisible però llegible per a lectors de pantalla.</p>
+      </div>
+      <div>
+        <pre><code>&lt;span id="link1" class="visually-hidden" aria-hidden="true"&gt;
+  Inici text ocult
 &lt;/span&gt;
 &lt;a href="#" aria-labelledby="link1"&gt;
-    &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
+  &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
 &lt;/a&gt;</code></pre>
+      </div>
     </div>
-  </div>
 
     <!-- Cas 5: Enllaç amb aria-label + etiqueta -->
     <div class="card situacional">
@@ -226,6 +225,38 @@
       </div>
     </div>
 
+    <!-- Exemple: Enllaç amb text només per a lectors de pantalla (sr-only) -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enllaç amb text només per a lectors de pantalla</h3>
+        <a href="#">
+          <span class="visually-hidden">Inici (només lector de pantalla)</span>
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+        <p class="description">
+          El text <code>Inici (només lector de pantalla)</code> està ocult visualment però serà anunciat pels lectors de pantalla gràcies a la classe <code>visually-hidden</code> (també coneguda com <code>sr-only</code>).
+        </p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#"&gt;
+  &lt;span class="visually-hidden"&gt;Inici (només lector de pantalla)&lt;/span&gt;
+  &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}</code></pre>
+      </div>
+    </div>
+
     <!-- Cas 10: Enllaç amb aria-labelledby i etiqueta visible -->
     <div class="card situacional">
       <div class="example">
@@ -274,7 +305,7 @@
       </div>
     </div>
 
-        <!-- Cas 9: Enllaç amb aria-label, aria-labelledby i etiqueta visible -->
+    <!-- Cas 9: Enllaç amb aria-label, aria-labelledby i etiqueta visible -->
     <div class="card situacional">
       <div class="example">
         <h3>Enllaç amb aria-label, aria-labelledby i etiqueta visible</h3>
