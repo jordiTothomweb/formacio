@@ -53,16 +53,20 @@
     <section class="card">
       <h2>Exemple 1: `role="alert`</h2>
       <p>Aquest exemple mostra com utilitzar el rol <code>alert</code> per anunciar un missatge important quan es produeix un canvi.</p>
-      <button class="btn" onclick="mostrarAlert()">Mostra alerta</button>
-      <div role="alert" id="alert-box" class="alert-box" hidden>
-        
-      </div>
+      <button class="btn" onclick="mostrarAlert()">Mostra alerta text una mica llarg</button>
+      <div role="alert" id="alert-box" class="alert-box" hidden></div>
       <div class="code-box">&lt;button class="btn" onclick="mostrarAlert()"&gt;Mostra alerta&lt;/button&gt;
 &lt;div role="alert" id="alert-box" class="alert-box" hidden&gt;&lt;/div&gt;
 
+let alertComptador = 0;
 function mostrarAlert() {
     const alertBox = document.getElementById('alert-box');
-    alertBox.textContent = 'Aquest és un missatge d\'alerta important!';
+    alertComptador++;
+    if (alertComptador % 2 === 1) {
+        alertBox.textContent = "Aquest és un missatge d'alerta important!\u00A0";
+    } else {
+        alertBox.textContent = "Aquest és un missatge d'alerta important!";
+    }
     alertBox.hidden = false;
 }</div>
     </section>
@@ -180,20 +184,15 @@ function amagarTooltip() {
 
   <script>
     // Exemple 1: Mostrar alerta només quan hi ha contingut
+    let alertComptador = 0;
     function mostrarAlert() {
       const alertBox = document.getElementById('alert-box');
-      const alertContent = document.getElementById('alert-content');
-
-      if (alertContent) {
-        alertBox.removeChild(alertContent);
+      alertComptador++;
+      if (alertComptador % 2 === 1) {
+        alertBox.textContent = "Aquest és un missatge d'alerta important!\u00A0";
+      } else {
+        alertBox.textContent = "Aquest és un missatge d'alerta important!";
       }
-
-      const newDiv = document.createElement('div');
-      newDiv.setAttribute('id', 'alert-content');
-      const random = Math.floor(Math.random() * 100);
-      newDiv.textContent = 'Aquest és un missatge d\'alerta important!' + random;
-      alertBox.appendChild(newDiv);
-
       alertBox.hidden = false;
     }
 
