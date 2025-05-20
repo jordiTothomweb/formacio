@@ -222,6 +222,20 @@ function actualitzarMissatge() {
       </p>
       <div class="btn" role="button" aria-disabled="true" tabindex="-1" style="opacity:0.5; pointer-events:none;">Botó desactivat</div>
       <div class="code-box">&lt;div class="btn" role="button" aria-disabled="true" tabindex="-1"&gt;Botó desactivat&lt;/div&gt;</div>
+      <!--
+      Diferència entre `aria-disabled="true"` i `tabindex="-1"`:
+
+      - `aria-disabled="true"` indica a la tecnologia assistiva (com lectors de pantalla) que l'element està desactivat, però NO impedeix que l'element rebi focus amb el teclat o sigui clicat/interactuat per defecte. Per evitar la interacció, cal combinar-ho amb altres atributs o estils (com `tabindex="-1"` i `pointer-events:none`).
+
+      - `tabindex="-1"` fa que l'element NO sigui accessible mitjançant la navegació per tabulació, però no indica a la tecnologia assistiva que està desactivat. L'element pot ser enfocat per script, però no per tabulació normal.
+
+      **Resum:**  
+      - `aria-disabled="true"` → només per a accessibilitat, no bloqueja el focus ni la interacció per si sol.
+      - `tabindex="-1"` → elimina l'element del recorregut per tabulació, però no el marca com a desactivat per a lectors de pantalla.
+
+      Per a un botó realment desactivat i no interactiu, combina:
+      `aria-disabled="true" tabindex="-1" style="pointer-events:none;"`
+      -->
     </section>
 
     <!-- Exemple 8: aria-haspopup -->
@@ -252,13 +266,13 @@ function actualitzarMissatge() {
       <p>
         <code>aria-checked</code> s'utilitza per indicar l'estat d'elements tipus checkbox, radio o botons toggle personalitzats.
       </p>
-      <button class="checkbox-btn" id="toggle-checked" role="checkbox" aria-checked="false" aria-label="Activa/desactiva opció" onclick="toggleCheckedExemple(this)">
+      <button class="checkbox-btn" id="toggle-checked" role="checkbox" aria-checked="false" onclick="toggleCheckedExemple(this)">
         <span class="checkbox-icon" aria-hidden="true"></span>
-        <span id="checked-label">Desactivat</span>
+        <span>Opció</span>
       </button>
-      <div class="code-box">&lt;button role="checkbox" aria-checked="false" aria-label="Activa/desactiva opció"&gt;
+      <div class="code-box">&lt;button role="checkbox" aria-checked="false" &gt;
   &lt;span class="checkbox-icon" aria-hidden="true"&gt;&lt;/span&gt;
-  &lt;span&gt;Desactivat&lt;/span&gt;
+  &lt;span&gt;Opció&lt;/span&gt;
 &lt;/button&gt;</div>
     </section>
   </main>
@@ -301,7 +315,7 @@ function actualitzarMissatge() {
     function toggleCheckedExemple(btn) {
       const checked = btn.getAttribute('aria-checked') === 'true';
       btn.setAttribute('aria-checked', !checked);
-      document.getElementById('checked-label').textContent = checked ? 'Desactivat' : 'Activat';
+      // No canviem el text visible, només l'estat aria-checked
     }
   </script>
 </body>
