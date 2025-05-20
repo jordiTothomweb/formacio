@@ -30,6 +30,83 @@
         outline: 3px solid #ff9800;
         outline-offset: 4px;
     }
+
+    /* Millora visual menú aria-haspopup */
+    #menu-exemple[role="menu"] {
+      list-style: none;
+      padding: 0.3em 0;
+      margin: 0;
+    }
+    .menuitem-btn {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      color: #222;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.15s;
+    }
+    .menuitem-btn:hover, .menuitem-btn:focus {
+      background: #e3eafc;
+      color: #1976d2;
+      outline: none;
+    }
+
+    /* Checkbox accessible estilitzat */
+    .checkbox-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7em;
+      background: #fff;
+      border: 2px solid #1976d2;
+      border-radius: 4px;
+      padding: 0.4em 1em;
+      font-size: 1em;
+      color: #222;
+      cursor: pointer;
+      transition: background 0.15s, border 0.15s;
+      position: relative;
+      min-width: 120px;
+    }
+    .checkbox-btn[aria-checked="true"] {
+      background: #e3eafc;
+      border-color: #388e3c;
+    }
+    .checkbox-icon {
+      display: inline-block;
+      width: 1.2em;
+      height: 1.2em;
+      border: 2px solid #1976d2;
+      border-radius: 3px;
+      background: #fff;
+      margin-right: 0.2em;
+      position: relative;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .checkbox-btn[aria-checked="true"] .checkbox-icon {
+      background: #388e3c;
+      border-color: #388e3c;
+    }
+    .checkbox-btn[aria-checked="true"] .checkbox-icon::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0.32em;
+      top: 0.08em;
+      width: 0.35em;
+      height: 0.7em;
+      border: solid #fff;
+      border-width: 0 0.18em 0.18em 0;
+      transform: rotate(45deg);
+    }
+    .checkbox-btn:focus-visible {
+      outline: 2px solid #1976d2;
+      background: #e3eafc;
+    }
   </style>
 </head>
 <body>
@@ -123,6 +200,67 @@ function actualitzarMissatge() {
     liveRegion.hidden = false;
 }</div>
     </section>
+
+    <!-- Exemple 6: aria-required -->
+    <section class="card">
+      <h2>Exemple 6: <code>aria-required</code></h2>
+      <p>
+        <code>aria-required="true"</code> indica que un camp és obligatori, encara que no tingui l'atribut <code>required</code> HTML.
+      </p>
+      <form>
+        <label for="nom-req">Nom:</label>
+        <input id="nom-req" aria-required="true" />
+      </form>
+      <div class="code-box">&lt;input id="nom-req" aria-required="true" /&gt;</div>
+    </section>
+
+    <!-- Exemple 7: aria-disabled -->
+    <section class="card">
+      <h2>Exemple 7: <code>aria-disabled</code></h2>
+      <p>
+        <code>aria-disabled="true"</code> indica que un element està desactivat per a tecnologia assistiva, encara que no tingui l'atribut <code>disabled</code> HTML.
+      </p>
+      <div class="btn" role="button" aria-disabled="true" tabindex="-1" style="opacity:0.5; pointer-events:none;">Botó desactivat</div>
+      <div class="code-box">&lt;div class="btn" role="button" aria-disabled="true" tabindex="-1"&gt;Botó desactivat&lt;/div&gt;</div>
+    </section>
+
+    <!-- Exemple 8: aria-haspopup -->
+    <section class="card">
+      <h2>Exemple 8: <code>aria-haspopup</code></h2>
+      <p>
+        <code>aria-haspopup="true"</code> indica que el botó obre un menú, diàleg o llista desplegable.
+      </p>
+      <button class="btn" aria-haspopup="true" aria-controls="menu-exemple" aria-expanded="false" onclick="toggleMenuExemple(this)">
+        Mostra menú <i class="fas fa-caret-down"></i>
+      </button>
+      <div id="menu-exemple" role="menu" style="display:none; margin-top:0.5em; background:#fff; border:1px solid #ccc; border-radius:4px; min-width:160px; box-shadow:0 2px 8px #0002; padding:0.3em 0;">
+        <button role="menuitem" class="menuitem-btn">Opció 1</button>
+        <button role="menuitem" class="menuitem-btn">Opció 2</button>
+        <button role="menuitem" class="menuitem-btn">Opció 3</button>
+      </div>
+      <div class="code-box">&lt;button aria-haspopup="true" aria-controls="menu-exemple" aria-expanded="false"&gt;Mostra menú&lt;/button&gt;
+&lt;div id="menu-exemple" role="menu"&gt;
+  &lt;button role="menuitem"&gt;Opció 1&lt;/button&gt;
+  &lt;button role="menuitem"&gt;Opció 2&lt;/button&gt;
+  &lt;button role="menuitem"&gt;Opció 3&lt;/button&gt;
+&lt;/div&gt;</div>
+    </section>
+
+    <!-- Exemple 9: aria-checked -->
+    <section class="card">
+      <h2>Exemple 9: <code>aria-checked</code></h2>
+      <p>
+        <code>aria-checked</code> s'utilitza per indicar l'estat d'elements tipus checkbox, radio o botons toggle personalitzats.
+      </p>
+      <button class="checkbox-btn" id="toggle-checked" role="checkbox" aria-checked="false" aria-label="Activa/desactiva opció" onclick="toggleCheckedExemple(this)">
+        <span class="checkbox-icon" aria-hidden="true"></span>
+        <span id="checked-label">Desactivat</span>
+      </button>
+      <div class="code-box">&lt;button role="checkbox" aria-checked="false" aria-label="Activa/desactiva opció"&gt;
+  &lt;span class="checkbox-icon" aria-hidden="true"&gt;&lt;/span&gt;
+  &lt;span&gt;Desactivat&lt;/span&gt;
+&lt;/button&gt;</div>
+    </section>
   </main>
 
   <footer>
@@ -142,6 +280,28 @@ function actualitzarMissatge() {
         liveRegion.textContent = "El contingut s'ha actualitzat correctament!";
       }
       liveRegion.hidden = false;
+    }
+
+    // aria-haspopup exemple
+    function toggleMenuExemple(btn) {
+      const menu = document.getElementById('menu-exemple');
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      menu.style.display = expanded ? 'none' : 'block';
+      if (!expanded) {
+        // Focus primer element del menú quan s'obre
+        setTimeout(() => {
+          const firstItem = menu.querySelector('[role="menuitem"]');
+          if (firstItem) firstItem.focus();
+        }, 10);
+      }
+    }
+
+    // aria-checked exemple
+    function toggleCheckedExemple(btn) {
+      const checked = btn.getAttribute('aria-checked') === 'true';
+      btn.setAttribute('aria-checked', !checked);
+      document.getElementById('checked-label').textContent = checked ? 'Desactivat' : 'Activat';
     }
   </script>
 </body>
