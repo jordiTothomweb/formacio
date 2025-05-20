@@ -1,0 +1,373 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  color: #222;
+}
+header {
+  background: #1976d2;
+  color: #fff;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+header h1 {
+  margin: 0.5rem 0 0.5rem 0;
+}
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1 1 auto;
+}
+.nav-bar li {
+  display: flex;
+  align-items: center;
+}
+.nav-bar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+.nav-bar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+.nav-bar a:focus, .nav-bar a:hover {
+  text-decoration: underline;
+}
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 3000;
+}
+.skip-link:focus {
+  left: 1em;
+  top: 1em;
+  width: auto;
+  height: auto;
+  padding: 0.5em 1em;
+  background: #0078d4;
+  color: #fff;
+  border-radius: 4px;
+  outline: 2px solid #fff;
+}
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px #0001;
+}
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+.card-list li {
+  background: #e3eafc;
+  border: 1px solid #b6c6e3;
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  flex: 1 1 220px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 1px 4px #b6c6e322;
+}
+.card-list button {
+  align-self: flex-start;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+}
+.card-list button:focus, .card-list button:hover {
+  background: #1565c0;
+}
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+input[type="range"] {
+  width: 200px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+input, textarea {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  font-size: 1rem;
+}
+button[type="submit"] {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+button[type="submit"]:focus, button[type="submit"]:hover {
+  background: #1565c0;
+}
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* Botó d'icona */
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0.25em;
+  cursor: pointer;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  line-height: 1;
+}
+
+/* Focus bicolor per enllaços i botons */
+a:focus-visible, button:focus-visible, .icon-btn:focus-visible {
+  outline: 3px solid #1976d2;
+  box-shadow: 0 0 0 4px #ffb300;
+  outline-offset: 2px;
+  z-index: 10;
+}
+
+/* Menú lateral */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.2);
+  z-index: 1100;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+.side-menu[open], .side-menu:not([hidden]) {
+  transform: translateX(0);
+}
+.side-menu button.icon-btn {
+  align-self: flex-end;
+  margin: 1em 1em 0 0;
+  color: #1976d2;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  width: 2.2em;
+  height: 2.2em;
+  padding: 0;
+  justify-content: center;
+}
+.side-menu button.icon-btn svg {
+  width: 1.5em;
+  height: 1.5em;
+  stroke: #1976d2;
+  pointer-events: none;
+}
+.side-menu ul {
+  list-style: none;
+  padding: 2em 1em 1em 2em;
+  margin: 0;
+}
+.side-menu li {
+  margin-bottom: 1em;
+}
+.side-menu a {
+  color: #222;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+.side-menu a:focus {
+  outline: 2px solid #0078d4;
+}
+
+/* Backdrop */
+.side-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  transition: opacity 0.3s;
+}
+
+/* Mostra el menú i el backdrop quan actius */
+.side-menu[open], .side-menu:not([hidden]) {
+  display: flex;
+}
+.side-menu-backdrop[open], .side-menu-backdrop:not([hidden]) {
+  display: block;
+  opacity: 1;
+}
+.side-menu[hidden], .side-menu-backdrop[hidden] {
+  display: none;
+  opacity: 0;
+}
+
+/* Diàleg de confirmació */
+dialog[open] {
+  display: block;
+}
+dialog {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.2);
+  padding: 2em;
+  max-width: 90vw;
+  z-index: 2000;
+}
+.dialog-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  margin-top: 1.5em;
+}
+dialog::backdrop {
+  background: rgba(0,0,0,0.5);
+}
+#menu-toggle {
+  margin-right: 1em;
+}
+
+/* Només per a lectors de pantalla */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Botons del diàleg de logout */
+.dialog-actions button {
+  font-size: 1rem;
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Botó de cancel·la: estil neutre */
+#logout-cancel {
+  background: #e0e0e0;
+  color: #333;
+}
+#logout-cancel:focus, #logout-cancel:hover {
+  background: #bdbdbd;
+  color: #111;
+}
+
+/* Botó de tancar sessió: estil vermell */
+#logout-confirm {
+  background: #d32f2f;
+  color: #fff;
+}
+#logout-confirm:focus, #logout-confirm:hover {
+  background: #b71c1c;
+  color: #fff;
+}
+
+/* Carrousel */
+.carousel-section {
+  background: transparent;
+  border-bottom: none;
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+.carousel-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  max-width: 800px;
+  width: 100%;
+  background: #f5f7fa;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px #b6c6e322;
+  padding: 0.5em 1em;
+}
+.carousel-message {
+  margin: 0;
+  font-size: 1em;
+  font-weight: normal;
+  outline: none;
+  color: #333;
+  flex: 1 1 auto;
+  text-align: center;
+}
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+}
+.carousel-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.2em;
+  padding: 0.3em 0.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-btn:focus-visible {
+  outline: 2px solid #111;
+  background: #fff;
+  color: #111;
+}
+.carousel-btn[aria-pressed="true"] {
+  color: #d32f2f;
+  background: #ffe0e0;
+}
+#carousel-pause {
+  font-size: 1.1em;
+  margin-left: 0.2em;
+}
