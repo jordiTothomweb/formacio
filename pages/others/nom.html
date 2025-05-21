@@ -309,17 +309,17 @@
     <div class="card situacional">
       <div class="example">
         <h3>Enllaç amb aria-label, aria-labelledby i etiqueta visible</h3>
-        <span id="lbl9" class="visually-hidden" aria-hidden="true">Enllaç amb label referenciat</span>
+        <span id="lbl9">Enllaç amb label referenciat</span>
         <a href="#" aria-label="Nom via aria-label" aria-labelledby="lbl9">
           Etiqueta visible
         </a>
         <p class="description">
-          Quan hi ha <code>aria-label</code>, <code>aria-labelledby</code> i text visible, el lector de pantalla prioritza: <strong>aria-label</strong> &gt; <strong>aria-labelledby</strong> &gt; text visible.<br>
-          <em>En aquest cas, es llegirà: "Nom via aria-label"</em>
+          Quan hi ha <code>aria-label</code>, <code>aria-labelledby</code> i text visible, el lector de pantalla prioritza: <strong>aria-labelledby</strong> &gt; <strong>aria-label</strong> &gt; text visible.<br>
+          <em>En aquest cas, es llegirà: "Enllaç amb label referenciat"</em>
         </p>
       </div>
       <div>
-        <pre><code>&lt;span id="lbl9" class="visually-hidden"&gt;
+        <pre><code>&lt;span id="lbl9" &gt;
   Enllaç amb label referenciat
 &lt;/span&gt;
 &lt;a
