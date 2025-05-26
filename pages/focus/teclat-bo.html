@@ -71,7 +71,18 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
+    .dialog-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 100;
+    }
     .dialog.open {
+      display: block;
+      z-index: 101;
+    }
+    .dialog-backdrop.open {
       display: block;
     }
 
@@ -257,20 +268,25 @@
     <button onclick="closeDialog()">Cancelar</button>
     <button style="background-color: lightcoral;">Borrar tots</button>
   </div>
+  <div class="dialog-backdrop" id="dialog-backdrop"></div>
   <div class="code-box"><pre><code>// Exemple 2: Focus en modals
 let lastFocusedElement;
 
 function openDialog() {
   const dialog = document.getElementById('dialog');
+  const backdrop = document.getElementById('dialog-backdrop');
   lastFocusedElement = document.activeElement;
   dialog.classList.add('open');
+  backdrop.classList.add('open');
   dialog.querySelector('button').focus();
   document.addEventListener('keydown', trapFocus);
 }
 
 function closeDialog() {
   const dialog = document.getElementById('dialog');
+  const backdrop = document.getElementById('dialog-backdrop');
   dialog.classList.remove('open');
+  backdrop.classList.remove('open');
   document.removeEventListener('keydown', trapFocus);
   if (lastFocusedElement) {
     lastFocusedElement.focus();
@@ -411,15 +427,19 @@ document.addEventListener('keydown', (event) => {
 
     function openDialog() {
       const dialog = document.getElementById('dialog');
+      const backdrop = document.getElementById('dialog-backdrop');
       lastFocusedElement = document.activeElement;
       dialog.classList.add('open');
+      backdrop.classList.add('open');
       dialog.querySelector('button').focus();
       document.addEventListener('keydown', trapFocus);
     }
 
     function closeDialog() {
       const dialog = document.getElementById('dialog');
+      const backdrop = document.getElementById('dialog-backdrop');
       dialog.classList.remove('open');
+      backdrop.classList.remove('open');
       document.removeEventListener('keydown', trapFocus);
       if (lastFocusedElement) {
         lastFocusedElement.focus();

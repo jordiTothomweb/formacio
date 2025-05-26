@@ -43,20 +43,18 @@
       outline: 2px solid #1976d2;
     }
 
-    .dialog {
+    .dialog-backdrop {
       display: none;
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 2rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 100;
     }
-
     .dialog.open {
+      display: block;
+      z-index: 101;
+    }
+    .dialog-backdrop.open {
       display: block;
     }
 
@@ -114,6 +112,7 @@
     <div class="example">
       <h2>2. Focus en modals</h2>
       <button onclick="openDialog()">Obrir modal</button>
+      <div class="dialog-backdrop" id="dialog-backdrop"></div>
       <div class="dialog" id="dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true">
         <h3 id="dialog-title">Modal accessible</h3>
         <button onclick="closeDialog()">Tancar</button>
@@ -208,12 +207,16 @@
     // Exemple 2: Focus en modals (no reté el focus)
     function openDialog() {
       const dialog = document.getElementById('dialog');
+      const backdrop = document.getElementById('dialog-backdrop');
       dialog.classList.add('open');
+      backdrop.classList.add('open');
     }
 
     function closeDialog() {
       const dialog = document.getElementById('dialog');
+      const backdrop = document.getElementById('dialog-backdrop');
       dialog.classList.remove('open');
+      backdrop.classList.remove('open');
     }
 
     // Exemple 3: Menú d'usuari (focus a opcions ocultes)
