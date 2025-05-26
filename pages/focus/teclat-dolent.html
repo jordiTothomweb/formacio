@@ -50,6 +50,10 @@
       background: rgba(0,0,0,0.4);
       z-index: 100;
     }
+    .dialog {
+      display: none;
+      z-index: 101;
+    }
     .dialog.open {
       display: block;
       z-index: 101;
@@ -210,6 +214,8 @@
       const backdrop = document.getElementById('dialog-backdrop');
       dialog.classList.add('open');
       backdrop.classList.add('open');
+      // Tanca el modal amb Escape
+      document.addEventListener('keydown', escCloseDialog);
     }
 
     function closeDialog() {
@@ -217,6 +223,13 @@
       const backdrop = document.getElementById('dialog-backdrop');
       dialog.classList.remove('open');
       backdrop.classList.remove('open');
+      document.removeEventListener('keydown', escCloseDialog);
+    }
+
+    function escCloseDialog(e) {
+      if (e.key === 'Escape') {
+        closeDialog();
+      }
     }
 
     // Exemple 3: Menú d'usuari (focus a opcions ocultes)
