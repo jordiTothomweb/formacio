@@ -14,12 +14,12 @@
     }
 
     /* Cas 3: Focus personalitzat */
-    .focus-personalitzat:focus {
+    .focus-personalitzat:focus-visible {
       outline: 2px solid red; /* Contorn blau */
     }
 
     /* Cas 4: Focus amb espai */
-    .focus-amb-espai:focus {
+    .focus-amb-espai:focus-visible {
       outline: 2px solid #1976d2;
       outline-offset: 4px; /* Espai entre el focus i el botó */
     }
@@ -31,20 +31,20 @@
       border: none;
     }
 
-    .focus-colisionant:focus {
+    .focus-colisionant:focus-visible {
       outline: 2px solid #1976d2; /* El focus es perd amb el fons */
       outline-offset: 4px; /* Espai entre el focus i el botó */
     }
 
     /* Cas 6: Focus bicolor */
-    .focus-bicolor-invertit:focus {
+    .focus-bicolor-invertit:focus-visible {
       outline: 3px solid white;
       outline-offset: 2px;
       box-shadow: 0 0 0 4px black; /* Contorn negre extern */
     }
 
     /* Cas 7: Focus bicolor invertit */
-    .focus-bicolor:focus {
+    .focus-bicolor:focus-visible {
       outline: 3px solid black;
       outline-offset: 2px;
       box-shadow: 0 0 0 4px white; /* Contorn blanc extern */
@@ -102,7 +102,7 @@
     border: none;
 }
 
-.focus-insuficient:focus {
+.focus-insuficient:focus-visible {
     outline: 2px solid #015ECC;
 }
 &lt;/style&gt;</code></pre>
@@ -120,7 +120,7 @@
             <pre><code>&lt;button class="focus-personalitzat"&gt;Botó amb focus personalitzat&lt;/button&gt;
     
 &lt;style&gt;
-.focus-personalitzat:focus {
+.focus-personalitzat:focus-visible {
     outline: 2px solid red;
 }
 &lt;/style&gt;</code></pre>
@@ -138,7 +138,7 @@
             <pre><code>&lt;button class="focus-amb-espai"&gt;Botó amb focus amb espai&lt;/button&gt;
     
 &lt;style&gt;
-.focus-amb-espai:focus {
+.focus-amb-espai:focus-visible {
     outline: 2px solid #1976d2;
     outline-offset: 4px;
 }
@@ -163,7 +163,7 @@
     border: none;
 }
 
-.focus-colisionant:focus {
+.focus-colisionant:focus-visible {
     outline: 2px solid #1976d2;
 }
 &lt;/style&gt;</code></pre>
@@ -181,7 +181,7 @@
             <pre><code>&lt;button class="focus-bicolor"&gt;Botó amb focus bicolor&lt;/button&gt;
     
 &lt;style&gt;
-.focus-bicolor:focus {
+.focus-bicolor:focus-visible {
     outline: 3px solid white;
     outline-offset: 2px;
     box-shadow: 0 0 0 4px black;
@@ -201,10 +201,35 @@
             <pre><code>&lt;button class="focus-bicolor-invertit"&gt;Botó amb focus bicolor invertit&lt;/button&gt;
     
 &lt;style&gt;
-.focus-bicolor-invertit:focus {
+.focus-bicolor-invertit:focus-visible {
     outline: 3px solid black;
     outline-offset: 2px;
     box-shadow: 0 0 0 4px white;
+}
+&lt;/style&gt;</code></pre>
+          </div>
+        </div>
+    
+        <!-- Cas 8: Focus bicolor sobre botó blanc i fons fosc -->
+        <div class="card incorrecte" style="background-color: #222;">
+          <div class="example">
+            <h3 style="color: red">Focus bicolor sobre botó blanc i fons fosc</h3>
+            <button class="focus-bicolor focus-blanc" style="background-color: white; color: red;">Botó blanc</button>
+            <p class="description">El focus bicolor negre/blanc no es veu prou bé sobre un botó blanc amb fons fosc.</p>
+          </div>
+          <div>
+            <pre><code>&lt;button class="focus-bicolor focus-blanc"&gt;Botó blanc&lt;/button&gt;
+
+&lt;style&gt;
+.focus-blanc {
+  background: #fff;
+  color: #222;
+  border: 1px solid #bbb;
+}
+.focus-bicolor:focus-visible {
+  outline: 3px solid black;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px white;
 }
 &lt;/style&gt;</code></pre>
           </div>
