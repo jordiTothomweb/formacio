@@ -19,7 +19,7 @@
       gap: 1rem;
       position: relative;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, outline 0.2s;
     }
     .content-card:hover, .example-card:hover {
       transform: translateY(-2px);
@@ -29,21 +29,36 @@
       outline: 2px solid #1976d2;
       outline-offset: 2px;
     }
+    .content-card:focus-within {
+      outline: 3px solid #1976d2;
+      box-shadow: 0 0 0 4px #ffb300;
+      outline-offset: 2px;
+    }
 
-    /* Botó de favorits */
-    .content-card .favorite-btn, .example-card .favorite-btn {
+    /* Botó de favorits posicionat relatiu al card, amb blur */
+    .favorite-btn {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background-color: transparent;
+      top: 1.5rem;
+      right: 1.5rem;
+      background-color: rgba(255,255,255,0.6);
       border: none;
       font-size: 1.5rem;
       color: #f44336;
       cursor: pointer;
-      transition: color 0.2s;
+      transition: color 0.2s, background 0.2s;
+      backdrop-filter: blur(18px); /* blur més exagerat */
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 50px; /* més arrodonit */
+      z-index: 2;
+      box-shadow: 0 2px 12px #0003;
+      padding: 0.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .content-card .favorite-btn:hover, .example-card .favorite-btn:hover {
+    .favorite-btn:hover, .favorite-btn:focus {
       color: #d32f2f;
+      background-color: rgba(255,255,255,0.85);
     }
 
     /* Estils específics per a targetes d'exemple */
@@ -181,7 +196,6 @@
         <li><a href="../components/events.html">Events</a></li>
         <li><a href="../components/llistes.html">Llistes</a></li>
         <li><a href="../components/slider.html">Slider</a></li>
-        <li><a href="../components/carrousel.html">Carousel</a></li>
       </ul>
     </nav>
   </header>
@@ -197,27 +211,29 @@
         <li>El missatge d'afegir a favorits és anunciat pel lector de pantalla.</li>
         <li>El descompte està indicat correctament per al lector de pantalla.</li>
       </ul>
-      <article class="content-card" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price">
-        <button class="favorite-btn" aria-label="Afegeix a favorits" onclick="event.stopPropagation(); toggleFavorite(this, 'correcte')">
-          <i class="fas fa-heart"></i>
-        </button>
+      <article class="content-card" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price"
+        onclick="alert('Card clicat!')">
         <img src="../../img/exemple.jpg" alt="Sofà modern de color gris amb coixins blancs">
         <h3 id="sofa-title">
-          <a href="./producte.html" class="product-link">Sofà Modern</a>
+          <a href="#" class="product-link" onclick="event.stopPropagation(); alert('Enllaç Sofà Modern clicat!')">Sofà Modern</a>
         </h3>
+        <button class="favorite-btn" aria-label="Afegeix a favorits"
+          onclick="event.stopPropagation(); toggleFavorite(this, 'correcte'); alert('Botó favorits clicat!')">
+          <i class="fas fa-heart"></i>
+        </button>
         <p id="sofa-desc">Un sofà elegant i còmode, perfecte per a qualsevol sala d'estar moderna.</p>
         <div class="tags">
-          <button onclick="alert('Etiqueta: Modern')">Modern</button>
-          <button onclick="alert('Etiqueta: Confortable')">Confortable</button>
+          <button onclick="event.stopPropagation(); alert('Etiqueta: Modern')">Modern</button>
+          <button onclick="event.stopPropagation(); alert('Etiqueta: Confortable')">Confortable</button>
         </div>
         <div class="price" id="sofa-price">
           <del style="text-decoration: line-through; color: #999;">599,99 €</del>
           <ins style="color: #1976d2; font-weight: bold;">499,99 €</ins>
         </div>
+        <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite" style="display: none;">
+          Sofà Modern afegit als favorits.
+        </div>
       </article>
-      <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite" style="display: none;">
-        Sofà Modern afegit als favorits.
-      </div>
       <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price"&gt;
   &lt;button class="favorite-btn" aria-label="Afegeix a favorits" onclick="event.stopPropagation(); toggleFavorite(this, 'correcte')"&gt;
     &lt;i class="fas fa-heart"&gt;&lt;/i&gt;

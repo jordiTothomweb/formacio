@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemple de Formulari Accessible</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* ...existing code from style.css... */
+    .form-section {
+      background: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px #0001;
+      max-width: 420px;
+      margin: 2.5rem auto;
+      padding: 2.5rem 2rem 2rem 2rem;
+      border: 1px solid #eee;
+    }
+    .form-section h2 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+    }
+    .form-row {
+      margin-bottom: 1.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .form-row label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      font-size: 1.08rem;
+      letter-spacing: 0.01em;
+    }
+    .form-row input[type="text"],
+    .form-row input[type="email"],
+    .form-row input[type="password"],
+    .form-row input[type="date"],
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      padding: 1.1rem 1rem;
+      border-radius: 0;
+      border: 1.5px solid #bbb;
+      font-size: 1.08rem;
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .form-row input:invalid,
+    .form-row select:invalid,
+    .form-row textarea:invalid {
+      border-color: #bbb;
+      background: #fff;
+    }
+    .form-row input:invalid:focus,
+    .form-row select:invalid:focus,
+    .form-row textarea:invalid:focus {
+      border-color: #d32f2f;
+      background: #fff5f5;
+    }
+    .form-row input.user-invalid,
+    .form-row select.user-invalid,
+    .form-row textarea.user-invalid {
+      border-color: #d32f2f !important;
+      background: #fff5f5 !important;
+    }
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      outline: 2px solid #1976d2;
+      border-color: #1976d2;
+      box-shadow: 0 0 0 2px #ffb300;
+      outline-offset: 2px;
+      background: #f7faff;
+    }
+    .form-row .error {
+      color: #d32f2f;
+      font-size: 0.97em;
+      margin-top: 0.1em;
+      min-height: 1.2em;
+    }
+    .form-row .hint {
+      color: #888;
+      font-size: 0.97em;
+      margin-bottom: 0.1em;
+    }
+    .form-row .success {
+      color: #388e3c;
+      font-size: 0.97em;
+      margin-top: 0.1em;
+    }
+    .form-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 2rem;
+      align-items: stretch;
+    }
+    .form-actions button[type="submit"] {
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 0;
+      padding: 1.1rem 0;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .form-actions button[type="submit"]:hover, .form-actions button[type="submit"]:focus {
+      background: #1976d2;
+      color: #fff;
+    }
+    .form-actions button[type="reset"] {
+      background: #f5f5f5;
+      color: #888;
+      border: none;
+      border-radius: 0;
+      padding: 1.1rem 0;
+      cursor: not-allowed;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, color 0.2s;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .form-actions button[type="reset"]:enabled {
+      cursor: pointer;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .form-actions #next-btn {
+      background: linear-gradient(90deg, #1976d2 60%, #1565c0 100%);
+      color: #fff;
+      border: none;
+      border-radius: 0.3em;
+      padding: 1.1rem 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #1976d222;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      margin-bottom: 0;
+    }
+    .form-actions #next-btn:focus, .form-actions #next-btn:hover {
+      background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px #1976d244;
+    }
+    .form-actions #prev-btn {
+      background: #e0e0e0;
+      color: #222;
+      border: none;
+      border-radius: 0.3em;
+      padding: 1.1rem 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .form-actions #prev-btn:focus, .form-actions #prev-btn:hover {
+      background: #bdbdbd;
+      color: #111;
+    }
+    .form-progress {
+      margin-bottom: 1.5rem;
+      color: #1976d2;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+    fieldset {
+      border: 1.5px solid #eee;
+      border-radius: 0;
+      padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    legend {
+      font-weight: bold;
+      color: #1976d2;
+      padding: 0 0.5em;
+      font-size: 1.08rem;
+      letter-spacing: 0.01em;
+    }
+    .custom-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.05rem;
+    }
+    .custom-checkbox input[type="checkbox"] {
+      accent-color: #1976d2;
+      width: 1.2em;
+      height: 1.2em;
+      border-radius: 0;
+      border: 1.5px solid #bbb;
+      margin-right: 0.3em;
+    }
+    .form-success-message {
+      background: #e8f5e9;
+      color: #388e3c;
+      border: 1px solid #388e3c;
+      border-radius: 0;
+      padding: 1em;
+      margin-bottom: 1.5em;
+      text-align: center;
+      font-weight: bold;
+      display: none;
+    }
+    .form-success-message.active {
+      display: block;
+    }
+    .form-footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      color: #888;
+      font-size: 1.05rem;
+    }
+    .form-footer a {
+      color: #222;
+      text-decoration: underline;
+      margin-left: 0.5em;
+      font-weight: 500;
+    }
+    .form-footer a:focus, .form-footer a:hover {
+      color: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Exemple de Formulari Accessible</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../components/cards.html">Cards</a></li>
+        <li><a href="../components/buttons.html">Botons</a></li>
+        <li><a href="../components/events.html">Events</a></li>
+        <li><a href="../components/llistes.html">Llistes</a></li>
+        <li><a href="../components/slider.html">Slider</a></li>
+        <li><a href="../components/carrousel.html">Carousel</a></li>
+        <li><a href="../components/form.html" aria-current="page">Formulari</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section" aria-labelledby="form-title">
+      <h2 id="form-title">Registra't amb el teu correu electrònic</h2>
+      <div class="form-progress" id="form-progress" aria-live="polite">Pas 1 de 2</div>
+      <form id="register-form" novalidate>
+        <!-- Pas 1 -->
+        <fieldset data-step="1">
+          <legend>Dades bàsiques</legend>
+          <div class="form-row">
+            <label for="name">Nom <span aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" required autocomplete="name" aria-required="true" aria-describedby="name-hint" />
+            <div class="hint" id="name-hint">Introdueix el teu nom complet.</div>
+            <div class="error" id="name-error" aria-live="polite"></div>
+          </div>
+          <div class="form-row">
+            <label for="email">Correu electrònic <span aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email" aria-required="true" aria-describedby="email-hint" />
+            <div class="hint" id="email-hint">Format: nom@exemple.com</div>
+            <div class="error" id="email-error" aria-live="polite"></div>
+          </div>
+          <div class="form-row">
+            <label for="password">Crea una contrasenya <span aria-hidden="true">*</span></label>
+            <div style="position:relative;">
+              <input type="password" id="password" name="password" required minlength="6" aria-required="true" aria-describedby="password-hint" style="padding-right:2.5em;" />
+              <button type="button" class="icon-btn" id="toggle-password" tabindex="0" aria-label="Mostra/Amaga contrasenya" style="position:absolute;top:50%;right:0.7em;transform:translateY(-50%);background:none;border:none;">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <div class="hint" id="password-hint">Mínim 6 caràcters.</div>
+            <div class="error" id="password-error" aria-live="polite"></div>
+          </div>
+        </fieldset>
+        <!-- Pas 2 -->
+        <fieldset data-step="2" style="display:none;">
+          <legend>Informació addicional</legend>
+          <div class="form-row">
+            <label for="birthdate">Data de naixement</label>
+            <input type="date" id="birthdate" name="birthdate" autocomplete="bday" />
+            <div class="hint" id="birthdate-hint">Opcional. Format: dd/mm/aaaa</div>
+          </div>
+          <div class="form-row">
+            <span style="font-weight:600; margin-bottom:0.2em;">Rang d'edat</span>
+            <div style="display:flex; gap:1.5em; flex-wrap:wrap;">
+              <label style="font-weight:400; white-space:nowrap;"><input type="radio" name="age-range" value="menor18"> Menor de 18</label>
+              <label style="font-weight:400; white-space:nowrap;"><input type="radio" name="age-range" value="18-30"> 18-30</label>
+              <label style="font-weight:400; white-space:nowrap;"><input type="radio" name="age-range" value="31-50"> 31-50</label>
+              <label style="font-weight:400; white-space:nowrap;"><input type="radio" name="age-range" value="51plus"> Més de 50</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <label class="custom-checkbox" style="font-weight:600;">
+              <input type="checkbox" id="newsletter" name="newsletter" />
+              Vull rebre novetats, comunicacions i ofertes especials a través del correu electrònic.
+            </label>
+          </div>
+          <div class="form-row" style="display:flex; align-items:center; gap:0.5em; flex-wrap:nowrap;">
+            <label for="accept" style="margin:0; font-weight:400; display:flex; align-items:center; gap:0.5em; white-space:nowrap;">
+              <input type="checkbox" id="accept" name="accept" required aria-required="true" style="margin:0;" />
+              Estic d'acord amb la <a href="#" tabindex="0" style="color:#1976d2; text-decoration:underline; font-weight:500; white-space:nowrap;">política de privacitat</a> <span aria-hidden="true">*</span>
+            </label>
+            <div class="error" id="accept-error" aria-live="polite" style="flex-basis:100%;"></div>
+          </div>
+        </fieldset>
+        <div class="form-actions">
+          <button type="button" id="prev-btn" style="display:none;">Anterior</button>
+          <button type="button" id="next-btn">Següent</button>
+          <button type="submit" id="submit-btn" style="display:none;">Crea una compte</button>
+          <button type="reset" id="reset-btn" disabled>Neteja</button>
+        </div>
+        <div class="form-success-message" id="form-success" role="status" aria-live="polite"></div>
+      </form>
+      <div class="form-footer">
+        Ja tens una compte?
+        <a href="#" tabindex="0">Inicia sessió</a>
+      </div>
+    </section>
+  </main>
+  <script>
+    // ...validació i navegació multi-pas...
+    const form = document.getElementById('register-form');
+    const steps = Array.from(form.querySelectorAll('fieldset[data-step]'));
+    const progress = document.getElementById('form-progress');
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const successMsg = document.getElementById('form-success');
+    const togglePassword = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password');
+
+    let currentStep = 0;
+
+    function showStep(idx) {
+      steps.forEach((fs, i) => {
+        fs.style.display = i === idx ? '' : 'none';
+      });
+      progress.textContent = `Pas ${idx + 1} de ${steps.length}`;
+      prevBtn.style.display = idx === 0 ? 'none' : '';
+      nextBtn.style.display = idx === steps.length - 1 ? 'none' : '';
+      submitBtn.style.display = idx === steps.length - 1 ? '' : 'none';
+      // Focus primer input visible
+      const firstInput = steps[idx].querySelector('input, select, textarea');
+      if (firstInput) firstInput.focus();
+    }
+
+    function validateStep(idx) {
+      let valid = true;
+      if (idx === 0) {
+        // Nom
+        const name = form.name;
+        const nameError = document.getElementById('name-error');
+        if (!name.value.trim()) {
+          nameError.textContent = 'El nom és obligatori.';
+          valid = false;
+        } else {
+          nameError.textContent = '';
+        }
+        // Email
+        const email = form.email;
+        const emailError = document.getElementById('email-error');
+        if (!email.value.trim()) {
+          emailError.textContent = 'El correu és obligatori.';
+          valid = false;
+        } else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)) {
+          emailError.textContent = 'El format del correu no és vàlid.';
+          valid = false;
+        } else {
+          emailError.textContent = '';
+        }
+        // Password
+        const password = form.password;
+        const passwordError = document.getElementById('password-error');
+        if (!password.value.trim()) {
+          passwordError.textContent = 'La contrasenya és obligatòria.';
+          valid = false;
+        } else if (password.value.length < 6) {
+          passwordError.textContent = 'La contrasenya ha de tenir almenys 6 caràcters.';
+          valid = false;
+        } else {
+          passwordError.textContent = '';
+        }
+      }
+      if (idx === 1) {
+        // Accept
+        const accept = form.accept;
+        const acceptError = document.getElementById('accept-error');
+        if (!accept.checked) {
+          acceptError.textContent = 'Has d\'acceptar les condicions.';
+          valid = false;
+        } else {
+          acceptError.textContent = '';
+        }
+      }
+      return valid;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (validateStep(currentStep)) {
+        currentStep++;
+        showStep(currentStep);
+      } else {
+        // Troba el primer error visible i porta-hi el focus
+        const currentFieldset = steps[currentStep];
+        const firstError = currentFieldset.querySelector('.error:not(:empty)');
+        if (firstError) {
+          // Troba el camp associat a l'error
+          const input = currentFieldset.querySelector('[id="' + firstError.id.replace('-error', '') + '"]');
+          if (input) input.focus();
+        }
+      }
+    });
+    prevBtn.addEventListener('click', () => {
+      currentStep--;
+      showStep(currentStep);
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validateStep(currentStep)) return;
+      // Simula enviament i mostra missatge d'èxit
+      successMsg.textContent = 'Formulari enviat correctament!';
+      successMsg.classList.add('active');
+      form.reset();
+      currentStep = 0;
+      showStep(currentStep);
+      setTimeout(() => {
+        successMsg.classList.remove('active');
+        successMsg.textContent = '';
+      }, 4000);
+    });
+
+    form.addEventListener('reset', () => {
+      setTimeout(() => {
+        form.querySelectorAll('.error').forEach(e => e.textContent = '');
+        successMsg.classList.remove('active');
+        successMsg.textContent = '';
+        currentStep = 0;
+        showStep(currentStep);
+      }, 10);
+    });
+
+    // Instruccions accessibles
+    form.setAttribute('aria-describedby', 'form-title');
+
+    // Password toggle
+    togglePassword.addEventListener('click', function() {
+      const type = passwordInput.type === 'password' ? 'text' : 'password';
+      passwordInput.type = type;
+      togglePassword.innerHTML = type ==    = 'password'
+        ? '<i class="fas fa-eye"></i>'
+        : '<i class="fas fa-eye-slash"></i>';
+      passwordInput.focus();
+    });
+
+    // Bloqueja el botó de neteja si el formulari està net
+    const resetBtn = document.getElementById('reset-btn');
+    function updateResetBtn() {
+      // Si algun camp té valor, activa el botó
+      const dirty = Array.from(form.elements).some(el =>
+        (el.type === 'text' || el.type === 'email' || el.type === 'password') && el.value ||
+        (el.type === 'checkbox' && el.checked)
+      );
+      resetBtn.disabled = !dirty;
+      if (dirty) {
+        resetBtn.removeAttribute('disabled');
+      } else {
+        resetBtn.setAttribute('disabled', 'disabled');
+      }
+    }
+    form.addEventListener('input', updateResetBtn);
+    form.addEventListener('change', updateResetBtn);
+    form.addEventListener('reset', () => setTimeout(updateResetBtn, 10));
+    // Inicialitza estat del botó de neteja
+    updateResetBtn();
+
+    // Inicialització
+    showStep(currentStep);
+
+    // Mostra error textual al perdre el focus si el camp és invàlid
+    function addUserInvalidOnBlur(input, errorId, errorMsg) {
+      input.addEventListener('blur', function () {
+        if (!input.checkValidity()) {
+          input.classList.add('user-invalid');
+          document.getElementById(errorId).textContent = errorMsg;
+        } else {
+          input.classList.remove('user-invalid');
+          document.getElementById(errorId).textContent = '';
+        }
+      });
+      input.addEventListener('input', function () {
+        if (input.classList.contains('user-invalid')) {
+          if (input.checkValidity()) {
+            input.classList.remove('user-invalid');
+            document.getElementById(errorId).textContent = '';
+          }
+        }
+      });
+    }
+
+    addUserInvalidOnBlur(
+      document.getElementById('name'),
+      'name-error',
+      'El nom és obligatori.'
+    );
+    addUserInvalidOnBlur(
+      document.getElementById('email'),
+      'email-error',
+      'El correu és obligatori i ha de tenir un format vàlid.'
+    );
+    addUserInvalidOnBlur(
+      document.getElementById('password'),
+      'password-error',
+      'La contrasenya és obligatòria i ha de tenir almenys 6 caràcters.'
+    );
+
+    // Permet Enter per passar al següent pas o enviar el formulari
+    form.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        // Troba el botó actiu segons el pas
+        if (nextBtn.style.display !== 'none' && !submitBtn.offsetParent) {
+          e.preventDefault();
+          nextBtn.click();
+        } else if (submitBtn.style.display !== 'none') {
+          // Si estem al darrer pas, envia el formulari
+          // No fem preventDefault perquè el submit ja està gestionat
+        }
+      }
+    });
+  </script>
+</body>
+</html>
