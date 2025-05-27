@@ -150,10 +150,16 @@
       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
       margin-bottom: 0;
     }
-    .form-actions #next-btn:focus, .form-actions #next-btn:hover {
+    .form-actions #next-btn:hover {
       background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
       color: #fff;
       box-shadow: 0 4px 16px #1976d244;
+    }
+    .form-actions #next-btn:focus, .form-actions #next-btn:focus-visible {
+      outline: 3px solid #1976d2;
+      box-shadow: 0 0 0 4px #ffb300;
+      outline-offset: 2px;
+      z-index: 10;
     }
     .form-actions #prev-btn {
       background: #e0e0e0;
