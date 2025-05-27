@@ -306,13 +306,23 @@
             <div class="hint" id="birthdate-hint">Opcional. Format: dd/mm/aaaa</div>
           </div>
           <div class="form-row">
-            <span style="font-weight:600; margin-bottom:0.2em;">Rang d'edat</span>
-            <div style="display:flex; gap:1.5em; flex-wrap:wrap;">
-              <label style="font-weight:400; white-space:nowrap;"><input type="radio" name="age-range" value="menor18"> Menor de 18</label>
-              <label style="font-weight:400; white-space:nowrap;"><input type="radio" name="age-range" value="18-30"> 18-30</label>
-              <label style="font-weight:400; white-space:nowrap;"><input type="radio" name="age-range" value="31-50"> 31-50</label>
-              <label style="font-weight:400; white-space:nowrap;"><input type="radio" name="age-range" value="51plus"> Més de 50</label>
-            </div>
+            <fieldset style="border:none; padding:0; margin:0;">
+              <legend id="age-range-legend" style="font-weight:600; margin-bottom:0.2em;">Rang d'edat</legend>
+              <div style="display:flex; gap:1.5em; flex-wrap:wrap;">
+                <label style="font-weight:400; white-space:nowrap;">
+                  <input type="radio" name="age-range" value="menor18" aria-labelledby="age-range-legend"> Menor de 18
+                </label>
+                <label style="font-weight:400; white-space:nowrap;">
+                  <input type="radio" name="age-range" value="18-30" aria-labelledby="age-range-legend"> 18-30
+                </label>
+                <label style="font-weight:400; white-space:nowrap;">
+                  <input type="radio" name="age-range" value="31-50" aria-labelledby="age-range-legend"> 31-50
+                </label>
+                <label style="font-weight:400; white-space:nowrap;">
+                  <input type="radio" name="age-range" value="51plus" aria-labelledby="age-range-legend"> Més de 50
+                </label>
+              </div>
+            </fieldset>
           </div>
           <div class="form-row">
             <label class="custom-checkbox" style="font-weight:600;">
