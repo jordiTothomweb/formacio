@@ -247,7 +247,7 @@ carouselSection.addEventListener('keydown', ...);</code></div>
     </div>
   </section>
 
-    <section class="carousel-outer" aria-label="Carrousel de botigues" id="carousel" tabindex="0">
+    <section class="carousel-outer" aria-label="Carrousel de botigues" id="carousel" tabindex="-1">
       <div class="carousel-content">
         <h2 class="carousel-title" id="carousel-title"></h2>
         <p class="carousel-desc" id="carousel-desc"></p>
@@ -392,9 +392,6 @@ carouselSection.addEventListener('keydown', ...);</code></div>
 
     // Inicialització
     renderSlide(current);
-
-    // Accessibilitat: focus visible a la secció
-    carouselSection.setAttribute('tabindex', '0');
   </script>
 </body>
 </html>

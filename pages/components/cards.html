@@ -207,18 +207,20 @@
       <p>Aquesta targeta és accessible perquè:</p>
       <ul>
         <li>Els xips són clicables i accessibles amb el teclat.</li>
-        <li>Els atributs <code>aria-labelledby</code> i <code>aria-describedby</code> estan correctament associats.</li>
         <li>El missatge d'afegir a favorits és anunciat pel lector de pantalla.</li>
         <li>El descompte està indicat correctament per al lector de pantalla.</li>
       </ul>
-      <article class="content-card" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price"
-        onclick="alert('Card clicat!')">
+      <article class="content-card" onclick="alert('Card clicat!')">
         <img src="../../img/exemple.jpg" alt="Sofà modern de color gris amb coixins blancs">
         <h3 id="sofa-title">
           <a href="#" class="product-link" onclick="event.stopPropagation(); alert('Enllaç Sofà Modern clicat!')">Sofà Modern</a>
         </h3>
-        <button class="favorite-btn" aria-label="Afegeix a favorits"
-          onclick="event.stopPropagation(); toggleFavorite(this, 'correcte'); alert('Botó favorits clicat!')">
+        <button
+          class="favorite-btn"
+          aria-label="Afegeix a favorits"
+          aria-pressed="false"
+          onclick="event.stopPropagation(); toggleFavorite(this, 'correcte', 'Sofà Modern');"
+        >
           <i class="fas fa-heart"></i>
         </button>
         <p id="sofa-desc">Un sofà elegant i còmode, perfecte per a qualsevol sala d'estar moderna.</p>
@@ -230,8 +232,10 @@
           <del style="text-decoration: line-through; color: #999;">599,99 €</del>
           <ins style="color: #1976d2; font-weight: bold;">499,99 €</ins>
         </div>
-        <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite" style="display: none;">
-          Sofà Modern afegit als favorits.
+        <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite"
+          style="position:fixed; top:1.5rem; right:1.5rem; background:#e8f5e9; color:#256029; border:1.5px solid #4caf50; border-radius:8px; box-shadow:0 4px 16px #4caf5022; font-weight:bold; min-width:220px; z-index:9999; padding:1em 2em 1em 1.2em; font-size:1.08em; align-items:center; gap:0.7em; display:none;">
+          <i class="fas fa-check-circle" style="color:#388e3c; font-size:1.3em; margin-right:0.5em;"></i>
+          <span id="favorite-message-text-correcte">Sofà Modern afegit als favorits.</span>
         </div>
       </article>
       <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price"&gt;
@@ -260,11 +264,10 @@
       <p>Aquesta targeta no és accessible perquè:</p>
       <ul>
         <li>Els xips són clicables però no accessibles amb el teclat.</li>
-        <li>Els atributs <code>aria-labelledby</code> i <code>aria-describedby</code> no estan correctament associats.</li>
         <li>El missatge d'afegir a favorits no és anunciat pel lector de pantalla.</li>
         <li>El descompte no està indicat correctament per al lector de pantalla.</li>
       </ul>
-      <article class="content-card" tabindex="0" aria-labelledby="sofa-title-incorrecte" aria-describedby="sofa-desc-incorrecte">
+      <article class="content-card" tabindex="0">
         <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this, 'incorrecte')">
           <i class="fas fa-heart"></i>
         </button>
@@ -334,26 +337,70 @@
     });
   });
 
-  function toggleFavorite(button, type) {
-    // Identifica l'element del missatge segons el tipus
+  // Assegura que l'estat inicial del botó sigui "no afegit" (cor ple)
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+      btn.setAttribute('aria-pressed', 'false');
+      btn.setAttribute('aria-label', 'Afegeix a favorits');
+      const icon = btn.querySelector('i');
+      if (icon) {
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+      }
+      btn.classList.remove('active');
+    });
+  });
+
+  function toggleFavorite(button, type, productName) {
     const messageId = type === 'correcte' ? 'favorite-message-correcte' : 'favorite-message-incorrecte';
     const messageElement = document.getElementById(messageId);
+    const messageTextId = 'favorite-message-text-' + type;
+    const messageText = document.getElementById(messageTextId);
 
     if (!messageElement) {
       console.error(`No s'ha trobat l'element amb id: ${messageId}`);
       return;
     }
 
-    // Canvia l'estat del botó
-    button.classList.toggle('active');
-    if (button.classList.contains('active')) {
+    // Canvia l'estat del botó i l'atribut aria-pressed
+    const isActive = button.classList.toggle('active');
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+
+    // Canvia la icona del cor (ple o només contorn)
+    const icon = button.querySelector('i');
+    if (isActive) {
       button.setAttribute('aria-label', 'Eliminat de favorits');
-      messageElement.style.display = 'block'; // Mostra el missatge
+      if (icon) {
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+      }
+      if (messageText) {
+        messageText.textContent = `${productName} afegit als favorits.`;
+      }
+      messageElement.style.display = 'flex';
+      messageElement.style.opacity = '1';
+      messageElement.style.pointerEvents = 'auto';
+      messageElement.setAttribute('aria-live', 'assertive');
       setTimeout(() => {
-        messageElement.style.display = 'none'; // Amaga el missatge després de 3 segons
-      }, 3000);
+        messageElement.style.opacity = '0';
+        messageElement.style.pointerEvents = 'none';
+        setTimeout(() => {
+          messageElement.style.display = 'none';
+          messageElement.setAttribute('aria-live', 'polite');
+        }, 350);
+      }, 2500);
     } else {
       button.setAttribute('aria-label', 'Afegeix a favorits');
+      if (icon) {
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+      }
+      if (messageText) {
+        messageText.textContent = '';
+      }
+      messageElement.style.display = 'none';
+      messageElement.style.opacity = '0';
+      messageElement.style.pointerEvents = 'none';
     }
   }
 </script>
