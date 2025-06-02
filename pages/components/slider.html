@@ -57,6 +57,25 @@
     }
     input[type="range"] {
       width: 200px;
+      min-width: 24px;
+      min-height: 24px;
+      cursor: pointer;
+    }
+    /* Àrea d'acció mínima per als sliders 1-4 */
+    input[type="range"]::-webkit-slider-thumb {
+      min-width: 24px;
+      min-height: 24px;
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      min-width: 24px;
+      min-height: 24px;
+      cursor: pointer;
+    }
+    input[type="range"]::-ms-thumb {
+      min-width: 24px;
+      min-height: 24px;
+      cursor: pointer;
     }
     input[type="number"] {
       width: 60px;
@@ -199,7 +218,7 @@
     <!-- Pas 1: Slider bàsic (incorrecte) -->
     <section class="example incorrecte">
       <h2>PAS 1: Slider bàsic (no accessible)</h2>
-      <input type="range" min="0" max="100">
+      <input type="range" min="0" max="100" style="min-width:24px; min-height:24px; cursor:pointer;">
       <div class="code-box"><pre><code>&lt;input type="range" min="0" max="100"&gt;</code></pre></div>
       <p style="color:#d32f2f; margin-top:1rem;">No té etiqueta ni valor visible.</p>
     </section>
@@ -208,7 +227,7 @@
     <section class="example incorrecte">
       <h2>PAS 2: Afegim una etiqueta</h2>
       <label for="slider2">Volum</label>
-      <input id="slider2" type="range" min="0" max="100">
+      <input id="slider2" type="range" min="0" max="100" style="min-width:24px; min-height:24px; cursor:pointer;">
       <div class="code-box"><pre><code>&lt;label for="slider2"&gt;Volum&lt;/label&gt;
 &lt;input id="slider2" type="range" min="0" max="100"&gt;</code></pre></div>
       <p style="color:#d32f2f; margin-top:1rem;">Encara no mostra el valor ni té suport ARIA.</p>
@@ -229,6 +248,7 @@
           aria-valuemax="100"
           aria-valuenow="50"
           aria-label="Volum"
+          style="min-width:24px; min-height:24px; cursor:pointer;"
           oninput="document.getElementById('slider3-value').textContent = this.value; this.setAttribute('aria-valuenow', this.value);"
         >
         <span id="slider3-value">50</span>
@@ -266,6 +286,7 @@
           aria-valuemax="100"
           aria-valuenow="50"
           aria-label="Volum"
+          style="min-width:24px; min-height:24px; cursor:pointer;"
           oninput="syncSliderInput(this.value)"
         >
         <input 
