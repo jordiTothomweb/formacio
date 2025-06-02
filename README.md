@@ -21,8 +21,34 @@ git pull           # Actualitza el repositori local
 git push           # Puja els canvis al repositori remot
 ```
 
-## Recomanacions
+## Gestió de branques
 
-- Utilitza sempre etiquetes i atributs ARIA quan sigui necessari.
-- Comprova el focus visible i la navegació per teclat.
-- Fes servir lectors de pantalla per validar l'accessibilitat real.
+El projecte utilitza dues branques principals:
+
+- **main**: branca de producció, utilitzada per a GitHub Pages. Només s'hauria d'actualitzar amb canvis estables i revisats.
+- **develop**: branca de desenvolupament, on es fan els canvis, proves i noves funcionalitats.
+
+### Comandes útils per gestionar branques
+
+```sh
+git checkout develop           # Canvia a la branca develop
+git checkout main              # Canvia a la branca main
+git pull origin develop        # Actualitza la branca develop
+git pull origin main           # Actualitza la branca main
+git checkout -b nova-branca    # Crea i canvia a una branca nova
+git merge develop              # Fusiona develop a la branca actual
+git merge main                 # Fusiona main a la branca actual
+git push origin develop        # Puja els canvis a develop
+git push origin main           # Puja els canvis a main
+```
+
+### Flux de treball recomanat
+
+1. Fes els canvis i proves a la branca **develop**.
+2. Quan els canvis siguin estables, fusiona **develop** a **main**:
+   ```sh
+   git checkout main
+   git merge develop
+   git push origin main
+   ```
+3. La branca **main** és la que es publica a GitHub Pages i hauria de reflectir només la versió estable del projecte.
