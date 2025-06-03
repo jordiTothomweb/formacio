@@ -37,7 +37,7 @@
 
 # ARIA Exemples i Accessibilitat
 
-- [x] Exemple 4 (`aria-hidden`): Aclarir que oculta l'element a tots els productes de suport, no només als lectors de pantalla.
+- [ ] Exemple 4 (`aria-hidden`): Aclarir que oculta l'element a tots els productes de suport, no només als lectors de pantalla.
 - [ ] Exemple 7 (icones): Recordar que només aporta indicació visual, no funcionalitat. Si està `disabled`, no hauria de ser tabulable.
 - [ ] Exemple 8 (`role="menuitem"`): Si s'utilitza aquest rol, cal permetre la navegació amb fletxes.
 - [ ] Exemple 2 (pestanyes amb `role="tablist"`): La pestanya ha de rebre focus perquè no té cap element interactiu.
