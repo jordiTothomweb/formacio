@@ -15,6 +15,11 @@
       font-family: monospace;
       white-space: pre;
       overflow-x: auto;
+      text-align: left;
+      padding: 1rem 1.5rem;
+      max-width: 100%;
+      min-width: 0;
+      display: block;
     }
     .btn {
       background-color: #1976d2;
@@ -24,6 +29,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 1rem;
+      outline: none;
     }
     .btn:hover {
       background-color: #1565c0;
@@ -47,6 +53,23 @@
         font-size: 2rem;
         color: #4caf50;
     }
+    .img-decorativa-exemple {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .btn:focus-visible,
+    .icon-btn:focus-visible,
+    button.btn:focus-visible,
+    button.icon-btn:focus-visible {
+      outline: 3px solid #1976d2;
+      box-shadow: 0 0 0 4px #ffb300;
+      outline-offset: 2px;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
@@ -60,7 +83,7 @@
     <nav>
       <ul class="nav-bar">
         <li><a href="../others/idioma.html">Idioma</a></li>
-        <li><a href="../others/nom.html">Nom</a></li>
+        <li><a href="../others/nom.html">Enllaços Accessibles</a></li>
         <li><a href="../images/exemple-imatges-icones.html">Icones</a></li>
       </ul>
     </nav>
@@ -71,8 +94,17 @@
     <section class="card">
       <h2>Exemple 1: Imatges decoratives</h2>
       <p>Les imatges decoratives no han de ser anunciades pels lectors de pantalla. Això es pot aconseguir amb <code>alt=""</code>.</p>
-      <img src="../../img/exemple.jpg" alt="" />
-      <div class="code-box"><pre><code>&lt;img src="../img/decorativa.jpg" alt="" /&gt;</code></pre></div>
+      <div class="img-decorativa-exemple">
+        <a href="crocuspage.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+          <img src="../../img/crocus.jpg" alt="">
+          <strong style="margin-top:0.5rem;">Crocus bulbs</strong>
+        </a>
+      </div>
+      <div class="code-box"><pre><code>&lt;a href="crocuspage.html"&gt;
+  &lt;img src="../../img/crocus.jpg" alt="" /&gt;
+  &lt;strong&gt;Crocus bulbs&lt;/strong&gt;
+&lt;/a&gt;
+</code></pre></div>
     </section>
 
     <!-- Exemple 2: Imatges amb text alternatiu -->
@@ -138,6 +170,36 @@
   &lt;span&gt;Següent&lt;/span&gt;
 &lt;/button&gt;</code></pre></div>
     </section>
+
+    <!-- Exemple 7: Icones de xarxes socials funcionals -->
+    <div class="card">
+
+      <h2>Icones de xarxes socials amb <code>alt</code> o <code>aria-label</code></h3>
+      <div>
+        <a href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener">
+          <i class="fab fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+        <p class="description">
+          Les icones de xarxes socials són funcionals (fan d'enllaç) i tenen una descripció accessible amb <code>aria-label</code> al contenidor. Les icones internes porten <code>aria-hidden="true"</code> per evitar redundància.<br>
+          Alternativament, si s'utilitza una imatge, cal posar <code>alt="Nom xarxa"</code> a la imatge.
+        </p>
+      </div>
+      <div class="code-box"><pre><code>&lt;a href="https://twitter.com" aria-label="Twitter"&gt;
+  &lt;i class="fab fa-twitter" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;
+&lt;a href="https://facebook.com" aria-label="Facebook"&gt;
+  &lt;i class="fab fa-facebook" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;
+&lt;a href="https://instagram.com" aria-label="Instagram"&gt;
+  &lt;i class="fab fa-instagram" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;</code></pre></div>
+    </div>
   </main>
 
   <footer>
