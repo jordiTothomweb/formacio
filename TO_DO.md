@@ -25,8 +25,8 @@
 - [ ] El comptador no es veu perquè està massa a la part inferior.
 
 ## Icones i Imatges
-- [ ] Potser posaria algun exemple de les icones de xarxes socials, perquè quedi més clar que en aquest cas serien icones funcionals, o sigui amb atribut `alt`.
-- [ ] Afegiria: ...les icones internes han de tenir aria-hidden="true": per evitar duplicar la informació als lectors de pantalla.  
+- [x] Potser posaria algun exemple de les icones de xarxes socials, perquè quedi més clar que en aquest cas serien icones funcionals, o sigui amb atribut `alt`.
+- [x] Afegiria: ...les icones internes han de tenir aria-hidden="true": per evitar duplicar la informació als lectors de pantalla.  
       **Exemple:** Si el contenidor (enllaç, botó, etc.) ja té una descripció accessible (`aria-label`, `aria-labelledby`, text visible, etc.), les icones internes han de portar `aria-hidden="true"` per evitar que el lector de pantalla les llegeixi com a redundants.
 
 # Propostes
@@ -37,7 +37,7 @@
 
 # ARIA Exemples i Accessibilitat
 
-- [ ] Exemple 4 (`aria-hidden`): Aclarir que oculta l'element a tots els productes de suport, no només als lectors de pantalla.
+- [x] Exemple 4 (`aria-hidden`): Aclarir que oculta l'element a tots els productes de suport, no només als lectors de pantalla.
 - [ ] Exemple 7 (icones): Recordar que només aporta indicació visual, no funcionalitat. Si està `disabled`, no hauria de ser tabulable.
 - [ ] Exemple 8 (`role="menuitem"`): Si s'utilitza aquest rol, cal permetre la navegació amb fletxes.
 - [ ] Exemple 2 (pestanyes amb `role="tablist"`): La pestanya ha de rebre focus perquè no té cap element interactiu.
