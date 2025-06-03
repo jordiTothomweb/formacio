@@ -223,6 +223,7 @@
 </head>
 <body>
   <header>
+    <button onclick="focusMenu()" class="skip-link">Saltar al contingut</button>
     <div class="header-left">
       <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
         <i class="fas fa-arrow-left"></i>
@@ -245,12 +246,12 @@
     <div class="example">
       <h2>0. Saltar al contingut</h2>
       <p>Aquest exemple inclou un enllaç que permet saltar part del contingut de la página.</p>
-      <button onclick="focusMenu()" class="skip-link">Saltar a l'exemple 3</a>
+      
       
     </div>
 
     <!-- Exemple 1: Ordre de tabulació -->
-    <div class="example">
+    <div class="example" id="menu">
       <h2>1. Ordre de tabulació correcte</h2>
       <div class="example-container">
         <button style="top: 1rem; right: 1rem;">Botó 1</button>
@@ -320,7 +321,7 @@ function trapFocus(event) {
   <!-- Exemple 3: Menú d'usuari -->
 <div class="example" id="menu-example">
   <h2>3. Menú d'usuari</h2>
-  <div class="menu" id="menu">
+  <div class="menu">
     <button onclick="toggleMenu()" aria-label="Menú d'usuari"><i class="fas fa-user"></i></button>
     <div class="menu-content" id="menu-content" role="menu" style="background-color: white; z-index: 10;">
       <button role="menuitem">Opció 1</button>

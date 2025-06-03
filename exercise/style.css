@@ -167,12 +167,6 @@ a:focus-visible, button:focus-visible, .icon-btn:focus-visible {
   outline-offset: 2px;
   z-index: 10;
 }
-.form-actions #next-btn:focus, .form-actions #next-btn:focus-visible {
-  outline: 3px solid #1976d2;
-  box-shadow: 0 0 0 4px #ffb300;
-  outline-offset: 2px;
-  z-index: 10;
-}
 
 /* Menú lateral */
 .side-menu {
