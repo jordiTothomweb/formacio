@@ -111,8 +111,42 @@
     <section class="card">
       <h2>Exemple 2: Imatges amb text alternatiu</h2>
       <p>Les imatges que transmeten informació han de tenir un text alternatiu descriptiu.</p>
-      <img src="../../img/Grafico.jpeg" alt="Gràfica de vendes del 2021 que mostra un augment respecte els anys anteriors." />
-      <div class="code-box"><pre><code>&lt;img src="https://via.placeholder.com/300x200?text=Gràfica+de+vendes" alt="Gràfica de vendes del 2025 que mostra un augment del 20% respecte al 2024." /&gt;</code></pre></div>
+      <img src="../../img/Grafico.jpeg" alt="Gràfic de vendes interiors diàries (milions d'euros) dels anys 2019, 2020 i 2021, per mesos." />
+      <div class="code-box"><pre><code>&lt;img src="https://via.placeholder.com/300x200?text=Gràfica+de+vendes" alt="Gràfic de vendes interiors diàries (milions d'euros) dels anys 2019, 2020 i 2021, per mesos." /&gt;</code></pre></div>
+      <div style="margin-top:1rem;">
+        <details>
+          <summary id="alt-grafic-summary"><strong>Alternativa textual del gràfic</strong></summary>
+          <table aria-labelledby="alt-grafic-summary" style="border-collapse: collapse; margin-top: 1em; width: 100%; max-width: 600px;">
+            <caption style="caption-side: bottom; text-align: left; padding-top: 0.7em;">
+              El gràfic mostra l'evolució de les vendes interiors diàries (milions d'euros) per mesos dels anys 2019, 2020 i 2021. 
+              L'any 2020 presenta una caiguda notable a partir de març-abril, amb una recuperació progressiva a finals d'any. 
+              El 2021 mostra un creixement sostingut, especialment a partir de setembre, superant els valors dels anys anteriors.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#f0f0f0;">Mes</th>
+                <th scope="col" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#f0f0f0;">2019</th>
+                <th scope="col" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#f0f0f0;">2020</th>
+                <th scope="col" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#f0f0f0;">2021</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Gener</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.900</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.850</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.200</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Febrer</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.800</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.700</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.100</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Març</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.750</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.050</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Abril</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.600</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">1.900</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.950</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Maig</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.700</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.100</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.000</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Juny</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.900</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.100</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Juliol</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.000</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.400</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.200</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Agost</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.950</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.100</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.050</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Setembre</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.800</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.000</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.900</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Octubre</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.900</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.000</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Novembre</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.700</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.600</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Desembre</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.700</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">4.100</td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
     </section>
 
     <!-- Exemple 3: Icones sense descripció -->
