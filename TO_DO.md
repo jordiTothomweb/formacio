@@ -1,9 +1,9 @@
 # Errors
 
 ## General
-- [ ] A vegades el contigut està centrat i a vegades a l'esquerra de tot.
-- [ ] Fer els exemples genèrics, per tal de que puguin servir per a tot tipus de clients.
-- [ ] Revisar format unitari, hi ha pantalles que no segueixen el mateix format de les altres
+- [x] A vegades el contigut està centrat i a vegades a l'esquerra de tot.
+- [x] Fer els exemples genèrics, per tal de que puguin servir per a tot tipus de clients.
+- [x] Revisar format unitari, hi ha pantalles que no segueixen el mateix format de les altres
 
 ## Home
 

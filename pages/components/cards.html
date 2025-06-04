@@ -207,55 +207,55 @@
       <p>Aquesta targeta és accessible perquè:</p>
       <ul>
         <li>Els xips són clicables i accessibles amb el teclat.</li>
-        <li>El missatge d'afegir a favorits és anunciat pel lector de pantalla.</li>
-        <li>El descompte està indicat correctament per al lector de pantalla.</li>
+        <li>El missatge d'acció és anunciat pel lector de pantalla.</li>
+        <li>La informació addicional està indicada correctament per al lector de pantalla.</li>
       </ul>
       <article class="content-card" onclick="alert('Card clicat!')">
-        <img src="../../img/exemple.jpg" alt="Sofà modern de color gris amb coixins blancs">
-        <h3 id="sofa-title">
-          <a href="#" class="product-link" onclick="event.stopPropagation(); alert('Enllaç Sofà Modern clicat!')">Sofà Modern</a>
+        <img src="../../img/exemple.jpeg" alt="Galetes casolanes en un plat blanc">
+        <h3 id="item-title">
+          <a href="#" class="product-link" onclick="event.stopPropagation(); alert('Enllaç Galetes clicat!')">Galetes casolanes</a>
         </h3>
         <button
           class="favorite-btn"
-          aria-label="Afegeix a favorits"
+          aria-label="Activa estat"
           aria-pressed="false"
-          onclick="event.stopPropagation(); toggleFavorite(this, 'correcte', 'Sofà Modern');"
+          onclick="event.stopPropagation(); toggleFavorite(this, 'correcte', 'Galetes casolanes');"
         >
           <i class="fas fa-heart"></i>
         </button>
-        <p id="sofa-desc">Un sofà elegant i còmode, perfecte per a qualsevol sala d'estar moderna.</p>
+        <p id="item-desc">Galetes fetes a mà amb ingredients naturals, ideals per acompanyar el cafè o el te.</p>
         <div class="tags">
-          <button onclick="event.stopPropagation(); alert('Etiqueta: Modern')">Modern</button>
-          <button onclick="event.stopPropagation(); alert('Etiqueta: Confortable')">Confortable</button>
+          <button onclick="event.stopPropagation(); alert('Etiqueta: Postres')">Postres</button>
+          <button onclick="event.stopPropagation(); alert('Etiqueta: Casolanes')">Casolanes</button>
         </div>
-        <div class="price" id="sofa-price">
-          <del style="text-decoration: line-through; color: #999;">599,99 €</del>
-          <ins style="color: #1976d2; font-weight: bold;">499,99 €</ins>
+        <div class="price" id="item-price">
+          <del style="text-decoration: line-through; color: #999;">6,00 €</del>
+          <ins style="color: #1976d2; font-weight: bold;">4,50 €</ins>
         </div>
         <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite"
           style="position:fixed; top:1.5rem; right:1.5rem; background:#e8f5e9; color:#256029; border:1.5px solid #4caf50; border-radius:8px; box-shadow:0 4px 16px #4caf5022; font-weight:bold; min-width:220px; z-index:9999; padding:1em 2em 1em 1.2em; font-size:1.08em; align-items:center; gap:0.7em; display:none;">
           <i class="fas fa-check-circle" style="color:#388e3c; font-size:1.3em; margin-right:0.5em;"></i>
-          <span id="favorite-message-text-correcte">Sofà Modern afegit als favorits.</span>
+          <span id="favorite-message-text-correcte">Galetes casolanes afegides als destacats.</span>
         </div>
       </article>
-      <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="sofa-title" aria-describedby="sofa-desc sofa-price"&gt;
-  &lt;button class="favorite-btn" aria-label="Afegeix a favorits" onclick="event.stopPropagation(); toggleFavorite(this, 'correcte')"&gt;
+      <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="item-title" aria-describedby="item-desc item-price"&gt;
+  &lt;button class="favorite-btn" aria-label="Activa estat" onclick="event.stopPropagation(); toggleFavorite(this, 'correcte')"&gt;
     &lt;i class="fas fa-heart"&gt;&lt;/i&gt;
   &lt;/button&gt;
-  &lt;img src="../../img/exemple.jpg" alt="Sofà modern de color gris amb coixins blancs"&gt;
-  &lt;h3 id="sofa-title"&gt;Sofà Modern&lt;/h3&gt;
-  &lt;p id="sofa-desc"&gt;Un sofà elegant i còmode, perfecte per a qualsevol sala d'estar moderna.&lt;/p&gt;
+  &lt;img src="../../img/galetes.jpg" alt="Galetes casolanes en un plat blanc"&gt;
+  &lt;h3 id="item-title"&gt;Galetes casolanes&lt;/h3&gt;
+  &lt;p id="item-desc"&gt;Galetes fetes a mà amb ingredients naturals, ideals per acompanyar el cafè o el te.&lt;/p&gt;
   &lt;div class="tags"&gt;
-    &lt;span tabindex="0" role="button" aria-label="Etiqueta Modern" onclick="alert('Etiqueta: Modern')"&gt;Modern&lt;/span&gt;
-    &lt;span tabindex="0" role="button" aria-label="Etiqueta Confortable" onclick="alert('Etiqueta: Confortable')"&gt;Confortable&lt;/span&gt;
+    &lt;span tabindex="0" role="button" aria-label="Etiqueta Postres" onclick="alert('Etiqueta: Postres')"&gt;Postres&lt;/span&gt;
+    &lt;span tabindex="0" role="button" aria-label="Etiqueta Casolanes" onclick="alert('Etiqueta: Casolanes')"&gt;Casolanes&lt;/span&gt;
   &lt;/div&gt;
-  &lt;div class="price" id="sofa-price"&gt;
-    &lt;span aria-hidden="true" style="text-decoration: line-through; color: #999;"&gt;599,99 €&lt;/span&gt;
-    &lt;span aria-label="Preu amb descompte: 499,99 euros" style="color: #1976d2; font-weight: bold;"&gt;499,99 €&lt;/span&gt;
+  &lt;div class="price" id="item-price"&gt;
+    &lt;span aria-hidden="true" style="text-decoration: line-through; color: #999;"&gt;6,00 €&lt;/span&gt;
+    &lt;span aria-label="Preu amb descompte: 4,50 euros" style="color: #1976d2; font-weight: bold;"&gt;4,50 €&lt;/span&gt;
   &lt;/div&gt;
 &lt;/article&gt;
 &lt;div class="message" id="favorite-message-correcte" role="alert" aria-live="polite" style="display: none;"&gt;
-  Sofà Modern afegit als favorits.
+  Galetes casolanes afegides als destacats.
 &lt;/div&gt;</code></pre></div>
     </section>
     
@@ -264,46 +264,46 @@
       <p>Aquesta targeta no és accessible perquè:</p>
       <ul>
         <li>Els xips són clicables però no accessibles amb el teclat.</li>
-        <li>El missatge d'afegir a favorits no és anunciat pel lector de pantalla.</li>
-        <li>El descompte no està indicat correctament per al lector de pantalla.</li>
+        <li>El missatge d'acció no és anunciat pel lector de pantalla.</li>
+        <li>La informació addicional no està indicada correctament per al lector de pantalla.</li>
       </ul>
       <article class="content-card" tabindex="0">
         <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this, 'incorrecte')">
           <i class="fas fa-heart"></i>
         </button>
-        <img src="../../img/exemple.jpg" alt="Imatge">
-        <h3 id="sofa-title-incorrecte">Sofà Modern amb un disseny elegant i sofisticat per a qualsevol espai</h3>
-        <p id="sofa-desc-incorrecte">Aquest sofà és perfecte per a qualsevol sala d'estar moderna, amb un estil únic i materials d'alta qualitat.</p>
+        <img src="../../img/exemple.jpeg" alt="Imatge de galetes">
+        <h3 id="item-title-incorrecte">Galetes casolanes amb una descripció llarga i detallada per a qualsevol ocasió</h3>
+        <p id="item-desc-incorrecte">Aquestes galetes són perfectes per a qualsevol moment, amb ingredients naturals i sabor tradicional.</p>
         <div class="tags">
-          <span role="button" aria-label="Etiqueta Modern" onclick="alert('Etiqueta: Modern')">Modern</span>
-          <span role="button" aria-label="Etiqueta Confortable" onclick="alert('Etiqueta: Confortable')">Confortable</span>
+          <span role="button" aria-label="Etiqueta Postres" onclick="alert('Etiqueta: Postres')">Postres</span>
+          <span role="button" aria-label="Etiqueta Casolanes" onclick="alert('Etiqueta: Casolanes')">Casolanes</span>
         </div>
         <div class="price">
-          <span style="text-decoration: line-through; color: #999;">599,99 €</span>
-          <span style="color: #1976d2; font-weight: bold;">499,99 €</span>
+          <span style="text-decoration: line-through; color: #999;">6,00 €</span>
+          <span style="color: #1976d2; font-weight: bold;">4,50 €</span>
         </div>
       </article>
       <div class="floating-message" id="favorite-message-incorrecte" style="display: none;">
-        Sofà Modern afegit als favorits.
+        Galetes casolanes afegides als destacats.
       </div>
-      <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="sofa-title-incorrecte" aria-describedby="sofa-desc-incorrecte"&gt;
+      <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="item-title-incorrecte" aria-describedby="item-desc-incorrecte"&gt;
   &lt;button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this, 'incorrecte')"&gt;
     &lt;i class="fas fa-heart"&gt;&lt;/i&gt;
   &lt;/button&gt;
-  &lt;img src="../../img/exemple.jpg" alt="Imatge"&gt;
-  &lt;h3 id="sofa-title-incorrecte"&gt;Sofà Modern amb un disseny elegant i sofisticat per a qualsevol espai&lt;/h3&gt;
-  &lt;p id="sofa-desc-incorrecte"&gt;Aquest sofà és perfecte per a qualsevol sala d'estar moderna, amb un estil únic i materials d'alta qualitat.&lt;/p&gt;
+  &lt;img src="../../img/galetes.jpg" alt="Imatge de galetes"&gt;
+  &lt;h3 id="item-title-incorrecte"&gt;Galetes casolanes amb una descripció llarga i detallada per a qualsevol ocasió&lt;/h3&gt;
+  &lt;p id="item-desc-incorrecte"&gt;Aquestes galetes són perfectes per a qualsevol moment, amb ingredients naturals i sabor tradicional.&lt;/p&gt;
   &lt;div class="tags"&gt;
-    &lt;span role="button" aria-label="Etiqueta Modern" onclick="alert('Etiqueta: Modern')"&gt;Modern&lt;/span&gt;
-    &lt;span role="button" aria-label="Etiqueta Confortable" onclick="alert('Etiqueta: Confortable')"&gt;Confortable&lt;/span&gt;
+    &lt;span role="button" aria-label="Etiqueta Postres" onclick="alert('Etiqueta: Postres')"&gt;Postres&lt;/span&gt;
+    &lt;span role="button" aria-label="Etiqueta Casolanes" onclick="alert('Etiqueta: Casolanes')"&gt;Casolanes&lt;/span&gt;
   &lt;/div&gt;
   &lt;div class="price"&gt;
-    &lt;span style="text-decoration: line-through; color: #999;"&gt;599,99 €&lt;/span&gt;
-    &lt;span style="color: #1976d2; font-weight: bold;"&gt;499,99 €&lt;/span&gt;
+    &lt;span style="text-decoration: line-through; color: #999;"&gt;6,00 €&lt;/span&gt;
+    &lt;span style="color: #1976d2; font-weight: bold;"&gt;4,50 €&lt;/span&gt;
   &lt;/div&gt;
 &lt;/article&gt;
 &lt;div class="message" id="favorite-message-incorrecte" style="display: none;"&gt;
-  Sofà Modern afegit als favorits.
+  Galetes casolanes afegides als destacats.
 &lt;/div&gt;</code></pre></div>
     </section>
   <footer>
