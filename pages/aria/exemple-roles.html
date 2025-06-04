@@ -79,14 +79,14 @@ function mostrarAlert() {
         <button role="tab" aria-selected="true" aria-controls="panel1" id="tab1" class="btn-tab">Pestanya 1</button>
         <button role="tab" aria-selected="false" aria-controls="panel2" id="tab2" class="btn-tab" tabindex="-1">Pestanya 2</button>
       </div>
-      <div id="panel1" role="tabpanel" aria-labelledby="tab1" class="tabpanel">Contingut de la pestanya 1</div>
-      <div id="panel2" role="tabpanel" aria-labelledby="tab2" class="tabpanel" hidden>Contingut de la pestanya 2</div>
+      <div id="panel1" role="tabpanel" aria-labelledby="tab1" class="tabpanel" tabindex="0">Contingut de la pestanya 1</div>
+      <div id="panel2" role="tabpanel" aria-labelledby="tab2" class="tabpanel" hidden tabindex="0">Contingut de la pestanya 2</div>
       <div class="code-box">&lt;div role="tablist" aria-label="Pestanyes de contingut"&gt;
   &lt;button role="tab" aria-selected="true" aria-controls="panel1" id="tab1" class="btn-tab" tabindex="0"&gt;Pestanya 1&lt;/button&gt;
   &lt;button role="tab" aria-selected="false" aria-controls="panel2" id="tab2" class="btn-tab" tabindex="-1"&gt;Pestanya 2&lt;/button&gt;
 &lt;/div&gt;
-&lt;div id="panel1" role="tabpanel" aria-labelledby="tab1" class="tabpanel"&gt;Contingut de la pestanya 1&lt;/div&gt;
-&lt;div id="panel2" role="tabpanel" aria-labelledby="tab2" class="tabpanel" hidden&gt;Contingut de la pestanya 2&lt;/div&gt;
+&lt;div id="panel1" role="tabpanel" aria-labelledby="tab1" tabindex="0" class="tabpanel"&gt;Contingut de la pestanya 1&lt;/div&gt;
+&lt;div id="panel2" role="tabpanel" aria-labelledby="tab2" tabindex="0" class="tabpanel" hidden&gt;Contingut de la pestanya 2&lt;/div&gt;
 
 &lt;script&gt;
 document.querySelectorAll('[role="tab"]').forEach((tab, index, tabs) =&gt; {

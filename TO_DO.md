@@ -37,11 +37,13 @@
 
 # ARIA Exemples i Accessibilitat
 
-- [ ] Exemple 4 (`aria-hidden`): Aclarir que oculta l'element a tots els productes de suport, no només als lectors de pantalla.
-- [ ] Exemple 7 (icones): Recordar que només aporta indicació visual, no funcionalitat. Si està `disabled`, no hauria de ser tabulable.
-- [ ] Exemple 8 (`role="menuitem"`): Si s'utilitza aquest rol, cal permetre la navegació amb fletxes.
-- [ ] Exemple 2 (pestanyes amb `role="tablist"`): La pestanya ha de rebre focus perquè no té cap element interactiu.
-- [ ] Exemple de pestanyes de teclat: El focus ha d'anar a la pestanya.
+- [x] Exemple 4 (`aria-hidden`): Aclarir que oculta l'element a tots els productes de suport, no només als lectors de pantalla.
+- [x] Exemple 7 (icones): Recordar que només aporta indicació visual, no funcionalitat. Si està `disabled`, no hauria de ser tabulable.
+- [x] Exemple 8 (`role="menuitem"`): Si s'utilitza aquest rol, cal permetre la navegació amb fletxes.
+- [x] Exemple 2 (pestanyes amb `role="tablist"`): La pestanya ha de rebre focus perquè no té cap element interactiu.
+
+# Components
+
 - [ ] Cards, botó de favorits: Si té `aria-pressed`, l'etiqueta ha de ser la mateixa sempre (no canviar el text). Si es vol canviar el text, no cal `aria-pressed`.
 - [ ] Cards, botó de favorits: Es poden fer servir tres mètodes vàlids:
       1. Botó "Afegir a favorits" sense `aria-pressed` però amb `aria-live`.
