@@ -96,6 +96,15 @@
         align-items: stretch;
       }
     }
+
+    .focus-gruixut {
+      outline: 1px solid black;
+    }
+
+    /* Cas 9: Focus amb borde gruixut */
+    .focus-gruixut:focus-visible {
+      outline: 5px solid black;
+    }
   </style>
 </head>
 <body>
@@ -264,7 +273,7 @@
         <div class="card incorrecte" style="background-color: #222;">
           <div class="example">
             <h3 style="color: red">Focus bicolor sobre botó blanc i fons fosc</h3>
-            <button class="focus-bicolor focus-blanc" style="background-color: white; color: red;">Botó blanc</button>
+            <button class="focus-bicolor" style="background-color: white; color: red; border-color: white;">Botó blanc</button>
             <p style="color: white" class="description">El focus bicolor negre/blanc no es veu prou bé sobre un botó blanc amb fons fosc.</p>
           </div>
           <div>
@@ -280,6 +289,24 @@
   outline: 3px solid black;
   outline-offset: 2px;
   box-shadow: 0 0 0 4px white;
+}
+&lt;/style&gt;</code></pre>
+          </div>
+        </div>
+    
+        <!-- Cas 9: Focus amb borde gruixut -->
+        <div class="card correcte">
+          <div class="example">
+            <h3>Focus amb borde gruixut</h3>
+            <button class="focus-gruixut">Botó amb focus gruixut</button>
+            <p class="description">Un focus amb un borde més gruixut també pot ser suficient per garantir la visibilitat.</p>
+          </div>
+          <div>
+            <pre><code>&lt;button class="focus-gruixut"&gt;Botó amb focus gruixut&lt;/button&gt;
+
+&lt;style&gt;
+.focus-gruixut:focus-visible {
+  outline: 5px solid black;
 }
 &lt;/style&gt;</code></pre>
           </div>
