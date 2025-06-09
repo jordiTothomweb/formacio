@@ -14,7 +14,7 @@
 - [ ] S'hauria de poder cancel·lar el punter.
 - [x] Afegir una àrea d'acció de `24px` com a mínim.
 - [x] Falta un `cursor pointer`.
-- [ ] Revisar exemples: els valors d'ARIA només són necessaris per a components personalitzats, no per als `input[type=range]` natius.
+- [x] Revisar exemples: els valors d'ARIA només són necessaris per a components personalitzats, no per als `input[type=range]` natius.
 
 # Millores
 
