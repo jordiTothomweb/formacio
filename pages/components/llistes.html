@@ -53,6 +53,11 @@
     button:hover {
       background: #1565c0;
     }
+    #btn-bad-list:focus-visible,
+    #btn-good-list:focus-visible {
+      outline: 3px solid #ff9800;
+      outline-offset: 2px;
+    }
 
     /* Cards llargs per als elements de la llista */
     ul.bad-list, ul#good-list {
@@ -110,13 +115,13 @@
     <section class="card incorrecte example">
       <h2>Exemple Dolent: Afegir una nova llista sencera</h2>
       <ul class="bad-list" id="bad-list">
-        <li>Element 1</li>
-        <li>Element 2</li>
-        <li>Element 3</li>
-        <li>Element 4</li>
-        <li>Element 5</li>
+        <li tabindex="0">Element 1 (Llista 1)</li>
+        <li tabindex="0">Element 2 (Llista 1)</li>
+        <li tabindex="0">Element 3 (Llista 1)</li>
+        <li tabindex="0">Element 4 (Llista 1)</li>
+        <li tabindex="0">Element 5 (Llista 1)</li>
       </ul>
-      <button onclick="addBadList()">Afegeix una nova llista</button>
+      <button id="btn-bad-list" onclick="addBadList()" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();addBadList();}">Afegeix una nova llista</button>
       <div><pre><code>// Afegir una nova llista sencera (incorrecte)
 function addBadList() {
   const newUl = document.createElement('ul');
@@ -137,13 +142,13 @@ function addBadList() {
     <section class="card correcte">
       <h2>Exemple Correcte: Afegir elements a la mateixa llista</h2>
       <ul id="good-list">
-        <li>Element 1</li>
-        <li>Element 2</li>
-        <li>Element 3</li>
-        <li>Element 4</li>
-        <li>Element 5</li>
+        <li tabindex="0">Element 1</li>
+        <li tabindex="0">Element 2</li>
+        <li tabindex="0">Element 3</li>
+        <li tabindex="0">Element 4</li>
+        <li tabindex="0">Element 5</li>
       </ul>
-      <button onclick="addGoodListItems()">Afegeix 5 elements més</button>
+      <button id="btn-good-list" onclick="addGoodListItems()" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();addGoodListItems();}">Afegeix 5 elements més</button>
       <div><pre><code>// Afegir elements a la mateixa llista (correcte)
 function addGoodListItems() {
   const ul = document.getElementById('good-list');
@@ -158,32 +163,44 @@ function addGoodListItems() {
   </main>
 
   <script>
+    // Comptador per a la numeració de llistes dolentes
+    let badListCounter = 2;
+
     // Afegir una nova llista sencera (incorrecte)
     function addBadList() {
       const newUl = document.createElement('ul');
       newUl.className = 'bad-list';
       for (let i = 1; i <= 5; i++) {
         const li = document.createElement('li');
-        li.textContent = 'Element ' + i;
+        li.textContent = 'Element ' + i + ' (Llista ' + badListCounter + ')';
         li.tabIndex = 0;
         newUl.appendChild(li);
       }
-      // Inserta la nova llista després de la primera llista dolenta
-      // CORRECCIÓ: utilitza l'id 'bad-list' per trobar la llista original
-      const badList = document.getElementById('bad-list');
-      badList.parentNode.insertBefore(newUl, badList.nextSibling);
+      // Inserta la nova llista després de l'última llista dolenta existent
+      let lastBadList = document.getElementById('bad-list');
+      while (lastBadList.nextElementSibling && lastBadList.nextElementSibling.classList.contains('bad-list')) {
+        lastBadList = lastBadList.nextElementSibling;
+      }
+      lastBadList.parentNode.insertBefore(newUl, lastBadList.nextSibling);
+      badListCounter++;
+      // Focus es queda al botó
+      document.getElementById('btn-bad-list').focus();
     }
 
     // Afegir elements a la mateixa llista (correcte)
     function addGoodListItems() {
       const ul = document.getElementById('good-list');
       const start = ul.children.length + 1;
+      let firstNewLi = null;
       for (let i = start; i < start + 5; i++) {
         const li = document.createElement('li');
         li.textContent = 'Element ' + i;
         li.tabIndex = 0;
         ul.appendChild(li);
+        if (!firstNewLi) firstNewLi = li;
       }
+      // Focus al primer nou element afegit
+      if (firstNewLi) firstNewLi.focus();
     }
   </script>
 </body>

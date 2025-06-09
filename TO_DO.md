@@ -50,4 +50,4 @@
       2. Botó que canvia a "Eliminar de favorits" sense `aria-pressed` ni `aria-live`.
       3. Botó amb `aria-pressed` que canvia d'estat, sense `aria-live`.
 - [ ] Cards, preus: No utilitzar `aria-label` als preus, millor fer servir `.sr-only` per afegir context.
-- [ ] Llistes: El cas correcte ha d'enviar el focus a l'element nou.
+- [x] Llistes: El cas correcte ha d'enviar el focus a l'element nou.
