@@ -44,10 +44,10 @@
 
 # Components
 
-- [ ] Cards, botó de favorits: Si té `aria-pressed`, l'etiqueta ha de ser la mateixa sempre (no canviar el text). Si es vol canviar el text, no cal `aria-pressed`.
-- [ ] Cards, botó de favorits: Es poden fer servir tres mètodes vàlids:
+- [x] Cards, botó de favorits: Si té `aria-pressed`, l'etiqueta ha de ser la mateixa sempre (no canviar el text). Si es vol canviar el text, no cal `aria-pressed`.
+- [x] Cards, botó de favorits: Es poden fer servir tres mètodes vàlids:
       1. Botó "Afegir a favorits" sense `aria-pressed` però amb `aria-live`.
       2. Botó que canvia a "Eliminar de favorits" sense `aria-pressed` ni `aria-live`.
       3. Botó amb `aria-pressed` que canvia d'estat, sense `aria-live`.
-- [ ] Cards, preus: No utilitzar `aria-label` als preus, millor fer servir `.sr-only` per afegir context.
+- [x] Cards, preus: No utilitzar `aria-label` als preus, millor fer servir `.sr-only` per afegir context.
 - [x] Llistes: El cas correcte ha d'enviar el focus a l'element nou.

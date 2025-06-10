@@ -217,46 +217,63 @@
         </h3>
         <button
           class="favorite-btn"
-          aria-label="Activa estat"
-          aria-pressed="false"
+          aria-label="Afegeix a favorits"
           onclick="event.stopPropagation(); toggleFavorite(this, 'correcte', 'Galetes casolanes');"
         >
-          <i class="fas fa-heart"></i>
+          <i class="far fa-heart"></i>
         </button>
         <p id="item-desc">Galetes fetes a mà amb ingredients naturals, ideals per acompanyar el cafè o el te.</p>
         <div class="tags">
-          <button onclick="event.stopPropagation(); alert('Etiqueta: Postres')">Postres</button>
-          <button onclick="event.stopPropagation(); alert('Etiqueta: Casolanes')">Casolanes</button>
+          <ul aria-label="Llista d'etiquetes del producte" style="display:flex;gap:0.5rem;list-style:none;padding:0;margin:0;">
+            <li><button onclick="event.stopPropagation(); alert('Etiqueta: Postres')">Postres</button></li>
+            <li><button onclick="event.stopPropagation(); alert('Etiqueta: Casolanes')">Casolanes</button></li>
+          </ul>
         </div>
         <div class="price" id="item-price">
-          <del style="text-decoration: line-through; color: #999;">6,00 €</del>
-          <ins style="color: #1976d2; font-weight: bold;">4,50 €</ins>
+          <del style="text-decoration: line-through; color: #999;">
+            6,00 €
+            <span class="sr-only">preu anterior</span>
+          </del>
+          <ins style="color: #1976d2; font-weight: bold;">
+            4,50 €
+            <span class="sr-only">preu actual amb descompte</span>
+          </ins>
         </div>
         <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite"
-          style="position:fixed; top:1.5rem; right:1.5rem; background:#e8f5e9; color:#256029; border:1.5px solid #4caf50; border-radius:8px; box-shadow:0 4px 16px #4caf5022; font-weight:bold; min-width:220px; z-index:9999; padding:1em 2em 1em 1.2em; font-size:1.08em; align-items:center; gap:0.7em; display:none;">
+          style="position:fixed; top:1.5rem; right:1.5rem; background:#e8f5e9; color:#256029; border:1.5px solid #4caf50; border-radius:8px; box-shadow:0 4px 16px #4caf5022; font-weight:bold; min-width:220px; z-index:9999; padding:1em 2em 1em 1.2em; font-size:1.08em; align-items:center; gap:0.7em; display:none; pointer-events:none;">
           <i class="fas fa-check-circle" style="color:#388e3c; font-size:1.3em; margin-right:0.5em;"></i>
-          <span id="favorite-message-text-correcte">Galetes casolanes afegides als destacats.</span>
+          <span id="favorite-message-text-correcte">Galetes casolanes afegides als favorits.</span>
         </div>
       </article>
-      <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="item-title" aria-describedby="item-desc item-price"&gt;
-  &lt;button class="favorite-btn" aria-label="Activa estat" onclick="event.stopPropagation(); toggleFavorite(this, 'correcte')"&gt;
-    &lt;i class="fas fa-heart"&gt;&lt;/i&gt;
+      <div class="code-box"><pre><code>&lt;article class="content-card"&gt;
+  &lt;img src="../../img/exemple.jpeg" alt="Galetes casolanes en un plat blanc"&gt;
+  &lt;h3 id="item-title"&gt;
+    &lt;a href="#" class="product-link"&gt;Galetes casolanes&lt;/a&gt;
+  &lt;/h3&gt;
+  &lt;button
+    class="favorite-btn"
+    aria-label="Afegeix a favorits"
+    onclick="toggleFavorite(this, 'correcte', 'Galetes casolanes');"
+  &gt;
+    &lt;i class="far fa-heart"&gt;&lt;/i&gt;
   &lt;/button&gt;
-  &lt;img src="../../img/galetes.jpg" alt="Galetes casolanes en un plat blanc"&gt;
-  &lt;h3 id="item-title"&gt;Galetes casolanes&lt;/h3&gt;
   &lt;p id="item-desc"&gt;Galetes fetes a mà amb ingredients naturals, ideals per acompanyar el cafè o el te.&lt;/p&gt;
   &lt;div class="tags"&gt;
-    &lt;span tabindex="0" role="button" aria-label="Etiqueta Postres" onclick="alert('Etiqueta: Postres')"&gt;Postres&lt;/span&gt;
-    &lt;span tabindex="0" role="button" aria-label="Etiqueta Casolanes" onclick="alert('Etiqueta: Casolanes')"&gt;Casolanes&lt;/span&gt;
+    &lt;ul aria-label="Llista d'etiquetes del producte"&gt;
+      &lt;li&gt;&lt;button&gt;Postres&lt;/button&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;button&gt;Casolanes&lt;/button&gt;&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/div&gt;
   &lt;div class="price" id="item-price"&gt;
-    &lt;span aria-hidden="true" style="text-decoration: line-through; color: #999;"&gt;6,00 €&lt;/span&gt;
-    &lt;span aria-label="Preu amb descompte: 4,50 euros" style="color: #1976d2; font-weight: bold;"&gt;4,50 €&lt;/span&gt;
+    &lt;del&gt;6,00 €&lt;span class="sr-only"&gt;preu anterior&lt;/span&gt;&lt;/del&gt;
+    &lt;ins&gt;4,50 €&lt;span class="sr-only"&gt;preu actual amb descompte&lt;/span&gt;&lt;/ins&gt;
+  &lt;/div&gt;
+  &lt;div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite"&gt;
+    &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt;
+    &lt;span id="favorite-message-text-correcte"&gt;Galetes casolanes afegides als favorits.&lt;/span&gt;
   &lt;/div&gt;
 &lt;/article&gt;
-&lt;div class="message" id="favorite-message-correcte" role="alert" aria-live="polite" style="display: none;"&gt;
-  Galetes casolanes afegides als destacats.
-&lt;/div&gt;</code></pre></div>
+</code></pre></div>
     </section>
     
     <section class="example-card incorrecte">
@@ -283,8 +300,8 @@
           <span style="color: #1976d2; font-weight: bold;">4,50 €</span>
         </div>
       </article>
-      <div class="floating-message" id="favorite-message-incorrecte" style="display: none;">
-        Galetes casolanes afegides als destacats.
+      <div class="floating-message" id="favorite-message-incorrecte" style="position:fixed; top:1.5rem; right:1.5rem; background:#fdecea; color:#b71c1c; border:1.5px solid #f44336; border-radius:8px; box-shadow:0 4px 16px #f4433622; font-weight:bold; min-width:220px; z-index:9999; padding:1em 2em 1em 1.2em; font-size:1.08em; align-items:center; gap:0.7em; display:none; pointer-events:none;">
+        Galetes casolanes afegides als favorits.
       </div>
       <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="item-title-incorrecte" aria-describedby="item-desc-incorrecte"&gt;
   &lt;button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this, 'incorrecte')"&gt;
@@ -303,7 +320,7 @@
   &lt;/div&gt;
 &lt;/article&gt;
 &lt;div class="message" id="favorite-message-incorrecte" style="display: none;"&gt;
-  Galetes casolanes afegides als destacats.
+  Galetes casolanes afegides als favorits.
 &lt;/div&gt;</code></pre></div>
     </section>
   <footer>
@@ -312,95 +329,103 @@
 </body>
 </html>
 <script>
-  document.querySelectorAll('.tags').forEach((tagContainer) => {
-    const chips = tagContainer.querySelectorAll('span[role="button"]');
+    document.querySelectorAll('.tags').forEach((tagContainer) => {
+      const chips = tagContainer.querySelectorAll('span[role="button"]');
 
-    chips.forEach((chip, index) => {
-      // Navegació amb fletxes
-      chip.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowRight') {
-          // Mou el focus al següent xip
-          const nextChip = chips[index + 1] || chips[0]; // Torna al primer si és l'últim
-          nextChip.focus();
-          event.preventDefault();
-        } else if (event.key === 'ArrowLeft') {
-          // Mou el focus al xip anterior
-          const prevChip = chips[index - 1] || chips[chips.length - 1]; // Torna a l'últim si és el primer
-          prevChip.focus();
-          event.preventDefault();
-        } else if (event.key === 'Enter') {
-          // Simula un clic quan es prem "Enter"
-          chip.click();
-          event.preventDefault();
-        }
+      chips.forEach((chip, index) => {
+        // Navegació amb fletxes
+        chip.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowRight') {
+            // Mou el focus al següent xip
+            const nextChip = chips[index + 1] || chips[0];
+            nextChip.focus();
+            event.preventDefault();
+          } else if (event.key === 'ArrowLeft') {
+            // Mou el focus al xip anterior
+            const prevChip = chips[index - 1] || chips[chips.length - 1];
+            prevChip.focus();
+            event.preventDefault();
+          } else if (event.key === 'Enter') {
+            chip.click();
+            event.preventDefault();
+          }
+        });
       });
     });
-  });
 
-  // Assegura que l'estat inicial del botó sigui "no afegit" (cor ple)
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.favorite-btn').forEach(btn => {
-      btn.setAttribute('aria-pressed', 'false');
-      btn.setAttribute('aria-label', 'Afegeix a favorits');
-      const icon = btn.querySelector('i');
-      if (icon) {
-        icon.classList.remove('far');
-        icon.classList.add('fas');
-      }
-      btn.classList.remove('active');
+    // Inicialitza el botó de favorits amb cor buit (far)
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.setAttribute('aria-pressed', 'false');
+        btn.setAttribute('aria-label', 'Afegeix a favorits');
+        const icon = btn.querySelector('i');
+        if (icon) {
+          icon.classList.remove('fas');
+          icon.classList.add('far'); // cor buit inicialment
+        }
+        btn.classList.remove('active');
+      });
     });
-  });
 
-  function toggleFavorite(button, type, productName) {
-    const messageId = type === 'correcte' ? 'favorite-message-correcte' : 'favorite-message-incorrecte';
-    const messageElement = document.getElementById(messageId);
-    const messageTextId = 'favorite-message-text-' + type;
-    const messageText = document.getElementById(messageTextId);
+    function toggleFavorite(button, type, productName) {
+      const messageId = type === 'correcte' ? 'favorite-message-correcte' : 'favorite-message-incorrecte';
+      const messageElement = document.getElementById(messageId);
+      const messageTextId = 'favorite-message-text-' + type;
+      const messageText = document.getElementById(messageTextId);
 
-    if (!messageElement) {
-      console.error(`No s'ha trobat l'element amb id: ${messageId}`);
-      return;
-    }
-
-    // Canvia l'estat del botó i l'atribut aria-pressed
-    const isActive = button.classList.toggle('active');
-    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-
-    // Canvia la icona del cor (ple o només contorn)
-    const icon = button.querySelector('i');
-    if (isActive) {
-      button.setAttribute('aria-label', 'Eliminat de favorits');
-      if (icon) {
-        icon.classList.remove('fas');
-        icon.classList.add('far');
+      if (!messageElement) {
+        console.error(`No s'ha trobat l'element amb id: ${messageId}`);
+        return;
       }
-      if (messageText) {
-        messageText.textContent = `${productName} afegit als favorits.`;
-      }
-      messageElement.style.display = 'flex';
-      messageElement.style.opacity = '1';
-      messageElement.style.pointerEvents = 'auto';
-      messageElement.setAttribute('aria-live', 'assertive');
-      setTimeout(() => {
-        messageElement.style.opacity = '0';
-        messageElement.style.pointerEvents = 'none';
+
+      // Canvia l'estat del botó i l'atribut aria-pressed
+      const isActive = button.classList.toggle('active');
+      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+
+      // Canvia la icona del cor (buit o ple)
+      const icon = button.querySelector('i');
+      if (isActive) {
+        button.setAttribute('aria-label', 'Elimina de favorits');
+        if (icon) {
+          icon.classList.remove('far');
+          icon.classList.add('fas'); // cor ple quan està actiu
+        }
+        if (messageText) {
+          messageText.textContent = `${productName} s'ha afegit als favorits.`;
+        }
+        messageElement.style.display = 'flex';
+        messageElement.style.opacity = '1';
+        messageElement.style.pointerEvents = 'auto';
+        messageElement.setAttribute('aria-live', 'assertive');
         setTimeout(() => {
-          messageElement.style.display = 'none';
-          messageElement.setAttribute('aria-live', 'polite');
-        }, 350);
-      }, 2500);
-    } else {
-      button.setAttribute('aria-label', 'Afegeix a favorits');
-      if (icon) {
-        icon.classList.remove('far');
-        icon.classList.add('fas');
+          messageElement.style.opacity = '0';
+          messageElement.style.pointerEvents = 'none';
+          setTimeout(() => {
+            messageElement.style.display = 'none';
+            messageElement.setAttribute('aria-live', 'polite');
+          }, 350);
+        }, 2500);
+      } else {
+        button.setAttribute('aria-label', 'Afegeix a favorits');
+        if (icon) {
+          icon.classList.remove('fas');
+          icon.classList.add('far'); // cor buit quan NO està actiu
+        }
+        if (messageText) {
+          messageText.textContent = `${productName} s'ha eliminat dels favorits.`;
+        }
+        messageElement.style.display = 'flex';
+        messageElement.style.opacity = '1';
+        messageElement.style.pointerEvents = 'auto';
+        messageElement.setAttribute('aria-live', 'assertive');
+        setTimeout(() => {
+          messageElement.style.opacity = '0';
+          messageElement.style.pointerEvents = 'none';
+          setTimeout(() => {
+            messageElement.style.display = 'none';
+            messageElement.setAttribute('aria-live', 'polite');
+          }, 350);
+        }, 2500);
       }
-      if (messageText) {
-        messageText.textContent = '';
-      }
-      messageElement.style.display = 'none';
-      messageElement.style.opacity = '0';
-      messageElement.style.pointerEvents = 'none';
     }
-  }
-</script>
+  </script>
