@@ -114,7 +114,6 @@ const pauseLabel = carouselPauseBtn?.querySelector('.sr-only') || null;
 
 function showCarouselMessage(idx) {
   carouselMessageEl.textContent = carouselMessages[idx];
-  carouselMessageEl.setAttribute('tabindex', '0');
   carouselMessageEl.focus();
 }
 
@@ -182,10 +181,10 @@ showCarouselMessage(carouselIndex);
 startCarousel();
 
 // Atura el carrousel si l'usuari passa el focus al missatge o als controls
-carouselMessageEl?.addEventListener('focus', pauseCarousel);
-carouselPauseBtn?.addEventListener('focus', pauseCarousel);
-carouselPrevBtn?.addEventListener('focus', pauseCarousel);
-carouselNextBtn?.addEventListener('focus', pauseCarousel);
+// carouselMessageEl?.addEventListener('focus', pauseCarousel);
+// carouselPauseBtn?.addEventListener('focus', pauseCarousel);
+// carouselPrevBtn?.addEventListener('focus', pauseCarousel);
+// carouselNextBtn?.addEventListener('focus', pauseCarousel);
 
 // Permet canviar missatge amb fletxes del teclat
 carouselMessageEl?.addEventListener('keydown', (e) => {
@@ -196,4 +195,72 @@ carouselMessageEl?.addEventListener('keydown', (e) => {
     pauseCarousel();
     nextCarouselMessage();
   }
+});
+
+// Validació en viu i missatges d’error accessibles al formulari de contacte
+document.addEventListener("DOMContentLoaded", function () {
+  // Validació en viu del formulari de contacte
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    const nameInput = contactForm.querySelector("#name");
+    const emailInput = contactForm.querySelector("#email");
+    const nameError = contactForm.querySelector("#name-error");
+    const emailError = contactForm.querySelector("#email-error");
+
+    function validateName() {
+      if (!nameInput.value.trim()) {
+        nameError.textContent = "El nom és obligatori.";
+        return false;
+      } else {
+        nameError.textContent = "";
+        return true;
+      }
+    }
+
+    function validateEmail() {
+      const value = emailInput.value.trim();
+      const valid = /^[^@]+@[^@]+\.[^@]+$/.test(value);
+      if (!value) {
+        emailError.textContent = "L'email és obligatori.";
+        return false;
+      } else if (!valid) {
+        emailError.textContent = "Email invàlid.";
+        return false;
+      } else {
+        emailError.textContent = "";
+        return true;
+      }
+    }
+
+    nameInput.addEventListener("input", validateName);
+    emailInput.addEventListener("input", validateEmail);
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const validName = validateName();
+      const validEmail = validateEmail();
+      if (validName && validEmail) {
+        showNotification("Formulari enviat correctament!");
+        contactForm.reset();
+        nameError.textContent = "";
+        emailError.textContent = "";
+      }
+    });
+  }
+
+  // Notificació flotant accessible
+  function showNotification(msg) {
+    const notif = document.getElementById("notification");
+    if (!notif) return;
+    notif.textContent = msg;
+    notif.hidden = false;
+    notif.setAttribute("aria-live", "assertive");
+    setTimeout(() => {
+      notif.hidden = true;
+      notif.textContent = "";
+    }, 3000);
+  }
+
+  // Exposa la funció globalment si vols cridar-la des d'altres llocs
+  window.showNotification = showNotification;
 });

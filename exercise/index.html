@@ -98,7 +98,7 @@
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
       </div>
-      <p id="carousel-message" tabindex="0" class="carousel-message">
+      <p id="carousel-message" class="carousel-message">
         Benvingut a la nostra web accessible!
       </p>
     </div>
@@ -167,23 +167,22 @@
       </div>
     </section>
 
-    <section aria-labelledby="contacte-title">
-      <h2 id="contacte-title">Contacte</h2>
-      <form id="contact-form">
-        <label for="nom">Nom</label>
-        <input id="nom" name="nom" type="text" required autocomplete="name">
-
-        <label for="email">Correu electrònic</label>
-        <input id="email" name="email" type="email" required autocomplete="email">
-
-        <label for="missatge">Missatge</label>
-        <textarea id="missatge" name="missatge" rows="4" required></textarea>
-
+    <section aria-labelledby="contact-section">
+      <h2 id="contact-section">Contacte</h2>
+      <form id="contact-form" novalidate>
+        <label for="name">Nom</label>
+        <input id="name" name="name" required aria-describedby="name-error">
+        <span id="name-error" class="error-message" aria-live="polite"></span>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required aria-describedby="email-error">
+        <span id="email-error" class="error-message" aria-live="polite"></span>
         <button type="submit">Envia</button>
       </form>
-      <div id="form-missatge" role="status" aria-live="polite"></div>
     </section>
   </main>
+
+  <!-- Notificacions flotants accessibles -->
+  <div id="notification" class="notification" role="status" aria-live="polite" aria-atomic="true" hidden></div>
 
   <footer>
     <p>&copy; 2025 Exercici d'Accessibilitat</p>
