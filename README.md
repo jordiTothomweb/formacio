@@ -50,5 +50,6 @@ git push origin main           # Puja els canvis a main
    git checkout main
    git merge develop
    git push origin main
+   git checkout develop
    ```
 3. La branca **main** és la que es publica a GitHub Pages i hauria de reflectir només la versió estable del projecte.
