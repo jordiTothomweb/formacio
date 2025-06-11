@@ -239,11 +239,6 @@
             <span class="sr-only">preu actual amb descompte</span>
           </ins>
         </div>
-        <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite"
-          style="position:fixed; top:1.5rem; right:1.5rem; background:#e8f5e9; color:#256029; border:1.5px solid #4caf50; border-radius:8px; box-shadow:0 4px 16px #4caf5022; font-weight:bold; min-width:220px; z-index:9999; padding:1em 2em 1em 1.2em; font-size:1.08em; align-items:center; gap:0.7em; display:none; pointer-events:none;">
-          <i class="fas fa-check-circle" style="color:#388e3c; font-size:1.3em; margin-right:0.5em;"></i>
-          <span id="favorite-message-text-correcte">Galetes casolanes afegides als favorits.</span>
-        </div>
       </article>
       <div class="code-box"><pre><code>&lt;article class="content-card"&gt;
   &lt;img src="../../img/exemple.jpeg" alt="Galetes casolanes en un plat blanc"&gt;
@@ -300,9 +295,7 @@
           <span style="color: #1976d2; font-weight: bold;">4,50 €</span>
         </div>
       </article>
-      <div class="floating-message" id="favorite-message-incorrecte" style="position:fixed; top:1.5rem; right:1.5rem; background:#fdecea; color:#b71c1c; border:1.5px solid #f44336; border-radius:8px; box-shadow:0 4px 16px #f4433622; font-weight:bold; min-width:220px; z-index:9999; padding:1em 2em 1em 1.2em; font-size:1.08em; align-items:center; gap:0.7em; display:none; pointer-events:none;">
-        Galetes casolanes afegides als favorits.
-      </div>
+      
       <div class="code-box"><pre><code>&lt;article class="content-card" tabindex="0" aria-labelledby="item-title-incorrecte" aria-describedby="item-desc-incorrecte"&gt;
   &lt;button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this, 'incorrecte')"&gt;
     &lt;i class="fas fa-heart"&gt;&lt;/i&gt;
@@ -323,6 +316,16 @@
   Galetes casolanes afegides als favorits.
 &lt;/div&gt;</code></pre></div>
     </section>
+
+    <div class="floating-message" id="favorite-message-incorrecte" style="position:fixed; top:1.5rem; right:1.5rem; background:#fdecea; color:#b71c1c; border:1.5px solid #f44336; border-radius:8px; box-shadow:0 4px 16px #f4433622; font-weight:bold; min-width:220px; z-index:9999; padding:1em 2em 1em 1.2em; font-size:1.08em; align-items:center; gap:0.7em; display:none; pointer-events:none;">
+      Galetes casolanes afegides als favorits.
+    </div>
+
+    <div class="floating-message" id="favorite-message-correcte" role="alert" aria-live="polite"
+      style="position:fixed; top:1.5rem; right:1.5rem; background:#e8f5e9; color:#256029; border:1.5px solid #4caf50; border-radius:8px; box-shadow:0 4px 16px #4caf5022; font-weight:bold; min-width:220px; z-index:9999; padding:1em 2em 1em 1.2em; font-size:1.08em; align-items:center; gap:0.7em; display:none; pointer-events:none;">
+      <i class="fas fa-check-circle" style="color:#388e3c; font-size:1.3em; margin-right:0.5em;"></i>
+      <span id="favorite-message-text-correcte">Galetes casolanes afegides als favorits.</span>
+    </div>
   <footer>
     <p>© 2025 Formació Cards de Mobles</p>
   </footer>
@@ -356,7 +359,6 @@
     // Inicialitza el botó de favorits amb cor buit (far)
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.favorite-btn').forEach(btn => {
-        btn.setAttribute('aria-pressed', 'false');
         btn.setAttribute('aria-label', 'Afegeix a favorits');
         const icon = btn.querySelector('i');
         if (icon) {
@@ -380,7 +382,6 @@
 
       // Canvia l'estat del botó i l'atribut aria-pressed
       const isActive = button.classList.toggle('active');
-      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
 
       // Canvia la icona del cor (buit o ple)
       const icon = button.querySelector('i');
