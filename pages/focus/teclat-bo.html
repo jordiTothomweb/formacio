@@ -393,25 +393,41 @@ document.addEventListener('keydown', (event) => {
     <!-- Exemple 6: Formulari Accessible -->
     <div class="example">
       <h2>6. Formulari Accessible</h2>
-      <form>
+      <form id="form-validacio" novalidate>
         <label for="name">Nom</label>
-        <input type="text" id="name" name="name" autocomplete="name" required>
-    
+        <input type="text" id="name" name="name" autocomplete="name" required aria-describedby="error-name">
+        <div id="error-name" class="error-msg" style="color:#d32f2f; font-size:0.95em; display:none;"></div>
+
         <label for="email">Correu electrònic</label>
-        <input type="email" id="email" name="email" autocomplete="email" required>
-    
+        <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="error-email">
+        <div id="error-email" class="error-msg" style="color:#d32f2f; font-size:0.95em; display:none;"></div>
+
         <label for="message">Missatge</label>
-        <textarea id="message" name="message" rows="5" autocomplete="on" required></textarea>
-    
+        <textarea id="message" name="message" rows="5" autocomplete="on" required aria-describedby="error-message"></textarea>
+        <div id="error-message" class="error-msg" style="color:#d32f2f; font-size:0.95em; display:none;"></div>
+
         <label for="topic">Tema</label>
         <select id="topic" name="topic" autocomplete="off">
           <option value="accessibility">Accessibilitat</option>
           <option value="usability">Usabilitat</option>
           <option value="design">Disseny</option>
         </select>
-    
+
+        <fieldset>
+          <legend>Selecciona el teu color preferit:</legend>
+          <div role="radiogroup" aria-labelledby="color-group-label">
+            <input type="radio" id="color1" name="color" value="vermell" checked>
+            <label for="color1">Vermell</label>
+            <input type="radio" id="color2" name="color" value="blau">
+            <label for="color2">Blau</label>
+            <input type="radio" id="color3" name="color" value="verd">
+            <label for="color3">Verd</label>
+          </div>
+        </fieldset>
+
         <button type="submit">Enviar</button>
       </form>
+      <p style="color:#388e3c; font-size:0.95em;">✔️ Es pot navegar entre opcions amb les fletxes (comportament correcte d'un radiogrup).</p>
     </div>
   </main>
 
@@ -498,7 +514,7 @@ document.addEventListener('keydown', (event) => {
       } else if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         document.activeElement.click();
-      }
+          }
     });
 
 // Desactivar el focus amb tabulador per als elements del menú
@@ -509,7 +525,7 @@ document.querySelectorAll('#menu-content button').forEach(button => {
     document.addEventListener('keydown', (event) => {
       const menuContent = document.getElementById('menu-content');
       if (menuContent.classList.contains('open') && event.key === 'Escape') {
-        menuContent.classList.remove('open');
+            menuContent.classList.remove('open');
       }
     });
 
@@ -522,7 +538,7 @@ document.querySelectorAll('#menu-content button').forEach(button => {
     menu.addEventListener('mouseleave', () => {
       const menuContent = document.getElementById('menu-content');
       menuContent.classList.remove('open');
-    });
+      });
 
     // Exemple 4: Navegació amb fletxes i activació amb Enter o Espai
 const tabs = document.querySelectorAll('[role="tab"]');
@@ -570,6 +586,52 @@ function activarPestanya(tab) {
         button.setAttribute('aria-expanded', !expanded);
         document.getElementById(button.getAttribute('aria-controls')).classList.toggle('open');
       });
+    });
+
+    // Exemple 6: Validació de formulari accessible (blur)
+    function mostrarError(camp, errorId, missatge) {
+      const errorDiv = document.getElementById(errorId);
+      if (!camp.value.trim()) {
+        errorDiv.textContent = missatge;
+        errorDiv.style.display = 'block';
+        camp.setAttribute('aria-invalid', 'true');
+      } else {
+        errorDiv.textContent = '';
+        errorDiv.style.display = 'none';
+        camp.removeAttribute('aria-invalid');
+      }
+    }
+
+    document.getElementById('name').addEventListener('blur', function() {
+      mostrarError(this, 'error-name', 'El nom és obligatori.');
+    });
+    document.getElementById('email').addEventListener('blur', function() {
+      mostrarError(this, 'error-email', 'El correu electrònic és obligatori.');
+    });
+    document.getElementById('message').addEventListener('blur', function() {
+      mostrarError(this, 'error-message', 'El missatge és obligatori.');
+    });
+
+    document.getElementById('form-validacio').addEventListener('submit', function(e) {
+      let valid = true;
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const message = document.getElementById('message');
+
+      mostrarError(name, 'error-name', 'El nom és obligatori.');
+      mostrarError(email, 'error-email', 'El correu electrònic és obligatori.');
+      mostrarError(message, 'error-message', 'El missatge és obligatori.');
+
+      if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
+        e.preventDefault();
+        if (!name.value.trim()) {
+          name.focus();
+        } else if (!email.value.trim()) {
+          email.focus();
+        } else if (!message.value.trim()) {
+          message.focus();
+        }
+      }
     });
 
     // Exemple 7: Saltar al contingut

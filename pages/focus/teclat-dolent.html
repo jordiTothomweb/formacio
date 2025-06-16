@@ -272,6 +272,45 @@
           <button type="submit">Enviar</button>
         </form>
       </div>
+
+      <!-- Exemple 6: Formulari Inaccessible -->
+      <div class="example">
+        <h2>6. Formulari Inaccessible</h2>
+        <form>
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required>
+    
+          <label for="email">Correu electrònic</label>
+          <input type="email" id="email" name="email" required>
+    
+          <label for="message">Missatge</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+    
+          <label for="topic">Tema</label>
+          <select id="topic" name="topic">
+            <option value="accessibility">Accessibilitat</option>
+            <option value="usability">Usabilitat</option>
+            <option value="design">Disseny</option>
+          </select>
+    
+          <label>Selecciona el teu color preferit:</label>
+          <div>
+            <input type="radio" id="color1" name="color1" value="vermell">
+            <label for="color1">Vermell</label>
+          </div>
+          <div>
+            <input type="radio" id="color2" name="color2" value="blau">
+            <label for="color2">Blau</label>
+          </div>
+          <div>
+            <input type="radio" id="color3" name="color3" value="verd">
+            <label for="color3">Verd</label>
+          </div>
+    
+          <button type="submit">Enviar</button>
+        </form>
+        <p style="color:#d32f2f; font-size:0.95em;">❌ Només es pot navegar entre opcions amb Tab, no amb fletxes (incorrecte).</p>
+      </div>
     </div>
   </mains>
 
