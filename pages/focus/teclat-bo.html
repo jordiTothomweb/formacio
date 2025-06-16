@@ -321,29 +321,53 @@ function trapFocus(event) {
   <!-- Exemple 3: Menú d'usuari -->
 <div class="example" id="menu-example">
   <h2>3. Menú d'usuari</h2>
+  <div>
+    La navegació amb fletxes permet moure's entre les opcions del menú.
+    Està implementat això pel fet de que usem el role="menu" i els botons dins d'aquest menú són role="menuitem".
+  </div>
   <div class="menu">
-    <button onclick="toggleMenu()" aria-label="Menú d'usuari"><i class="fas fa-user"></i></button>
+    <button onclick="toggleMenu()" aria-label="Menú d'usuari" id="menu-btn"><i class="fas fa-user"></i></button>
     <div class="menu-content" id="menu-content" role="menu" style="background-color: white; z-index: 10;">
       <button role="menuitem">Opció 1</button>
       <button role="menuitem" tabindex="-1">Opció 2</button>
       <button role="menuitem" tabindex="-1">Opció 3</button>
     </div>
   </div>
-  <div class="code-box"><pre><code>// Exemple 3: Tancar menú amb Escape
+  <div class="code-box"><pre><code>// Exemple 3: Tancar menú amb Escape i navegar amb fletxes
 function toggleMenu() {
   const menuContent = document.getElementById('menu-content');
   menuContent.classList.toggle('open');
   if (menuContent.classList.contains('open')) {
-    menuContent.querySelector('button').focus();
+    const items = menuContent.querySelectorAll('[role="menuitem"]');
+    items[0].focus();
   }
 }
 
-document.addEventListener('keydown', (event) => {
+document.getElementById('menu-btn').addEventListener('keydown', function(event) {
   const menuContent = document.getElementById('menu-content');
-  if (menuContent.classList.contains('open') && event.key === 'Escape') {
-    menuContent.classList.remove('open');
+  if ((event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') && !menuContent.classList.contains('open')) {
+    event.preventDefault();
+    toggleMenu();
   }
-});</code></pre></div>
+});
+
+document.getElementById('menu-content').addEventListener('keydown', function(event) {
+  const items = Array.from(this.querySelectorAll('[role="menuitem"]'));
+  const currentIndex = items.indexOf(document.activeElement);
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    const nextIndex = (currentIndex + 1) % items.length;
+    items[nextIndex].focus();
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    const prevIndex = (currentIndex - 1 + items.length) % items.length;
+    items[prevIndex].focus();
+  } else if (event.key === 'Escape') {
+    this.classList.remove('open');
+    document.getElementById('menu-btn').focus();
+  }
+});
+</code></pre></div>
 </div>
 
     <!-- Exemple 4: Pestanyes -->
@@ -486,59 +510,40 @@ document.addEventListener('keydown', (event) => {
       }
     }
 
-    // Exemple 3: Navegació amb fletxes i activació amb Enter o Espai
+    // Exemple 3: Tancar menú amb Escape i navegar amb fletxes
     function toggleMenu() {
       const menuContent = document.getElementById('menu-content');
       menuContent.classList.toggle('open');
       if (menuContent.classList.contains('open')) {
-        menuContent.querySelector('button').focus();
+        const items = menuContent.querySelectorAll('[role="menuitem"]');
+        items[0].focus();
       }
     }
 
-    document.getElementById('menu').addEventListener('keydown', (event) => {
+    document.getElementById('menu-btn').addEventListener('keydown', function(event) {
       const menuContent = document.getElementById('menu-content');
-      const menuItems = menuContent.querySelectorAll('button');
-      let currentIndex = Array.from(menuItems).indexOf(document.activeElement);
-
-      if (event.key === 'ArrowDown') {
+      if ((event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') && !menuContent.classList.contains('open')) {
         event.preventDefault();
-        const nextIndex = (currentIndex + 1) % menuItems.length;
-        menuItems[nextIndex].focus();
-      } else if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        const prevIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
-        menuItems[prevIndex].focus();
-      } else if (event.key === 'Escape') {
-        menuContent.classList.remove('open');
-        document.querySelector('#menu button').focus();
-      } else if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        document.activeElement.click();
-          }
-    });
-
-// Desactivar el focus amb tabulador per als elements del menú
-document.querySelectorAll('#menu-content button').forEach(button => {
-  button.setAttribute('tabindex', '-1');
-});
-
-    document.addEventListener('keydown', (event) => {
-      const menuContent = document.getElementById('menu-content');
-      if (menuContent.classList.contains('open') && event.key === 'Escape') {
-            menuContent.classList.remove('open');
+        toggleMenu();
       }
     });
 
-    const menu = document.getElementById('menu');
-    menu.addEventListener('mouseenter', () => {
-      const menuContent = document.getElementById('menu-content');
-      menuContent.classList.add('open');
+    document.getElementById('menu-content').addEventListener('keydown', function(event) {
+      const items = Array.from(this.querySelectorAll('[role="menuitem"]'));
+      const currentIndex = items.indexOf(document.activeElement);
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        const nextIndex = (currentIndex + 1) % items.length;
+        items[nextIndex].focus();
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        const prevIndex = (currentIndex - 1 + items.length) % items.length;
+        items[prevIndex].focus();
+      } else if (event.key === 'Escape') {
+        this.classList.remove('open');
+        document.getElementById('menu-btn').focus();
+      }
     });
-
-    menu.addEventListener('mouseleave', () => {
-      const menuContent = document.getElementById('menu-content');
-      menuContent.classList.remove('open');
-      });
 
     // Exemple 4: Navegació amb fletxes i activació amb Enter o Espai
 const tabs = document.querySelectorAll('[role="tab"]');
