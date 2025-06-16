@@ -171,21 +171,42 @@
       <h2>Exemple 4: `aria-hidden`</h2>
       <p>Aquest exemple mostra com utilitzar l'atribut <code>aria-hidden</code> per amagar un element a tots els productes de suport.</p>
       <div>
-        <i class="fas fa-star" aria-hidden="true"></i>
+        <i class="fas fa-star" aria-hidden="true" style="color: #388e3c;" title="Correcte"></i>
         <span>Valoració: 5 estrelles</span>
+        <span style="color: #388e3c; margin-left: 0.5em; font-size: 0.95em;" aria-hidden="true">✔️ Correcte</span>
       </div>
-      <div class="code-box">&lt;i class="fas fa-star" aria-hidden="true"&gt;&lt;/i&gt;
-&lt;span&gt;Valoració: 5 estrelles&lt;/span&gt;</div>
+      <div>
+        <i class="fas fa-star" aria-label="filled--star--icon" style="color: #d32f2f;" title="Incorrecte"></i>
+        <span>Valoració: 1 estrella</span>
+        <span style="color: #d32f2f; margin-left: 0.5em; font-size: 0.95em;" aria-hidden="true">❌ Incorrecte</span>
+      </div>
+      <div class="code-box">
+&lt;!-- Correcte: icona amagada per a lectors de pantalla --&gt;
+&lt;div&gt;
+  &lt;i class="fas fa-star" aria-hidden="true"&gt;&lt;/i&gt;
+  &lt;span&gt;Valoració: 5 estrelles&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Incorrecte: icona visible per a lectors de pantalla sense context --&gt;
+&lt;div&gt;
+  &lt;i class="fas fa-star" aria-label="filled--star--icon"&gt;&lt;/i&gt;
+  &lt;span&gt;Valoració: 1 estrella&lt;/span&gt;
+&lt;/div&gt;
+</div>
     </section>
 
     <!-- Exemple 5: aria-live -->
     <section class="card">
       <h2>Exemple 5: `aria-live`</h2>
       <p>Aquest exemple mostra com utilitzar l'atribut <code>aria-live</code> per anunciar canvis dinàmics en una regió de la pàgina.</p>
-      <button class="btn" onclick="actualitzarMissatge()">Actualitza missatge</button>
+      <button style=" margin-bottom: 0;" class="btn" onclick="actualitzarMissatge()">Actualitza missatge (polite)</button>
       <div aria-live="polite" id="live-region" class="alert-box"></div>
-      <div class="code-box">&lt;button class="btn" onclick="actualitzarMissatge()"&gt;Actualitza missatge&lt;/button&gt;
+      <button style="margin-top: 2rem; margin-bottom: 0;" class="btn" onclick="actualitzarMissatgeAssertive()">Actualitza missatge (assertive)</button>
+      <div aria-live="assertive" id="live-region-assertive" class="alert-box"></div>
+      <div class="code-box">&lt;button class="btn" onclick="actualitzarMissatge()"&gt;Actualitza missatge (polite)&lt;/button&gt;
 &lt;div aria-live="polite" id="live-region" class="alert-box"&gt;&lt;/div&gt;
+&lt;button class="btn" onclick="actualitzarMissatgeAssertive()"&gt;Actualitza missatge (assertive)&lt;/button&gt;
+&lt;div aria-live="assertive" id="live-region-assertive" class="alert-box"&gt;&lt;/div&gt;
 
 let comptador = 0;
 function actualitzarMissatge() {
@@ -196,6 +217,18 @@ function actualitzarMissatge() {
         liveRegion.textContent = 'El contingut s\'ha actualitzat correctament!\u00A0';
     } else {
         liveRegion.textContent = 'El contingut s\'ha actualitzat correctament!';
+    }
+    liveRegion.hidden = false;
+}
+
+let comptadorAssertive = 0;
+function actualitzarMissatgeAssertive() {
+    const liveRegion = document.getElementById('live-region-assertive');
+    comptadorAssertive++;
+    if (comptadorAssertive % 2 === 1) {
+        liveRegion.textContent = 'Missatge assertive actualitzat!\u00A0';
+    } else {
+        liveRegion.textContent = 'Missatge assertive actualitzat!';
     }
     liveRegion.hidden = false;
 }</div>
@@ -280,6 +313,18 @@ function actualitzarMissatge() {
         liveRegion.textContent = "El contingut s'ha actualitzat correctament!\u00A0";
       } else {
         liveRegion.textContent = "El contingut s'ha actualitzat correctament!";
+      }
+      liveRegion.hidden = false;
+    }
+
+    let comptadorAssertive = 0;
+    function actualitzarMissatgeAssertive() {
+      const liveRegion = document.getElementById('live-region-assertive');
+      comptadorAssertive++;
+      if (comptadorAssertive % 2 === 1) {
+        liveRegion.textContent = "Missatge assertive actualitzat!\u00A0";
+      } else {
+        liveRegion.textContent = "Missatge assertive actualitzat!";
       }
       liveRegion.hidden = false;
     }

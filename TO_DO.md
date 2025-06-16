@@ -8,8 +8,8 @@
 - [ ] El tema de la navegació amb fletxes pel menú d’usuari 3 és important remarcar que no cal que sigui amb fletxes, de fet pot ser amb tabulador. Més que res perquè amb fletxes és només si té un role="menu" i tal com ho expliquem sembla.
 - [ ] Afegir exemple de checkboxs en la navegació per teclat, per ensenyar que es mouen amb fletxes.
 - [ ] Afegir exemple al formulari de validació en navegar per teclat.
-- [ ] Provar aria-atomic dins de aria-live, aviam si això funciona…
-- [ ] Exemples aria: afegir un aria-hidden al botó (crec que estaria guai mantenir el malament).
+- [x] Provar aria-atomic dins de aria-live, aviam si això funciona…
+- [x] Exemples aria: afegir un aria-hidden al botó (crec que estaria guai mantenir el malament).
 - [x] A vegades el contigut està centrat i a vegades a l'esquerra de tot.
 - [x] Fer els exemples genèrics, per tal de que puguin servir per a tot tipus de clients.
 - [x] Revisar format unitari, hi ha pantalles que no segueixen el mateix format de les altres
