@@ -219,6 +219,78 @@
       border: none;
       cursor: pointer;
     }
+
+    .card-li {
+      margin-bottom: 1em;
+    }
+    .card-ex0 {
+      background: #fff;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 1em;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .card-ex0:focus-visible {
+      border-color: #1976d2;
+      box-shadow: 0 0 0 3px #1976d2;
+      z-index: 2;
+    }
+    .card-ex0:focus:not(:focus-visible) {
+      outline: none;
+    }
+    .card-ex0 .card-action {
+      margin-left: 0.5em;
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.4em 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+      outline: none;
+    }
+    .card-ex0 .card-action:focus-visible {
+      outline: 2px solid #ff9800;
+      background: #1251a2;
+      z-index: 3;
+      color: #fffbe7;
+    }
+    .skip-list-btn {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      background: #1976d2;
+      color: white;
+      border-radius: 4px;
+      z-index: 10;
+      transition: all 0.2s;
+    }
+    .skip-list-btn:focus-visible {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      padding: 0.5em 1em;
+      border: none;
+      margin-bottom: 1em;
+      background: #1976d2;
+      color: white;
+      outline: 3px solid #1976d2;
+      box-shadow: 0 0 0 3px #1976d2;
+    }
   </style>
 </head>
 <body>
@@ -245,9 +317,53 @@
     <!-- Exemple 0: Saltar al contingut -->
     <div class="example">
       <h2>0. Saltar al contingut</h2>
-      <p>Aquest exemple inclou un enllaç que permet saltar part del contingut de la página.</p>
-      
-      
+      <p>Aquest exemple inclou una llista llarga d'elements interactius. Pots saltar la llista amb el botó que apareix només en rebre el focus amb el teclat.</p>
+      <div style="position: relative;">
+        <button id="skip-list-btn"
+          class="skip-list-btn"
+          onclick="skipList()"
+        >Saltar la llista</button>
+        <ul id="llista-exemple0" style="list-style:none; padding:0;">
+          <li class="card-li">
+            <div class="card-ex0" tabindex="0">
+              <span>Element 1</span>
+              <button class="card-action">Acció 1A</button>
+              <button class="card-action">Acció 1B</button>
+            </div>
+          </li>
+          <li class="card-li">
+            <div class="card-ex0" tabindex="0">
+              <span>Element 2</span>
+              <button class="card-action">Acció 2A</button>
+              <button class="card-action">Acció 2B</button>
+            </div>
+          </li>
+          <li class="card-li">
+            <div class="card-ex0" tabindex="0">
+              <span>Element 3</span>
+              <button class="card-action">Acció 3A</button>
+              <button class="card-action">Acció 3B</button>
+            </div>
+          </li>
+          <li class="card-li">
+            <div class="card-ex0" tabindex="0">
+              <span>Element 4</span>
+              <button class="card-action">Acció 4A</button>
+              <button class="card-action">Acció 4B</button>
+            </div>
+          </li>
+          <li class="card-li">
+            <div class="card-ex0" tabindex="0">
+              <span>Element 5</span>
+              <button class="card-action">Acció 5A</button>
+              <button class="card-action">Acció 5B</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="post-llista-exemple0" tabindex="-1" style="margin-top:1em;">
+        <strong>Has saltat la llista!</strong>
+      </div>
     </div>
 
     <!-- Exemple 1: Ordre de tabulació -->
@@ -646,6 +762,42 @@ function activarPestanya(tab) {
       firstElement.focus();
       firstElement.removeAttribute('tabindex'); // Elimina tabindex després d'enfocar
     }
+
+    // Exemple 0: Saltar la llista llarga amb botó només visible amb focus de teclat
+  (function() {
+    const skipBtn = document.getElementById('skip-list-btn');
+    const llista = document.getElementById('llista-exemple0');
+    const postLlista = document.getElementById('post-llista-exemple0');
+
+    // Quan qualsevol card rep focus, mostra el botó de saltar (només si focus per teclat)
+    const allCards = llista.querySelectorAll('.card-ex0');
+    allCards.forEach(card => {
+      // Quan es prem Enter o Espai sobre la card, activa la primera acció
+      card.addEventListener('keydown', function(e) {
+        if ((e.key === 'Enter' || e.key === ' ') && !e.target.classList.contains('card-action')) {
+          e.preventDefault();
+          const firstAction = card.querySelector('.card-action');
+          if (firstAction) firstAction.focus();
+        }
+        // Permet moure's entre accions amb fletxes
+        const actions = Array.from(card.querySelectorAll('.card-action'));
+        const idx = actions.indexOf(document.activeElement);
+        if (e.key === 'ArrowRight' && idx !== -1) {
+          e.preventDefault();
+          actions[(idx + 1) % actions.length].focus();
+        } else if (e.key === 'ArrowLeft' && idx !== -1) {
+          e.preventDefault();
+          actions[(idx - 1 + actions.length) % actions.length].focus();
+        }
+      });
+    });
+
+    // Quan el botó es prem, salta la llista
+    window.skipList = function() {
+      skipBtn.blur();
+      postLlista.focus();
+    };
+  })();
   </script>
 </body>
 </html>

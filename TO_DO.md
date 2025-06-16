@@ -3,7 +3,7 @@
 ## General
 - [ ] Mirar bé el tema de la gestió del focus cíclic en modals per a poder-ho fer reutilitzable i que no hagi d’anar d’element en element cada vegada que “creo” una modal. Crec que hi ha una manera.
 - [ ] Afegir un exemple tipus el d’isdin que mostra un element en rebre el focus per tancar diàlegs que haurien de tenir una funcionalitat de tancar.
-- [ ] Podríem afegir exemple de saltar llistats llargs.
+- [x] Podríem afegir exemple de saltar llistats llargs.
 - [x] S’ha espatllat el menú d’usuari 3 de l’exemple “Teclat bo”.
 - [x] El tema de la navegació amb fletxes pel menú d’usuari 3 és important remarcar que no cal que sigui amb fletxes, de fet pot ser amb tabulador. Més que res perquè amb fletxes és només si té un role="menu" i tal com ho expliquem sembla.
 - [x] Afegir exemple de checkboxs en la navegació per teclat, per ensenyar que es mouen amb fletxes.
