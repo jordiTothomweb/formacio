@@ -20,7 +20,6 @@
 - [x] "Exemples d'Accessibilitat" hauria de ser un H1 i trauria "Pàgina d'Inici". Aleshores "Estructura i Idioma", "ARIA", "Teclat", ... quedarien com H2. => he tret Exemples accessibilitat per a mantenir estructrua similar a les altres pagines on el header conté l'h1. 
 
 ## Sliders
-- [ ] S'hauria de poder cancel·lar el punter.
 - [x] Afegir una àrea d'acció de `24px` com a mínim.
 - [x] Falta un `cursor pointer`.
 - [x] Revisar exemples: els valors d'ARIA només són necessaris per a components personalitzats, no per als `input[type=range]` natius.
