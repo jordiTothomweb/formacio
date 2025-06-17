@@ -526,3 +526,11 @@ dialog::backdrop {
   background: #fff;
   color: #111;
 }
+#search-input:focus-visible {
+  outline: 3px solid #ffe0b2;
+  outline-offset: 2px;
+  background: #fffbe7;
+  color: #111;
+  box-shadow: 0 0 0 3px #ff9800;
+  z-index: 4;
+}
