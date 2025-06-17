@@ -179,6 +179,31 @@
         <button type="submit">Envia</button>
       </form>
     </section>
+
+    <!-- Acordió accessible -->
+    <section aria-labelledby="acordion-title">
+      <h2 id="acordion-title">Preguntes freqüents</h2>
+      <div class="accordion" id="faq-accordion">
+        <div>
+          <button type="button" aria-expanded="false" aria-controls="faq1" id="faq1-btn">Què és l’accessibilitat web?</button>
+          <div id="faq1" role="region" aria-labelledby="faq1-btn" hidden>
+            <p>L’accessibilitat web és el conjunt de tècniques i bones pràctiques per fer que els llocs web siguin usables per tothom, incloses les persones amb discapacitat.</p>
+          </div>
+        </div>
+        <div>
+          <button type="button" aria-expanded="false" aria-controls="faq2" id="faq2-btn">Com puc contactar amb vosaltres?</button>
+          <div id="faq2" role="region" aria-labelledby="faq2-btn" hidden>
+            <p>Pots utilitzar el formulari de contacte d’aquesta pàgina o escriure’ns a info@exemple.com.</p>
+          </div>
+        </div>
+        <div>
+          <button type="button" aria-expanded="false" aria-controls="faq3" id="faq3-btn">Feu formació presencial?</button>
+          <div id="faq3" role="region" aria-labelledby="faq3-btn" hidden>
+            <p>Sí, oferim formació tant presencial com en línia. Consulta els nostres serveis per a més informació.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Notificacions flotants accessibles -->

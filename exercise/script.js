@@ -264,3 +264,32 @@ document.addEventListener("DOMContentLoaded", function () {
   // Exposa la funció globalment si vols cridar-la des d'altres llocs
   window.showNotification = showNotification;
 });
+
+// Accessible accordion logic
+document.addEventListener('DOMContentLoaded', function () {
+  var accordion = document.getElementById('faq-accordion');
+  if (!accordion) return;
+  var buttons = accordion.querySelectorAll('button[aria-controls]');
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      var content = document.getElementById(btn.getAttribute('aria-controls'));
+      if (content) {
+        content.hidden = expanded;
+      }
+    });
+    /** 
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        var idx = Array.prototype.indexOf.call(buttons, btn);
+        var nextIdx = e.key === 'ArrowDown'
+          ? (idx + 1) % buttons.length
+          : (idx - 1 + buttons.length) % buttons.length;
+        buttons[nextIdx].focus();
+      }
+    });
+    */
+  });
+});
