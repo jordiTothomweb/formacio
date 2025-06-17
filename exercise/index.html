@@ -140,11 +140,46 @@
 
     <section aria-labelledby="equip-title">
       <h2 id="equip-title">El nostre equip</h2>
-      <ul>
-        <li><strong>Anna</strong> – Desenvolupadora Frontend</li>
-        <li><strong>Joan</strong> – Consultor d’accessibilitat</li>
-        <li><strong>Maria</strong> – Formadora</li>
-      </ul>
+      <!-- Taula de dades accessible amb sort i filtre -->
+      <div style="max-width:600px;margin-bottom:2em;">
+        <label for="filter-input" style="font-weight:600;">Filtra per nom o rol:</label>
+        <input id="filter-input" type="search" aria-label="Filtra membres de l'equip" style="margin-left:0.5em;">
+        <span id="filter-results" class="sr-only" aria-live="polite" aria-atomic="true"></span>
+        <table id="equip-table" class="equip-table" aria-label="Membres de l'equip">
+          <thead>
+            <tr>
+              <th scope="col">
+                <button type="button" class="sort-btn" aria-label="Ordena per nom" data-sort="nom">Nom <span aria-hidden="true">↕</span></button>
+              </th>
+              <th scope="col">
+                <button type="button" class="sort-btn" aria-label="Ordena per rol" data-sort="rol">Rol <span aria-hidden="true">↕</span></button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Anna</td>
+              <td>Desenvolupadora Frontend</td>
+            </tr>
+            <tr>
+              <td>Joan</td>
+              <td>Consultor d’accessibilitat</td>
+            </tr>
+            <tr>
+              <td>Maria</td>
+              <td>Formadora</td>
+            </tr>
+            <tr>
+              <td>Marc</td>
+              <td>Tester</td>
+            </tr>
+            <tr>
+              <td>Laura</td>
+              <td>Desenvolupadora Backend</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section aria-labelledby="slider-title">

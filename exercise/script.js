@@ -293,3 +293,68 @@ document.addEventListener('DOMContentLoaded', function () {
     */
   });
 });
+
+// Taula de dades: sort i filtre accessibles
+(function() {
+  const table = document.getElementById('equip-table');
+  if (!table) return;
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const filterInput = document.getElementById('filter-input');
+  const filterResults = document.getElementById('filter-results');
+  let sortCol = null;
+  let sortAsc = true;
+
+  function renderTable(filteredRows) {
+    tbody.innerHTML = '';
+    filteredRows.forEach(row => tbody.appendChild(row));
+    if (filterResults) {
+      filterResults.textContent = filteredRows.length === 1
+        ? '1 resultat trobat'
+        : filteredRows.length + ' resultats trobats';
+    }
+  }
+
+  function filterRows() {
+    const val = filterInput.value.trim().toLowerCase();
+    const filtered = rows.filter(row => {
+      return Array.from(row.cells).some(cell =>
+        cell.textContent.toLowerCase().includes(val)
+      );
+    });
+    renderTable(filtered);
+  }
+
+  function sortRows(colIdx) {
+    sortAsc = (sortCol !== colIdx) ? true : !sortAsc;
+    sortCol = colIdx;
+    rows.sort((a, b) => {
+      const aText = a.cells[colIdx].textContent.trim().toLowerCase();
+      const bText = b.cells[colIdx].textContent.trim().toLowerCase();
+      if (aText < bText) return sortAsc ? -1 : 1;
+      if (aText > bText) return sortAsc ? 1 : -1;
+      return 0;
+    });
+    filterRows();
+  }
+
+  filterInput.addEventListener('input', filterRows);
+  table.addEventListener('click', (e) => {
+    const btn = e.target.closest('.sort-btn');
+    if (btn) {
+      const colIdx = btn.dataset.sort === 'nom' ? 0 : 1;
+      sortRows(colIdx);
+    }
+  });
+
+  table.querySelectorAll('.sort-btn').forEach((btn, idx) => {
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        sortRows(idx);
+      }
+    });
+  });
+
+  renderTable(rows);
+})();

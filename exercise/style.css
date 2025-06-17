@@ -278,8 +278,8 @@ dialog::backdrop {
   margin: -1px !important;
   overflow: hidden !important;
   clip: rect(0,0,0,0) !important;
-  white-space: nowrap !important;
   border: 0 !important;
+  white-space: nowrap !important;
 }
 
 /* Botons del diàleg de logout */
@@ -429,4 +429,42 @@ dialog::backdrop {
 @keyframes fadeInAccordion {
   from { opacity: 0; transform: translateY(-8px);}
   to { opacity: 1; transform: translateY(0);}
+}
+
+/* Estils per a la taula, el filtre i la sort */
+.equip-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background: #fff;
+}
+.equip-table th, .equip-table td {
+  border: 1px solid #ddd;
+  padding: 0.6em 1em;
+  text-align: left;
+}
+.equip-table th {
+  background: #f5f5f5;
+}
+.sort-btn {
+  background: none;
+  border: none;
+  font: inherit;
+  color: #1976d2;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0;
+  outline: none;
+}
+.sort-btn:focus-visible {
+  outline: 2px solid #1976d2;
+  background: #e3f0fa;
+}
+#filter-input {
+  margin-left: 0.5em;
+  padding: 0.3em 0.7em;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  font-size: 1em;
 }
