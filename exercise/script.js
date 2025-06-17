@@ -358,3 +358,114 @@ document.addEventListener('DOMContentLoaded', function () {
 
   renderTable(rows);
 })();
+
+// Barra de cerca accessible amb suggeriments automàtics
+(function() {
+  const searchInput = document.getElementById('search-input');
+  const suggestionsList = document.getElementById('search-suggestions');
+  // Opcions variades, més de 10 per mostrar scroll si cal
+  const suggestions = [
+    "Desenvolupament Web",
+    "Formació",
+    "Consultoria",
+    "Accessibilitat",
+    "Frontend",
+    "Backend",
+    "Auditoria",
+    "Contacte",
+    "Equip",
+    "Serveis",
+    "Disseny",
+    "SEO",
+    "Usabilitat",
+    "Testing",
+    "Documentació",
+    "Projectes",
+    "Clients",
+    "Blog",
+    "Notícies",
+    "Suport"
+  ];
+  let filtered = [];
+  let selectedIdx = -1;
+
+  if (!searchInput || !suggestionsList) return;
+
+  function updateSuggestions() {
+    const val = searchInput.value.trim().toLowerCase();
+    filtered = suggestions.filter(s => s.toLowerCase().includes(val));
+    suggestionsList.innerHTML = '';
+    if (filtered.length === 0 || !val) {
+      suggestionsList.hidden = true;
+      searchInput.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    filtered.forEach((s, i) => {
+      const li = document.createElement('li');
+      li.role = 'option';
+      li.id = 'suggestion-' + i;
+      li.tabIndex = -1;
+      li.textContent = s;
+      li.setAttribute('aria-selected', i === selectedIdx ? 'true' : 'false');
+      li.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        searchInput.value = s;
+        suggestionsList.hidden = true;
+        searchInput.setAttribute('aria-expanded', 'false');
+      });
+      suggestionsList.appendChild(li);
+    });
+    suggestionsList.hidden = false;
+    searchInput.setAttribute('aria-expanded', 'true');
+    selectedIdx = -1;
+    // Si hi ha moltes opcions, mostra scroll
+    if (filtered.length > 7) {
+      suggestionsList.style.maxHeight = '14em';
+      suggestionsList.style.overflowY = 'auto';
+    } else {
+      suggestionsList.style.maxHeight = '';
+      suggestionsList.style.overflowY = '';
+    }
+  }
+
+  searchInput.addEventListener('input', updateSuggestions);
+
+  searchInput.addEventListener('keydown', function(e) {
+    const items = suggestionsList.querySelectorAll('li');
+    if (suggestionsList.hidden || items.length === 0) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      selectedIdx = (selectedIdx + 1) % items.length;
+      updateSelection(items);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      selectedIdx = (selectedIdx - 1 + items.length) % items.length;
+      updateSelection(items);
+    } else if (e.key === 'Enter') {
+      if (selectedIdx >= 0 && items[selectedIdx]) {
+        e.preventDefault();
+        searchInput.value = items[selectedIdx].textContent;
+        suggestionsList.hidden = true;
+        searchInput.setAttribute('aria-expanded', 'false');
+      }
+    } else if (e.key === 'Escape') {
+      suggestionsList.hidden = true;
+      searchInput.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  function updateSelection(items) {
+    items.forEach((li, i) => {
+      li.setAttribute('aria-selected', i === selectedIdx ? 'true' : 'false');
+      if (i === selectedIdx) li.scrollIntoView({block: 'nearest'});
+    });
+  }
+
+  // Oculta suggeriments si el focus marxa
+  searchInput.addEventListener('blur', function() {
+    setTimeout(() => {
+      suggestionsList.hidden = true;
+      searchInput.setAttribute('aria-expanded', 'false');
+    }, 100);
+  });
+})();

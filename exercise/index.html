@@ -36,6 +36,15 @@
           <li><a href="#contacte">Contacte</a></li>
         </ul>
       </nav>
+
+      <!-- Barra de cerca accessible amb suggeriments -->
+      <form id="search-form" role="search" aria-label="Cerca global" autocomplete="off" style="margin-bottom:1em; max-width:400px; position:relative; display:flex; align-items:center;">
+        <span class="search-icon" style="left:0.8em; top:50%; transform:translateY(-50%); color:#1976d2; z-index:3; pointer-events:none; position:absolute;">
+          <i class="fa fa-search" aria-hidden="true" style="font-size:1em;"></i>
+        </span>
+        <input id="search-input" name="search" type="search" aria-label="Cerca" aria-autocomplete="list" aria-controls="search-suggestions" aria-expanded="false" aria-haspopup="listbox" autocomplete="off" style="margin-left:0.2em; padding-left:2.2em; position:relative; z-index:2; background:#fff; color:#222;">
+        <ul id="search-suggestions" class="search-suggestions" role="listbox" aria-label="Suggeriments de cerca" hidden style="top:100%; left:0; right:0; position:absolute; z-index:3;"></ul>
+      </form>
       <!-- Botó de tancar sessió completament a la dreta -->
       <button 
         id="logout-btn"

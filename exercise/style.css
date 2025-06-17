@@ -468,3 +468,61 @@ dialog::backdrop {
   border: 1px solid #bbb;
   font-size: 1em;
 }
+
+/* Suggeriments de cerca */
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 0 0 6px 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 400px;
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.search-suggestions[hidden] {
+  display: none;
+}
+.search-suggestions li {
+  padding: 0.5em 1em;
+  cursor: pointer;
+  background: #fff;
+  color: #222;
+  border-bottom: 1px solid #eee;
+}
+.search-suggestions li:last-child {
+  border-bottom: none;
+}
+.search-suggestions li[aria-selected="true"],
+.search-suggestions li:focus {
+  background: #1976d2;
+  color: #fff;
+  outline: none;
+}
+.search-icon {
+  position: absolute;
+  left: 0.8em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1976d2 !important;
+  pointer-events: none;
+  font-size: 1.2em;
+  z-index: 3;
+  background: transparent;
+}
+#search-input {
+  padding-left: 2.2em;
+  background: #fff;
+  color: #222;
+}
+#search-input:focus {
+  outline: 2px solid #1976d2;
+  background: #fff;
+  color: #111;
+}
