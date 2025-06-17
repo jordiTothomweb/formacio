@@ -16,13 +16,12 @@
       <button 
         id="menu-toggle"
         class="icon-btn"
-        aria-label="Obrir menú lateral"
-        aria-controls="side-menu"
-        aria-expanded="false"
+        aria-label="Hamburguesa"
+        En qui controla i en quin estat està
         type="button"
       >
         <!-- Icona d'hamburguesa SVG -->
-        <svg width="24" height="24" aria-hidden="true" focusable="false">
+        <svg width="24" height="24" <!-- Fa falta amagar la icona --></svg> focusable="false">
           <rect y="4" width="24" height="3" rx="1.5" fill="currentColor"/>
           <rect y="10.5" width="24" height="3" rx="1.5" fill="currentColor"/>
           <rect y="17" width="24" height="3" rx="1.5" fill="currentColor"/>
@@ -238,7 +237,7 @@
       <!-- Taula de dades accessible amb sort i filtre -->
       <div style="max-width:600px;margin-bottom:2em;">
         <label for="filter-input" style="font-weight:600;">Filtra per nom o rol:</label>
-        <input id="filter-input" type="search" style="margin-left:0.5em;">
+        <input id="filter-input" name="filter-input" type="search" style="margin-left:0.5em;">
         <span id="filter-results" class="sr-only" aria-live="polite" aria-atomic="true"></span>
         <table id="equip-table" class="equip-table" aria-label="Membres de l'equip">
           <thead>
