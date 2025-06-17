@@ -147,12 +147,98 @@
       </ul>
     </section>
 
-    <section aria-labelledby="equip-title">
+    <!-- Secció de targetes de producte/servei amb saltar contingut -->
+    <section aria-labelledby="productes-title">
+      <h2 id="productes-title">Productes destacats</h2>
+      <div style="position:relative;">
+        <a id="skip-cards-btn"
+          class="skip-cards-btn"
+          href="#next-section"
+        >Saltar targetes</a>
+        <ul id="cards-list" class="product-card-list">
+          <li class="product-card-li">
+            <div class="product-card" tabindex="0" role="group" aria-label="Producte 1">
+              <a href="#" tabindex="-1" class="card-img-link">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Imatge del producte 1" class="card-img">
+              </a>
+              <h3>Producte 1</h3>
+              <p>Descripció breu del producte 1.</p>
+              <div class="card-actions">
+                <button class="card-action" type="button">Afegir</button>
+                <button class="card-action" type="button">Comparteix</button>
+                <button class="card-action" type="button">Veure</button>
+              </div>
+            </div>
+          </li>
+          <li class="product-card-li">
+            <div class="product-card" tabindex="0" role="group" aria-label="Producte 2">
+              <a href="#" tabindex="-1" class="card-img-link">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Imatge del producte 2" class="card-img">
+              </a>
+              <h3>Producte 2</h3>
+              <p>Descripció breu del producte 2.</p>
+              <div class="card-actions">
+                <button class="card-action" type="button">Afegir</button>
+                <button class="card-action" type="button">Comparteix</button>
+                <button class="card-action" type="button">Veure</button>
+              </div>
+            </div>
+          </li>
+          <li class="product-card-li">
+            <div class="product-card" tabindex="0" role="group" aria-label="Producte 3">
+              <a href="#" tabindex="-1" class="card-img-link">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Imatge del producte 3" class="card-img">
+              </a>
+              <h3>Producte 3</h3>
+              <p>Descripció breu del producte 3.</p>
+              <div class="card-actions">
+                <button class="card-action" type="button">Afegir</button>
+                <button class="card-action" type="button">Comparteix</button>
+                <button class="card-action" type="button">Veure</button>
+              </div>
+            </div>
+          </li>
+          <li class="product-card-li">
+            <div class="product-card" tabindex="0" role="group" aria-label="Producte 4">
+              <a href="#" tabindex="-1" class="card-img-link">
+                <img src="https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=400&q=80" alt="Imatge del producte 4" class="card-img">
+              </a>
+              <h3>Producte 4</h3>
+              <p>Descripció breu del producte 4.</p>
+              <div class="card-actions">
+                <button class="card-action" type="button">Afegir</button>
+                <button class="card-action" type="button">Comparteix</button>
+                <button class="card-action" type="button">Veure</button>
+              </div>
+            </div>
+          </li>
+          <li class="product-card-li">
+            <div class="product-card" tabindex="0" role="group" aria-label="Producte 5">
+              <a href="#" tabindex="-1" class="card-img-link">
+                <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="Imatge del producte 5" class="card-img">
+              </a>
+              <h3>Producte 5</h3>
+              <p>Descripció breu del producte 5.</p>
+              <div class="card-actions">
+                <button class="card-action" type="button">Afegir</button>
+                <button class="card-action" type="button">Comparteix</button>
+                <button class="card-action" type="button">Veure</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div  tabindex="-1" style="margin-top:1em;">
+        <strong>Has saltat les targetes!</strong>
+      </div>
+    </section>
+
+    <section aria-labelledby="equip-title" id="next-section">
       <h2 id="equip-title">El nostre equip</h2>
       <!-- Taula de dades accessible amb sort i filtre -->
       <div style="max-width:600px;margin-bottom:2em;">
         <label for="filter-input" style="font-weight:600;">Filtra per nom o rol:</label>
-        <input id="filter-input" type="search" aria-label="Filtra membres de l'equip" style="margin-left:0.5em;">
+        <input id="filter-input" type="search" style="margin-left:0.5em;">
         <span id="filter-results" class="sr-only" aria-live="polite" aria-atomic="true"></span>
         <table id="equip-table" class="equip-table" aria-label="Membres de l'equip">
           <thead>
@@ -194,20 +280,13 @@
     <section aria-labelledby="slider-title">
       <h2 id="slider-title">Satisfacció del servei</h2>
       <label for="satisfaccio-slider">Valora el servei rebut</label>
-      <div class="slider-row">
-        <input 
-          id="satisfaccio-slider"
-          type="range"
-          min="0"
-          max="10"
-          value="5"
-          aria-valuemin="0"
-          aria-valuemax="10"
-          aria-valuenow="5"
-          aria-label="Satisfacció"
-          oninput="document.getElementById('satisfaccio-value').textContent = this.value; this.setAttribute('aria-valuenow', this.value);"
-        >
-        <span id="satisfaccio-value" aria-live="polite" aria-atomic="true">5</span>
+      <div class="slider-row" id="satisfaccio-slider" role="slider" tabindex="0"
+        aria-valuemin="0" aria-valuemax="10" aria-valuenow="5" aria-label="Satisfacció"
+        style="width:220px; display:flex; align-items:center; gap:1em;">
+        <div id="slider-bar" style="flex:1; height:8px; background:#e0e0e0; border-radius:4px; position:relative;">
+          <div id="slider-thumb" style="position:absolute; top:-6px; left:50%; width:20px; height:20px; background:#1976d2; border-radius:50%; box-shadow:0 1px 4px #1976d233; border:2px solid #fff; transition:left 0.1s;"></div>
+        </div>
+        <span id="satisfaccio-value" aria-live="polite" aria-atomic="true" style="min-width:2em; text-align:center;">5</span>
       </div>
     </section>
 

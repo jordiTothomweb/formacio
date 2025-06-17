@@ -469,3 +469,105 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
   });
 })();
+
+// Saltar targetes de producte/servei amb botó només visible amb focus de teclat
+(function() {
+  const cardsList = document.getElementById('cards-list');
+  const postCards = document.getElementById('post-cards');
+  if (!cardsList || !postCards) return;
+
+  const allCards = cardsList.querySelectorAll('.product-card');
+  allCards.forEach(card => {
+    card.addEventListener('keydown', function(e) {
+      const actions = Array.from(card.querySelectorAll('.card-action'));
+      const idx = actions.indexOf(document.activeElement);
+      if (e.key === 'ArrowRight' && idx !== -1) {
+        e.preventDefault();
+        actions[(idx + 1) % actions.length].focus();
+      } else if (e.key === 'ArrowLeft' && idx !== -1) {
+        e.preventDefault();
+        actions[(idx - 1 + actions.length) % actions.length].focus();
+      } else if ((e.key === 'Enter' || e.key === ' ') && document.activeElement === card) {
+        e.preventDefault();
+        // Focus primer botó d'acció
+        if (actions.length) actions[0].focus();
+      }
+    });
+    // No cal res més, el focus ja arriba al card i als botons
+  });
+})();
+
+// Slider funcional accessible (div amb rols)
+(function() {
+  const slider = document.getElementById('satisfaccio-slider');
+  const thumb = document.getElementById('slider-thumb');
+  const bar = document.getElementById('slider-bar');
+  const valueSpan = document.getElementById('satisfaccio-value');
+  const min = 0, max = 10;
+  let value = 5;
+
+  function updateSlider(newValue, fireEvent = true) {
+    value = Math.max(min, Math.min(max, newValue));
+    slider.setAttribute('aria-valuenow', value);
+    valueSpan.textContent = value;
+    // Update thumb position
+    const percent = (value - min) / (max - min);
+    thumb.style.left = `calc(${percent * 100}% - 10px)`;
+    if (fireEvent) {
+      const event = new CustomEvent('input', { detail: value });
+      slider.dispatchEvent(event);
+    }
+  }
+
+  slider.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+      updateSlider(value - 1);
+      e.preventDefault();
+    } else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+      updateSlider(value + 1);
+      e.preventDefault();
+    } else if (e.key === 'Home') {
+      updateSlider(min);
+      e.preventDefault();
+    } else if (e.key === 'End') {
+      updateSlider(max);
+      e.preventDefault();
+    }
+  });
+
+  // Click a la barra per moure el thumb
+  bar.addEventListener('click', function(e) {
+    const rect = bar.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = Math.max(0, Math.min(1, x / rect.width));
+    updateSlider(Math.round(percent * (max - min) + min));
+  });
+
+  // Drag amb el ratolí
+  let dragging = false;
+  thumb.addEventListener('mousedown', function(e) {
+    dragging = true;
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', function(e) {
+    if (!dragging) return;
+    const rect = bar.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = Math.max(0, Math.min(1, x / rect.width));
+    updateSlider(Math.round(percent * (max - min) + min));
+  });
+  document.addEventListener('mouseup', function() {
+    if (dragging) {
+      dragging = false;
+      document.body.style.userSelect = '';
+    }
+  });
+
+  // Focus visual al thumb quan el slider té focus
+  slider.addEventListener('focus', () => thumb.style.boxShadow = '0 0 0 3px #ff9800');
+  slider.addEventListener('blur', () => thumb.style.boxShadow = '');
+
+  // Inicialitza
+  updateSlider(value, false);
+})();
