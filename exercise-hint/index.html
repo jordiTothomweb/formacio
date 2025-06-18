@@ -14,7 +14,7 @@
     <div class="header-row">
       <!-- Botó d'hamburguesa accessible -->
       <!-- =============================================================================================== |
-      | FIXME: No se sap a qui controla el botó ni en quin estat es troba.                                 |
+      | FIXME1: No se sap a qui controla el botó ni en quin estat es troba.                                 |
       |        El valor que llegirà el lector de pantalla és correcte?                                     |
       =================================================================================================  -->
       <button 
@@ -25,7 +25,7 @@
       >
         <!-- Icona d'hamburguesa SVG -->
         <!-- =============================================================================================== |
-        | FIXME: falta algun atribut per a indicar que la imatge no sigui visible per a lectors de pantalla, |
+        | FIXME2: falta algun atribut per a indicar que la imatge no sigui visible per a lectors de pantalla, |
         |        però que sí que ho sigui per a persones amb discapacitat visual.                            |
         =================================================================================================  -->
         <svg width="24" height="24" focusable="false">
@@ -45,7 +45,7 @@
 
       <!-- Barra de cerca accessible amb suggeriments -->
       <!-- =============================================================================================== |
-      | FIXME: Quan un usuari de lector arriba al component sap què fa?                                    |
+      | FIXME3: Quan un usuari de lector arriba al component sap què fa?                                    |
       =================================================================================================  -->
       <form id="search-form" role="search" autocomplete="off" style="margin-bottom:1em; max-width:400px; position:relative; display:flex; align-items:center;">
         <span class="search-icon" style="left:0.8em; top:50%; transform:translateY(-50%); color:#1976d2; z-index:3; pointer-events:none; position:absolute;">
@@ -91,7 +91,7 @@
         </svg>
       </button>
        <!-- =============================================================================================== |
-      | FIXME: Intentem relacionar el header amb la llista                                                  |
+      | FIXME4: Intentem relacionar el header amb la llista                                                  |
       =================================================================================================  -->
       <h2 class="sr-only" id="side-menu-title">Menú de navegació</h2>
       <ul>
@@ -106,7 +106,7 @@
   <!-- Carrousel accessible -->
   <section id="carousel" aria-label="Carrousel de missatges" class="carousel-section">
     <!-- =============================================================================================== |
-    | FIXME: Caldria que el missatge s'anunciés cada vegada que s'actualitza (2 atributs)                |
+    | FIXME5: Caldria que el missatge s'anunciés cada vegada que s'actualitza (2 atributs)                |
     =================================================================================================  -->
     <div class="carousel-container" >
       <div class="carousel-controls">
@@ -114,7 +114,7 @@
           <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </button>
         <!-- =============================================================================================== |
-        | FIXME: El carrousel es tracta d'un component que es va canviant de forma automàtica.               |
+        | FIXME6: El carrousel es tracta d'un component que es va canviant de forma automàtica.               |
         |        Creus que pot faltar-li alguna cosa per a ser accesible?                                    |  
         |        (Falta un 3r botó, busca "carousel-" en el js)                                              |
         =================================================================================================  -->
@@ -167,7 +167,7 @@
       <h2 id="productes-title">Productes destacats</h2>
       <div style="position:relative;">
          <!-- =============================================================================================== |
-        | FIXME: És una llista d'element amb elements dins, moltes tabulacions.                               |
+        | FIXME7: És una llista d'element amb elements dins, moltes tabulacions.                               |
         |        Afegim algo per saltar el contingut de la llista                                             |
         =================================================================================================  -->
         <ul id="cards-list" class="product-card-list">
@@ -253,7 +253,7 @@
         <input id="filter-input" name="filter-input" type="search" style="margin-left:0.5em;">
         <span id="filter-results" class="sr-only" aria-live="polite" aria-atomic="true"></span>
         <!-- =============================================================================================== |
-        | FIXME: Revisió estructura de la taula.                                                             |
+        | FIXME8: Revisió estructura de la taula.                                                             |
         =================================================================================================  -->
         <table id="equip-table" class="equip-table" aria-label="Membres de l'equip">
           <tbody>
@@ -294,7 +294,7 @@
       <h2 id="slider-title">Satisfacció del servei</h2>
       <span id="satisfaccio-slider">Valora el servei rebut</label>
       <!-- =============================================================================================== |
-      | FIXME: Falten rols i atributs per a poder considerar el component accessible.                      |
+      | FIXME9: Falten rols i atributs per a poder considerar el component accessible.                      |
       =================================================================================================  -->
       <div class="slider-row" aria-labelledby="satisfaccio-slider"
         style="width:220px; display:flex; align-items:center; gap:1em;">
@@ -306,7 +306,7 @@
     </section>
 
     <!-- =============================================================================================== |
-    | FIXME: Els missatges d'estat no s'anuncien per lector de pantalla                                  |
+    | FIXME10: Els missatges d'estat no s'anuncien per lector de pantalla                                  |
     =================================================================================================  -->
     <section aria-labelledby="contact-section">
       <h2 id="contact-section">Contacte</h2>
@@ -326,7 +326,7 @@
       <h2 id="acordion-title">Preguntes freqüents</h2>
       <div class="accordion" id="faq-accordion">
         <!-- =============================================================================================== |
-        | FIXME: Falta indicar l'estat i quin text descriu el contingut ocult.                               |
+        | FIXME11: Falta indicar l'estat i quin text descriu el contingut ocult.                               |
         =================================================================================================  -->
         <div>
           <button type="button" aria-controls="faq1" id="faq1-btn">Què és l’accessibilitat web?</button>
@@ -352,7 +352,7 @@
 
   <!-- Notificacions flotants accessibles -->
   <!-- =============================================================================================== |
-  | FIXME: Aquest missatge tampoc és anunciat per lector.                                                             |
+  | FIXME12: Aquest missatge tampoc és anunciat per lector.                                              |
   =================================================================================================  -->
   <div id="notification" class="notification" role="status" hidden></div>
 

@@ -79,6 +79,9 @@ logoutDialog?.addEventListener('keydown', (e) => {
     logoutDialog.close();
   }
   if (e.key === 'Tab') {
+    /* ==========================================================================================
+      FIXME: Podem fer algun selector que permeti saber tots els focusables del diàleg 
+    ========================================================================================== */
     const focusables = logoutDialog.querySelectorAll('button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     const focusable = Array.prototype.slice.call(focusables);
     const first = focusable[0];
