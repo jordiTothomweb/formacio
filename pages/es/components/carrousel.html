@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrusel Accesible</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      background: #f5f5f5;
+    }
+    .carousel-outer {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: #f6f3f0;
+      border-radius: 0;
+      display: flex;
+      min-height: 600px;
+      box-shadow: 0 2px 8px #0001;
+      overflow: hidden;
+    }
+    .carousel-content {
+      flex: 1 1 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3rem 4rem 6rem;
+      background: #f6f3f0;
+    }
+    .carousel-title {
+      font-size: 4rem;
+      font-weight: 500;
+      margin: 0 0 2rem 0;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .carousel-desc {
+      font-size: 1.2rem;
+      color: #222;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+    .carousel-img-container {
+      flex: 1 1 50%;
+      position: relative;
+      min-width: 0;
+      min-height: 400px;
+      background: #eee;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+    .carousel-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 0;
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 2rem;
+      right: 3.5rem;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      color: #222;
+      font-size: 1.5rem; /* petit */
+      cursor: pointer;
+      z-index: 2;
+      transition: color 0.2s, background 0.2s;
+      padding: 0.2em 0.4em;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px #0002;
+    }
+    .carousel-arrow.left {
+      right: 6.5rem;
+      left: auto;
+    }
+    .carousel-arrow:focus {
+      outline: 2px solid #1976d2;
+      color: #1976d2;
+      background: rgba(255,255,255,0.6);
+    }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      margin-top: 2.5rem;
+    }
+    .carousel-dot {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      outline: none;
+    }
+    .carousel-dot:focus-visible {
+      outline: 2px solid #1976d2;
+      outline-offset: 2px;
+    }
+    .carousel-dot .dot-outer {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.7);
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    .carousel-dot.active .dot-outer {
+      border-color: #1976d2;
+    }
+    .carousel-dot .dot-inner {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #1976d2;
+      display: none;
+      transition: background 0.2s;
+    }
+    .carousel-dot.active .dot-inner {
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .carousel-outer {
+        flex-direction: column;
+        min-height: 0;
+      }
+      .carousel-content {
+        padding: 2rem 1.5rem;
+      }
+      .carousel-img-container {
+        min-height: 250px;
+        height: 250px;
+      }
+      .carousel-title {
+        font-size: 2.5rem;
+      }
+      .carousel-arrow {
+        top: 1rem;
+        right: 2.5rem;
+        font-size: 1.2rem; /* petit */
+      }
+      .carousel-arrow.left {
+        right: 5rem;
+      }
+    }
+
+    .carousel-arrow:focus {
+        outline: 3px solid #fff;      /* Blanc per fora */
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px #000;   /* Negre per dins */
+        color: #222;
+        background: rgba(255,255,255,0.6);
+    }
+
+    .cards-exemples {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .card {
+      background: #fff;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 0;
+    }
+    .card h3 {
+      font-size: 1.5rem;
+      margin: 0 0 1rem 0;
+    }
+    .code-box {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      margin: 1rem 0 0.5rem 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.95rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inicio.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Ejemplos de Carrusel</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../components/cards.html">Tarjetas</a></li>
+        <li><a href="../components/buttons.html">Botones</a></li>
+        <li><a href="../components/events.html">Eventos</a></li>
+        <li><a href="../components/llistes.html">Listas</a></li>
+        <li><a href="../components/slider.html">Slider</a></li>
+        <li><a href="../components/carrousel.html">Carrusel</a></li>
+        <li><a href="../components/form.html">Formulario</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card" style="max-width:700px;margin:2rem auto;">
+      <h2 style="margin-top:0;">Carrusel Accesible: atributos y funciones clave</h2>
+      <div class="cards-exemples" style="display:block;">
+        <div>
+          <h3>Atributos importantes</h3>
+          <div class="code-box" style="margin-bottom:1rem;"><code>&lt;section class="carousel-outer" aria-label="Carrusel de tiendas" id="carousel" tabindex="0"&gt;
+  ...
+  &lt;button class="carousel-arrow left" id="carousel-prev" aria-label="Anterior"&gt;&lt;/button&gt;
+  &lt;img class="carousel-img" id="carousel-img" src="" alt="" /&gt;
+  &lt;button class="carousel-arrow" id="carousel-next" aria-label="Siguiente"&gt;&lt;/button&gt;
+&lt;/section&gt;</code></div>
+          <ul>
+            <li><b>aria-label</b>: Describe el propósito del carrusel y de los botones.</li>
+            <li><b>tabindex="0"</b>: Permite el foco por teclado en la sección.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Formación Carrusel</p>
+  </footer>
+</body>
+</html>

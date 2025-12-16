@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enlaces Accesibles</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .example {
+      flex: 1;
+    }
+
+    .situacional .code-box {
+      flex: 1;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+
+    pre {
+      margin: 0;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+
+    img {
+      max-width: 50px;
+      height: auto;
+      display: inline-block;
+    }
+
+    .card.correcte {
+      border-left: 5px solid #4caf50; /* Verd per a correctes */
+    }
+
+    .card.incorrecte {
+      border-left: 5px solid #f44336; /* Vermell per a incorrectes */
+    }
+
+    .card.situacional {
+      border-left: 5px solid #ff9800; /* Taronja per a situacionals */
+    }
+
+    .card .description {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inicio.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Enlaces Accesibles</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../others/idioma.html">Idioma</a></li>
+        <li><a href="../others/nom.html">Enlaces Accesibles</a></li>
+        <li><a href="../images/ejemplo-imagenes-iconos.html">Iconos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Lectura de enlaces accesibles</h2>
+
+    <!-- Cas 1: Enllaç amb etiqueta -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enlace con etiqueta</h3>
+        <a href="#" id="link1">Inicio</a>
+        <p class="description">El nombre accesible proviene del texto visible del enlace.</p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#" id="link1"&gt;Inicio&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 2: Enlace con etiqueta y title -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enlace con etiqueta y title</h3>
+        <a href="#" title="Ir al inicio">Inicio</a>
+        <p class="description">El nombre accesible proviene del texto visible, y el `title` es un complemento.</p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#" title="Ir al inicio"&gt;Inicio&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 3: Enlace con aria-label -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enlace con aria-label</h3>
+        <a href="#" aria-label="Inicio">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+        <p class="description">El nombre accesible proviene del atributo `aria-label`. El icono es visible para todos los usuarios.</p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#" aria-label="Inicio"&gt;
+  &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 4: Enlace con aria-labelledby -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enlace con aria-labelledby</h3>
+        <!-- Texto referenciado -->
+        <span id="descripcion_oculta_link" class="visually-hidden" aria-hidden="true">Inicio texto oculto</span>
+        <!-- Enlace -->
+        <a href="#" aria-labelledby="descripcion_oculta_link">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+        <p class="description">El nombre accesible proviene del elemento con `id="descripcion_oculta_link"`. El texto es invisible pero legible para lectores de pantalla.</p>
+      </div>
+      <div>
+        <pre><code>&lt;span id="descripcion_oculta_link" class="visually-hidden" aria-hidden="true"&gt;
+  Inicio texto oculto
+&lt;/span&gt;
+&lt;a href="#" aria-labelledby="descripcion_oculta_link"&gt;
+  &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 5: Enlace con aria-label + etiqueta -->
+    <div class="card situacional">
+      <div class="example">
+        <h3>Enlace con aria-label y etiqueta</h3>
+        <a href="#" aria-label="Enlace">Inicio</a>
+        <p class="description">Hay un conflicto entre el texto visible y el `aria-label`. Los lectores de pantalla priorizarán el `aria-label`.</p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#" aria-label="Enlace"&gt;Inicio&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 6: Enlace con imagen con alt -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enlace con imagen con alt</h3>
+        <a href="#">
+          <img src="../../img/home_icon.png" alt="Inicio">
+        </a>
+        <p class="description">El nombre accesible proviene del texto alternativo de la imagen (`alt`).</p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#"&gt;
+  &lt;img src="../../img/home_icon.png" alt="Inicio"&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 7: Enlace con imagen con alt vacío -->
+    <div class="card incorrecte">
+      <div class="example">
+        <h3>Enlace con imagen con alt vacío</h3>
+        <a href="#">
+          <img src="../../img/home_icon.png" alt="">
+        </a>
+        <p class="description">Con `alt=""`, la imagen es ignorada por los lectores de pantalla. Asegúrate de que el enlace tenga otro mecanismo para proporcionar un nombre accesible.</p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#"&gt;
+  &lt;img src="../../img/home_icon.png" alt=""&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 8: Enlace con imagen sin alt -->
+    <div class="card incorrecte">
+      <div class="example">
+        <h3>Enlace con imagen sin alt</h3>
+        <a href="#">
+          <img src="../../img/home_icon.png">
+        </a>
+        <p class="description">Sin `alt`, el lector de pantalla puede leer el nombre del archivo, lo cual no es útil.</p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#"&gt;
+  &lt;img src="../../img/home_icon.png"&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Ejemplo: Enlace con texto solo para lectores de pantalla (sr-only) -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Enlace con texto solo para lectores de pantalla</h3>
+        <a href="#">
+          <span class="visually-hidden">Inicio (solo lector de pantalla)</span>
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+        <p class="description">
+          El texto <code>Inicio (solo lector de pantalla)</code> está oculto visualmente pero será anunciado por los lectores de pantalla gracias a la clase <code>visually-hidden</code> (también conocida como <code>sr-only</code>).
+        </p>
+      </div>
+      <div>
+        <pre><code>&lt;a href="#"&gt;
+  &lt;span class="visually-hidden"&gt;Inicio (solo lector de pantalla)&lt;/span&gt;
+  &lt;i class="fas fa-home" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 10: Enlace con aria-labelledby y etiqueta visible -->
+    <div class="card situacional">
+      <div class="example">
+        <h3>Enlace con aria-labelledby y etiqueta visible</h3>
+        <span id="lbl10" class="visually-hidden" aria-hidden="true">Nombre vía aria-labelledby</span>
+        <a href="#" aria-labelledby="lbl10">
+          Etiqueta visible
+        </a>
+        <p class="description">
+          Si hay <code>aria-labelledby</code> y texto visible, el lector de pantalla prioriza <strong>aria-labelledby</strong>.<br>
+          <em>En este caso, se leerá: "Nombre vía aria-labelledby"</em>
+        </p>
+      </div>
+      <div>
+        <pre><code>&lt;span id="lbl10" class="visually-hidden"&gt;
+  Nombre vía aria-labelledby
+&lt;/span&gt;
+&lt;a
+  href="#"
+  aria-labelledby="lbl10"
+&gt;
+  Etiqueta visible
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 11: Enlace con aria-label y etiqueta visible -->
+    <div class="card situacional">
+      <div class="example">
+        <h3>Enlace con aria-label y etiqueta visible</h3>
+        <a href="#" aria-label="Nombre vía aria-label">
+          Etiqueta visible
+        </a>
+        <p class="description">
+          Si hay <code>aria-label</code> y texto visible, el lector de pantalla prioriza <strong>aria-label</strong>.<br>
+          <em>En este caso, se leerá: "Nombre vía aria-label"</em>
+        </p>
+      </div>
+      <div>
+        <pre><code>&lt;a
+  href="#"
+  aria-label="Nombre vía aria-label"
+&gt;
+  Etiqueta visible
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 9: Enlace con aria-label, aria-labelledby y etiqueta visible -->
+    <div class="card situacional">
+      <div class="example">
+        <h3>Enlace con aria-label, aria-labelledby y etiqueta visible</h3>
+        <span id="lbl9">Enlace con label referenciado</span>
+        <a href="#" aria-label="Nombre vía aria-label" aria-labelledby="lbl9">
+          Etiqueta visible
+        </a>
+        <p class="description">
+          Cuando hay <code>aria-label</code>, <code>aria-labelledby</code> y texto visible, el lector de pantalla prioriza: <strong>aria-labelledby</strong> &gt; <strong>aria-label</strong> &gt; texto visible.<br>
+          <em>En este caso, se leerá: "Enlace con label referenciado"</em>
+        </p>
+      </div>
+      <div>
+        <pre><code>&lt;span id="lbl9" &gt;
+  Enlace con label referenciado
+&lt;/span&gt;
+&lt;a
+  href="#"
+  aria-label="Nombre vía aria-label"
+  aria-labelledby="lbl9"
+&gt;
+  Etiqueta visible
+&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Formación Accesibilidad</p>
+  </footer>
+</body>
+</html>

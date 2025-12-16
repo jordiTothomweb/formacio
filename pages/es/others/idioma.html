@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Idioma - Formación</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+    .card {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      width: 100%;
+      align-items: flex-start;
+    }
+    .card.correcte {
+      border-left: 5px solid #4caf50;
+    }
+    .card.incorrecte {
+      border-left: 5px solid #f44336;
+    }
+    .example {
+      flex: 1;
+      min-width: 220px;
+    }
+    .card .code-box {
+      flex: 1;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin: 0;
+      min-width: 260px;
+      max-width: 400px;
+    }
+    pre {
+      margin: 0;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+    .card .description {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+    }
+    .card h2 {
+      margin-top: 0;
+    }
+    .hero-text {
+      margin-bottom: 1rem;
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    @media (max-width: 900px) {
+      .card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .card .code-box {
+        max-width: 100%;
+        min-width: 0;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inicio.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Idioma</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../others/idioma.html">Idioma</a></li>
+        <li><a href="../others/nombre.html">Enlaces Accesibles</a></li>
+        <li><a href="../images/ejemplo-imagenes-iconos.html">Iconos</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+
+    <h2>Ejemplos de uso correcto del idioma</h2>
+
+    <!-- Exemple incorrecte: frase en anglès sense especificar idioma -->
+    <div class="card incorrecte">
+      <div class="example">
+        <h3>Frase en inglés sin especificar idioma</h3>
+        <p>This paragraph is written in English.</p>
+        <p class="description">El lector de pantalla leerá el texto como si fuera español.</p>
+      </div>
+      <div>
+        <pre><code>&lt;p&gt;This paragraph is written in English.&lt;/p&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Exemple correcte: paràgraf amb lang="en" -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Párrafo con <code>lang="en"</code></h3>
+        <p lang="en">This paragraph is written in English.</p>
+        <p class="description">El lector de pantalla leerá correctamente el texto en inglés.</p>
+      </div>
+      <div>
+        <pre><code>&lt;p lang="en"&gt;This paragraph is written in English.&lt;/p&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Exemple incorrecte: barreja d'idiomes sense lang -->
+    <div class="card incorrecte">
+      <div class="example">
+        <h3>Mezcla de idiomas sin <code>lang</code></h3>
+        <div class="hero-text" style="background-image: url('../../img/ejemplo.jpg'); background-size: cover; background-position: center; padding: 5rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+          <div style="color: white; font-size: 70px; font-family: sans-serif; font-weight: 400; line-height: 84px;">Be yourself</div>
+          <div style="color: white; font-size: 20px; font-family: sans-serif; font-weight: 400; line-height: 20px;">Sé tú mismo</div>
+        </div>
+        <p class="description">El lector de pantalla leerá todo como español, aunque hay inglés y español.</p>
+      </div>
+      <div>
+        <pre><code>&lt;div style="..."&gt;...&lt;/div&gt;
+&lt;div style="..."&gt;...&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Ejemplo correcto: combinación de idiomas -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Combinación de idiomas (inglés y español)</h3>
+        <div class="hero-text" style="background-image: url('../../img/ejemplo.jpg'); background-size: cover; background-position: center; padding: 5rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+          <div lang="en" style="color: white; font-size: 70px; font-family: sans-serif; font-weight: 400; line-height: 84px;">Be yourself</div>
+          <div lang="es" style="color: white; font-size: 20px; font-family: sans-serif; font-weight: 400; line-height: 20px;">Sé tú mismo</div>
+        </div>
+        <p class="description">Cada fragmento tiene el idioma correcto y el lector de pantalla lo leerá adecuadamente.</p>
+      </div>
+      <div>
+        <pre><code>&lt;div style="..." lang="en"&gt;...&lt;/div&gt;
+&lt;div style="..." lang="es"&gt;...&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Formulari amb idioma mal configurat -->
+    <div class="card incorrecte">
+      <div class="example">
+        <h3>Formulario con idioma mal configurado</h3>
+        <p>En este formulario, el idioma no está indicado. Aunque está escrito en inglés, el lector de pantalla lo interpretará como si fuera español (idioma global de la página).</p>
+        <form>
+          <label for="input-mistake">Price:</label>
+          <input type="number" id="input-mistake" value="1234.56" />
+
+          <label for="date-mistake">Date:</label>
+          <input type="date" id="date-mistake" />
+
+          <label for="text-mistake">Comment:</label>
+          <textarea id="text-mistake">Please enter your feedback</textarea>
+        </form>
+      </div>
+      <div>
+        <pre><code>&lt;form&gt;
+  &lt;label for="input-mistake"&gt;Price:&lt;/label&gt;
+  &lt;input type="number" id="input-mistake" value="1234.56" /&gt;
+
+  &lt;label for="date-mistake"&gt;Date:&lt;/label&gt;
+  &lt;input type="date" id="date-mistake" /&gt;
+
+  &lt;label for="text-mistake"&gt;Comment:&lt;/label&gt;
+  &lt;textarea id="text-mistake"&gt;Please enter your feedback&lt;/textarea&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Formulario con idioma bien configurado -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Formulario con idioma bien configurado (inglés US)</h3>
+        <p>En este formulario, el idioma está configurado correctamente con <code>lang="en-US"</code> para garantizar una lectura adecuada y el formato correcto de números.</p>
+        <form lang="en-US">
+          <label for="input-correct">Price (USD):</label>
+          <input type="number" id="input-correct" value="1234.56" />
+
+          <label for="date-correct">Date:</label>
+          <input type="date" id="date-correct" />
+
+          <label for="text-correct">Comment:</label>
+          <textarea id="text-correct">Please enter your feedback</textarea>
+        </form>
+      </div>
+      <div>
+        <pre><code>&lt;form lang="en-US"&gt;
+  &lt;label for="input-correct"&gt;Price (USD):&lt;/label&gt;
+  &lt;input type="number" id="input-correct" value="1234.56" /&gt;
+
+  &lt;label for="date-correct"&gt;Date:&lt;/label&gt;
+  &lt;input type="date" id="date-correct" /&gt;
+
+  &lt;label for="text-correct"&gt;Comment:&lt;/label&gt;
+  &lt;textarea id="text-correct"&gt;Please enter your feedback&lt;/textarea&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>© 2025 Formación Accesibilidad</p>
+  </footer>
+</body>
+</html>

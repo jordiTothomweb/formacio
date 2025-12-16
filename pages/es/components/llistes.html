@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos de Listas</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    main {
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .example {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .example h2 {
+      margin-top: 0;
+    }
+    .code-box {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      font-size: 0.95rem;
+      overflow-x: auto;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1565c0;
+    }
+    #btn-bad-list:focus-visible,
+    #btn-good-list:focus-visible {
+      outline: 3px solid #ff9800;
+      outline-offset: 2px;
+    }
+
+    /* Cards llargs per als elements de la llista */
+    ul.bad-list, ul#good-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem 0;
+    }
+    ul.bad-list li,
+    ul#good-list li {
+      background: #e3eafc;
+      border: 1px solid #b6c6e3;
+      border-radius: 6px;
+      margin-bottom: 0.7rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px #b6c6e322;
+      font-size: 1.1rem;
+    }
+    ul.bad-list li:hover,
+    ul#good-list li:hover {
+      background: #d0e0fa;
+      box-shadow: 0 2px 8px #b6c6e355;
+    }
+    ul.bad-list li:active,
+    ul#good-list li:active {
+      background: #b6c6e3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inicio.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Ejemplos de Listas</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../components/cards.html">Tarjetas</a></li>
+        <li><a href="../components/buttons.html">Botones</a></li>
+        <li><a href="../components/events.html">Eventos</a></li>
+        <li><a href="../components/llistes.html">Listas</a></li>
+        <li><a href="../components/slider.html">Slider</a></li>
+        <li><a href="../components/carrousel.html">Carrusel</a></li>
+        <li><a href="../components/form.html">Formulario</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Ejemplos de Listas</h1>
+
+    <!-- Ejemplo 1: Lista incorrecta -->
+    <section class="card incorrecte example">
+      <h2>Ejemplo 1: Lista incorrecta</h2>
+      <p>Este ejemplo muestra una lista que no utiliza elementos semánticos adecuados.</p>
+      <div>
+        <div>Elemento 1</div>
+        <div>Elemento 2</div>
+        <div>Elemento 3</div>
+      </div>
+      <div class="code-box"><pre><code>&lt;div&gt;
+  &lt;div&gt;Elemento 1&lt;/div&gt;
+  &lt;div&gt;Elemento 2&lt;/div&gt;
+  &lt;div&gt;Elemento 3&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+    </section>
+
+    <!-- Ejemplo 2: Lista correcta -->
+    <section class="card correcte example">
+      <h2>Ejemplo 2: Lista correcta</h2>
+      <p>Este ejemplo utiliza elementos semánticos adequats per a una llista.</p>
+      <ul>
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+      </ul>
+      <div class="code-box"><pre><code>&lt;ul&gt;
+  &lt;li&gt;Elemento 1&lt;/li&gt;
+  &lt;li&gt;Elemento 2&lt;/li&gt;
+  &lt;li&gt;Elemento 3&lt;/li&gt;
+&lt;/ul&gt;</code></pre></div>
+    </section>
+
+    <!-- Ejemplo 3: Lista con botones -->
+    <section class="card correcte example">
+      <h2>Ejemplo 3: Lista con botones</h2>
+      <p>Este ejemplo muestra una lista interactiva con botones.</p>
+      <ul id="good-list">
+        <li>
+          Elemento 1
+          <button>Acción 1</button>
+        </li>
+        <li>
+          Elemento 2
+          <button>Acción 2</button>
+        </li>
+        <li>
+          Elemento 3
+          <button>Acción 3</button>
+        </li>
+      </ul>
+      <div class="code-box"><pre><code>&lt;ul id="good-list"&gt;
+  &lt;li&gt;
+    Elemento 1
+    &lt;button&gt;Acción 1&lt;/button&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    Elemento 2
+    &lt;button&gt;Acción 2&lt;/button&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    Elemento 3
+    &lt;button&gt;Acción 3&lt;/button&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Formación Listas</p>
+  </footer>
+</body>
+</html>

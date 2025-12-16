@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Receta de patatas fritas</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    [role="banner"] { background-color: #f0f0f0; padding: 1rem; }
+    [role="main"] { padding: 2rem; }
+    [role="contentinfo"] { background-color: #ddd; padding: 1rem; text-align: center; }
+    [role="table"] { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 1rem; }
+    [role="row"] { display: contents; }
+    [role="columnheader"], [role="rowheader"] { font-weight: bold; }
+    [role="cell"], [role="columnheader"], [role="rowheader"] { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+    [role="list"] { display: flex; flex-direction: column; gap: 0.5rem; padding-left: 1.5rem; }
+    [role="listitem"] { position: relative; }
+    [role="listitem"]::before { content: "•"; position: absolute; left: -1rem; }
+    [role="heading"] { font-weight: bold; margin-top: 1rem; }
+    [role="heading"][aria-level="2"] { font-size: 1.5rem; }
+    [role="heading"][aria-level="3"] { font-size: 1.25rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inici.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Estructura ARIA</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./estructura-divs.html">Estructura incorrecta</a></li>
+        <li><a href="./estructura-semantica.html">Estructura correcta</a></li>
+        <li><a href="./estructura-aria.html">Estructura ARIA</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contingut amb ARIA roles -->
+  <div role="main">
+    <div>
+        <img style="width: 400px; height: 250px;" src="https://cdn.pixabay.com/photo/2016/11/20/09/06/bowl-1842294_1280.jpg" alt="Bol de patatas fritas" class="img-fluid">
+    </div>
+    <div>
+      <div role="heading" aria-level="2">Ingredientes (para 4 personas)</div>
+      <div role="list">
+        <div role="listitem">700g de patatas</div>
+        <div role="listitem">Aceite de oliva</div>
+        <div role="listitem">Sal</div>
+      </div>
+    </div>
+    <div>
+      <div role="heading" aria-level="2">Elaboración</div>
+      <div role="list">
+        <div role="listitem">1. Pela y corta las patatas en tiras.</div>
+        <div role="listitem">2. Ponlas en un recipiente con agua durante 5 minutos para eliminar el almidón.</div>
+        <div role="listitem">3. Calienta aceite en una sartén.</div>
+        <div role="listitem">4. Añade las patatas cortadas y la sal.</div>
+        <div role="listitem">5. Fríelas al gusto.</div>
+        <div role="listitem">6. Sírvelas en un plato.</div>
+      </div>
+    </div>
+    <div>
+      <div role="heading" aria-level="2">Presupuesto</div>
+      <div role="table">
+        <div role="row">
+          <div role="columnheader">Producto</div>
+          <div role="columnheader">Cantidad</div>
+          <div role="columnheader">Precio</div>
+        </div>
+        <div role="row">
+          <div role="rowheader">Patatas</div>
+          <div role="cell">1kg</div>
+          <div role="cell">1,70 €</div>
+        </div>
+        <div role="row">
+          <div role="rowheader">Aceite de oliva</div>
+          <div role="cell">1 l</div>
+          <div role="cell">10,00 €</div>
+        </div>
+        <div role="row">
+          <div role="rowheader">Total</div>
+          <div role="cell">-</div>
+          <div role="cell">11,70 €</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Peu de pàgina amb role="contentinfo" -->
+  <div role="contentinfo">
+    <p>© 2025 Recetas con ARIA</p>
+  </div>
+</body>
+</html>

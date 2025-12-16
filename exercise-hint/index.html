@@ -20,7 +20,9 @@
       <button 
         id="menu-toggle"
         class="icon-btn"
-        aria-label="Hamburguesa"
+        aria-label="Obrir Menú"
+        aria-expanded=""true"
+        aria-contols="side-menu"
         type="button"
       >
         <!-- Icona d'hamburguesa SVG -->
@@ -28,7 +30,7 @@
         | FIXME2: falta algun atribut per a indicar que la imatge no sigui visible per a lectors de pantalla, |
         |        però que sí que ho sigui per a persones amb discapacitat visual.                            |
         =================================================================================================  -->
-        <svg width="24" height="24" focusable="false">
+        <svg width="24" height="24" focusable="false" aria-hidden="true">
           <rect y="4" width="24" height="3" rx="1.5" fill="currentColor"/>
           <rect y="10.5" width="24" height="3" rx="1.5" fill="currentColor"/>
           <rect y="17" width="24" height="3" rx="1.5" fill="currentColor"/>
@@ -94,7 +96,7 @@
       | FIXME4: Intentem relacionar el header amb la llista                                                  |
       =================================================================================================  -->
       <h2 class="sr-only" id="side-menu-title">Menú de navegació</h2>
-      <ul>
+      <ul aria-labelledby="side-menu-title">
         <li><a href="#inici">Inici</a></li>
         <li><a href="#serveis">Serveis</a></li>
         <li><a href="#equip">Equip</a></li>
@@ -108,7 +110,7 @@
     <!-- =============================================================================================== |
     | FIXME5: Caldria que el missatge s'anunciés cada vegada que s'actualitza (2 atributs)                |
     =================================================================================================  -->
-    <div class="carousel-container" >
+    <div class="carousel-container" role="region" aria-live="polite" aria-atomic="true">
       <div class="carousel-controls">
         <button id="carousel-prev" class="carousel-btn" aria-label="Missatge anterior">
           <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -118,6 +120,10 @@
         |        Creus que pot faltar-li alguna cosa per a ser accesible?                                    |  
         |        (Falta un 3r botó, busca "carousel-" en el js)                                              |
         =================================================================================================  -->
+        <button id="carousel-pause" class="carousel-btn" aria-pressed="false" aria-label="Pausa el carrousel">
+          <i class="fa fa-pause" aria-hidden="true"></i>
+          <span class="sr-only">Pausa el carrousel</span>
+        </button>
         <button id="carousel-next" class="carousel-btn" aria-label="Missatge següent">
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
@@ -170,6 +176,10 @@
         | FIXME7: És una llista d'element amb elements dins, moltes tabulacions.                               |
         |        Afegim algo per saltar el contingut de la llista                                             |
         =================================================================================================  -->
+        <a id="skip-cards-btn"
+          class="skip-cards-btn"
+          href="#next-section"
+        >Saltar targetes</a>
         <ul id="cards-list" class="product-card-list">
           <li class="product-card-li">
             <div class="product-card" tabindex="0" role="group" aria-label="Producte 1">
@@ -256,15 +266,18 @@
         | FIXME8: Revisió estructura de la taula.                                                             |
         =================================================================================================  -->
         <table id="equip-table" class="equip-table" aria-label="Membres de l'equip">
-          <tbody>
+          <thead>
             <tr>
-              <td scope="col">
+              <th scope="col">
                 <button type="button" class="sort-btn" aria-label="Ordena per nom" data-sort="nom">Nom <span aria-hidden="true">↕</span></button>
-              </td>
-              <td scope="col">
+              </th>
+              <th scope="col">
                 <button type="button" class="sort-btn" aria-label="Ordena per rol" data-sort="rol">Rol <span aria-hidden="true">↕</span></button>
-              </td>
+              </th>
             </tr>
+          </thead>
+          <tbody>
+            
             <tr>
               <td>Anna</td>
               <td>Desenvolupadora Frontend</td>
@@ -297,6 +310,7 @@
       | FIXME9: Falten rols i atributs per a poder considerar el component accessible.                      |
       =================================================================================================  -->
       <div class="slider-row" aria-labelledby="satisfaccio-slider"
+        role="slider" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5" tabindex="0"
         style="width:220px; display:flex; align-items:center; gap:1em;">
         <div id="slider-bar" style="flex:1; height:8px; background:#e0e0e0; border-radius:4px; position:relative;">
           <div id="slider-thumb" style="position:absolute; top:-6px; left:50%; width:20px; height:20px; background:#1976d2; border-radius:50%; box-shadow:0 1px 4px #1976d233; border:2px solid #fff; transition:left 0.1s;"></div>
@@ -312,10 +326,10 @@
       <h2 id="contact-section">Contacte</h2>
       <form id="contact-form" novalidate>
         <label for="name">Nom</label>
-        <input id="name" name="name" required>
+        <input aria-describedby="name-error" id="name" name="name" required>
         <span id="name-error" class="error-message" aria-live="polite"></span>
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" required>
+        <input aria-describedby="email-error" id="email" name="email" type="email" required>
         <span id="email-error" class="error-message" aria-live="polite"></span>
         <button type="submit">Envia</button>
       </form>
@@ -329,8 +343,8 @@
         | FIXME11: Falta indicar l'estat i quin text descriu el contingut ocult.                               |
         =================================================================================================  -->
         <div>
-          <button type="button" aria-controls="faq1" id="faq1-btn">Què és l’accessibilitat web?</button>
-          <div id="faq1" role="region" hidden>
+          <button type="button" aria-expanded="false" aria-controls="faq1" id="faq1-btn">Què és l’accessibilitat web?</button>
+          <div id="faq1" role="region" hidden aria-labelledby="faq1-btn">
             <p>L’accessibilitat web és el conjunt de tècniques i bones pràctiques per fer que els llocs web siguin usables per tothom, incloses les persones amb discapacitat.</p>
           </div>
         </div>
@@ -354,7 +368,7 @@
   <!-- =============================================================================================== |
   | FIXME12: Aquest missatge tampoc és anunciat per lector.                                              |
   =================================================================================================  -->
-  <div id="notification" class="notification" role="status" hidden></div>
+  <div id="notification" class="notification" role="status" aria-live="polite" aria-atomic="true" hidden></div>
 
   <footer>
     <p>&copy; 2025 Exercici d'Accessibilitat</p>

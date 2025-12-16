@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Inicio - Formación Accesibilidad</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    main {
+      padding: 1rem;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .card {
+      flex: 1 1 calc(33.333% - 1rem);
+      max-width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card i {
+      font-size: 3rem;
+      color: #1976d2;
+      margin-bottom: 1rem;
+    }
+
+    .card h4 {
+      font-size: 1.25rem;
+      margin: 0.5rem 0;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #555;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: auto;
+      padding: 0.5rem 1rem;
+      background-color: #1976d2;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .card a:hover {
+      background-color: #1565c0;
+    }
+
+    h2, h3 {
+      text-align: center; /* Centra els títols */
+      margin-top: 0.5rem; /* Redueix l'espai superior */
+      margin-bottom: 0rem; /* Redueix l'espai inferior */
+    }
+
+    a:focus {
+      outline-offset: 4px; /* Separa el contorn de l'element */
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+          <h1>Página de Inicio</h1>
+        </div>
+        <nav>
+          <ul class="nav-bar">
+            <li><a href="#estructura-idioma">Estructura e Idioma</a></li>
+            <li><a href="#aria">ARIA</a></li>
+            <li><a href="#teclado">Teclado</a></li>
+            <li><a href="#componentes">Componentes</a></li>
+          </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Subsecció 1: Estructura i Idioma -->
+        <h2 id="estructura-idioma">Estructura e Idioma</h2>
+        <div class="grid">
+          <div class="card">
+            <i class="fas fa-sitemap" aria-hidden="true"></i>
+            <h3>Estructura</h3>
+            <p>Ejemplos de cómo estructurar correctamente una página HTML.</p>
+            <a href="./structure/estructura-divs.html">Explora Estructura</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-language" aria-hidden="true"></i>
+            <h3>Idioma</h3>
+            <p>Ejemplos de cómo gestionar el atributo de idioma en HTML.</p>
+            <a href="./others/idioma.html">Explora Idioma</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-signature" aria-hidden="true"></i>
+            <h3>Propósito enlaces</h3>
+            <p>Ejemplos de cómo asignar nombres accesibles a los elementos.</p>
+            <a href="./others/nom.html">Explora Enlaces</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-image" aria-hidden="true"></i>
+            <h3>Imágenes e Iconos</h3>
+            <p>Ejemplos de imágenes decorativas, informativas e iconos accesibles.</p>
+            <a href="./images/exemple-imatges-icones.html">Explora Imágenes e Iconos</a>
+          </div>
+        </div>
+    
+        <!-- Subsecció 2: ARIA -->
+        <h2 id="aria">ARIA</h2>
+        <div class="grid">
+          <div class="card">
+            <i class="fas fa-universal-access" aria-hidden="true"></i>
+            <h3>Atributos ARIA</h3>
+            <p>Aprende a utilizar los atributos ARIA para mejorar la accesibilidad.</p>
+            <a href="./aria/exemple-aria.html">Explora Atributos ARIA</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <h3>Roles ARIA</h3>
+            <p>Descubre cómo utilizar los roles ARIA para estructurar mejor el contenido.</p>
+            <a href="./aria/exemple-roles.html">Explora Roles ARIA</a>
+          </div>
+        </div>
+    
+        <!-- Subsecció 3: Teclado -->
+        <h2 id="teclado">Teclado</h2>
+        <div class="grid">
+          <div class="card">
+            <i class="fas fa-eye" aria-hidden="true"></i>
+            <h3>Foco Visible</h3>
+            <p>Ejemplos de foco visible y cómo mejorarlo.</p>
+            <a href="./focus/focus-visible.html">Explora Foco Visible</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-keyboard" aria-hidden="true"></i>
+            <h3>Teclado</h3>
+            <p>Ejemplos de buen y mal uso del teclado en accesibilidad.</p>
+            <a href="./focus/teclat-bo.html">Explora Teclado</a>
+          </div>
+        </div>
+    
+        <!-- Subsecció 4: Componentes -->
+        <h2 id="componentes">Componentes</h2>
+        <div class="grid">
+          <div class="card">
+            <i class="fas fa-th-large" aria-hidden="true"></i>
+            <h3>Tarjetas</h3>
+            <p>Ejemplos de tarjetas accesibles con ARIA y teclado.</p>
+            <a href="./components/cards.html">Explora Tarjetas</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-hand-pointer" aria-hidden="true"></i>
+            <h3>Botones</h3>
+            <p>Ejemplos de botones y eventos.</p>
+            <a href="./components/buttons.html">Explora Botones</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-list" aria-hidden="true"></i>
+            <h3>Listas</h3>
+            <p>Ejemplos de listas accesibles y buenas prácticas.</p>
+            <a href="./components/llistes.html">Explora Listas</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-sliders-h" aria-hidden="true"></i>
+            <h3>Slider</h3>
+            <p>Ejemplos de sliders accesibles y progresivos.</p>
+            <a href="./components/slider.html">Explora Slider</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-images" aria-hidden="true"></i>
+            <h3>Carrusel</h3>
+            <p>Ejemplos de carruseles accesibles con teclado y ARIA.</p>
+            <a href="./components/carrousel.html">Explora Carrusel</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-file" aria-hidden="true"></i>
+            <h3>Formulario</h3>
+            <p>Ejemplos de formulario accesible.</p>
+            <a href="./components/form.html">Explora Formulario</a>
+          </div>
+          <!-- Afegeix aquí altres components si cal -->
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2025 Formación Accesibilidad</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos de Imágenes e Iconos - Formación</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .code-box {
+      background-color: #e3f2fd;
+      border: 1px solid #90caf9;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre;
+      overflow-x: auto;
+      text-align: left;
+      padding: 1rem 1.5rem;
+      max-width: 100%;
+      min-width: 0;
+      display: block;
+    }
+    .btn {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      outline: none;
+    }
+    .btn:hover {
+      background-color: #1565c0;
+    }
+    .icon-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .info-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+    }
+
+    .info-card i {
+        font-size: 2rem;
+        color: #4caf50;
+    }
+    .img-decorativa-exemple {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .btn:focus-visible,
+    .icon-btn:focus-visible,
+    button.btn:focus-visible,
+    button.icon-btn:focus-visible {
+      outline: 3px solid #1976d2;
+      box-shadow: 0 0 0 4px #ffb300;
+      outline-offset: 2px;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inici.html" aria-label="Torna enrere">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Ejemplos de Imágenes e Iconos</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="../others/idioma.html">Idioma</a></li>
+        <li><a href="../others/nom.html">Enlaces Accesibles</a></li>
+        <li><a href="../images/exemple-imatges-icones.html">Iconos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="aria-exemples">
+    <!-- Ejemplo 1: Imágenes decorativas -->
+    <section class="card">
+      <h2>Ejemplo 1: Imágenes decorativas</h2>
+      <p>Las imágenes decorativas no deben ser anunciadas por los lectores de pantalla. Esto se puede lograr con <code>alt=""</code>.</p>
+      <div class="img-decorativa-exemple">
+        <a href="crocuspage.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+          <img src="../../img/crocus.jpg" alt="">
+          <strong style="margin-top:0.5rem;">Bulbos de Crocus</strong>
+        </a>
+      </div>
+      <div class="code-box"><pre><code>&lt;a href="crocuspage.html"&gt;
+  &lt;img src="../../img/crocus.jpg" alt="" /&gt;
+  &lt;strong&gt;Bulbos de Crocus&lt;/strong&gt;
+&lt;/a&gt;
+</code></pre></div>
+    </section>
+
+    <!-- Exemple 2: Imatges amb text alternatiu -->
+    <section class="card">
+      <h2>Ejemplo 2: Imágenes con texto alternativo</h2>
+      <p>Las imágenes que transmiten información deben tener un texto alternativo descriptivo.</p>
+      <img src="../../img/Grafico.jpeg" alt="Gráfico de ventas interiores diarias (millones de euros) de los años 2019, 2020 y 2021, por meses." />
+      <div class="code-box"><pre><code>&lt;img src="https://via.placeholder.com/300x200?text=Gráfica+de+ventas" alt="Gráfico de ventas interiores diarias (millones de euros) de los años 2019, 2020 y 2021, por meses." /&gt;</code></pre></div>
+      <div style="margin-top:1rem;">
+        <details>
+          <summary id="alt-grafic-summary"><strong>Alternativa textual del gráfico</strong></summary>
+          <table aria-labelledby="alt-grafic-summary" style="border-collapse: collapse; margin-top: 1em; width: 100%; max-width: 600px;">
+            <caption style="caption-side: bottom; text-align: left; padding-top: 0.7em;">
+              El gráfico muestra la evolución de las ventas interiores diarias (millones de euros) por meses de los años 2019, 2020 y 2021. 
+              El año 2020 presenta una caída notable a partir de marzo-abril, con una recuperación progresiva a finales de año. 
+              El 2021 muestra un crecimiento sostenido, especialmente a partir de septiembre, superando los valores de los años anteriores.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#f0f0f0;">Mes</th>
+                <th scope="col" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#f0f0f0;">2019</th>
+                <th scope="col" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#f0f0f0;">2020</th>
+                <th scope="col" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#f0f0f0;">2021</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Enero</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.900</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.850</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.200</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Febrero</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.800</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.700</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.100</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Marzo</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.750</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.050</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Abril</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.600</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">1.900</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.950</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Mayo</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.700</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.100</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.000</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Junio</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.900</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.100</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Julio</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.000</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.400</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.200</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Agosto</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.950</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.100</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.050</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Septiembre</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.800</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.000</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.900</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Octubre</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.900</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.000</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Noviembre</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">2.700</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.600</td></tr>
+              <tr><th scope="row" style="border:1px solid #bbb; padding:0.4em 0.9em; background:#fafafa;">Diciembre</th><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.700</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">3.200</td><td style="border:1px solid #bbb; padding:0.4em 0.9em;">4.100</td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+    </section>
+
+    <!-- Ejemplo 3: Iconos sin descripción -->
+    <section class="card">
+      <h2>Ejemplo 3: Iconos sin descripción</h2>
+      <p>Los iconos decorativos deben ser ignorados por los lectores de pantalla utilizando <code>aria-hidden="true"</code>. Aquí forman parte de una tarjeta informativa.</p>
+      <div class="info-card">
+        <i class="fas fa-leaf" aria-hidden="true"></i>
+        <div>
+          <h3>Producto ecológico</h3>
+          <p>Este producto está hecho con materiales 100% reciclados.</p>
+        </div>
+      </div>
+      <div class="code-box"><pre><code>&lt;div class="info-card"&gt;
+&lt;i class="fas fa-leaf" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;div&gt;
+    &lt;h3&gt;Producto ecológico&lt;/h3&gt;
+    &lt;p&gt;Este producto está hecho con materiales 100% reciclados.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+    </section>
+
+    <!-- Ejemplo 5: Botones con iconos -->
+    <section class="card">
+      <h2>Ejemplo 5: Botones con iconos</h2>
+      <p>Los botones con iconos deben tener una descripción clara utilizando <code>aria-label</code>. Los iconos internos deben tener <code>aria-hidden="true"</code>.</p>
+      <div>
+        <button class="btn" aria-label="Anterior"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+        <button class="btn" aria-label="Siguiente"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+      <div class="code-box"><pre><code>&lt;button class="btn" aria-label="Anterior"&gt;&lt;i class="fas fa-arrow-left" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;button class="btn" aria-label="Siguiente"&gt;&lt;i class="fas fa-arrow-right" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;</code></pre></div>
+    </section>
+
+    <!-- Ejemplo 6: Botones con iconos y texto -->
+    <section class="card">
+      <h2>Ejemplo 6: Botones con iconos y texto</h2>
+      <p>Los botones con iconos pueden incluir texto visible para mejorar la accesibilidad. Los iconos internos deben tener <code>aria-hidden="true"</code>.</p>
+      <div>
+        <button class="btn icon-btn">
+          <i class="fas fa-arrow-left" aria-hidden="true"></i>
+          <span>Anterior</span>
+        </button>
+        <button class="btn icon-btn">
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          <span>Siguiente</span>
+        </button>
+      </div>
+      <div class="code-box"><pre><code>&lt;button class="btn icon-btn"&gt;
+  &lt;i class="fas fa-arrow-left" aria-hidden="true"&gt;&lt;/i&gt;
+  &lt;span&gt;Anterior&lt;/span&gt;
+&lt;/button&gt;
+&lt;button class="btn icon-btn"&gt;
+  &lt;i class="fas fa-arrow-right" aria-hidden="true"&gt;&lt;/i&gt;
+  &lt;span&gt;Siguiente&lt;/span&gt;
+&lt;/button&gt;</code></pre></div>
+    </section>
+
+    <!-- Ejemplo 7: Iconos de redes sociales funcionales -->
+    <div class="card">
+      <h2>Iconos de redes sociales con <code>alt</code> o <code>aria-label</code></h2>
+      <div>
+        <a href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener">
+          <i class="fab fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+        <p class="description">
+          Los iconos de redes sociales son funcionales (actúan como enlaces) y tienen una descripción accesible con <code>aria-label</code> en el contenedor. Los iconos internos llevan <code>aria-hidden="true"</code> para evitar redundancia.<br>
+          Alternativamente, si se utiliza una imagen, se debe poner <code>alt="Nombre de la red"</code> en la imagen.
+        </p>
+      </div>
+      <div class="code-box"><pre><code>&lt;a href="https://twitter.com" aria-label="Twitter"&gt;
+  &lt;i class="fab fa-twitter" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;
+&lt;a href="https://facebook.com" aria-label="Facebook"&gt;
+  &lt;i class="fab fa-facebook" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;
+&lt;a href="https://instagram.com" aria-label="Instagram"&gt;
+  &lt;i class="fab fa-instagram" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/a&gt;</code></pre></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Formación Imágenes e Iconos</p>
+  </footer>
+</body>
+</html>

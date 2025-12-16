@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos de Atributos ARIA - Formación</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Estilos para los bloques de código informativos */
+    .code-box {
+      background-color: #e3f2fd;
+      border: 1px solid #90caf9;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    /* Estilos para mejorar la visibilidad del focus */
+    :focus {
+        outline: 3px solid #ff9800; /* Contorno naranja para destacar el focus */
+        outline-offset: 4px; /* Separa el contorno del elemento */
+    }
+
+    /* Ajustes específicos para los botones */
+    .btn:focus,
+    .btn-tab:focus {
+        outline: 3px solid #ff9800;
+        outline-offset: 4px;
+    }
+
+    /* Mejora visual menú aria-haspopup */
+    #menu-exemple[role="menu"] {
+      list-style: none;
+      padding: 0.3em 0;
+      margin: 0;
+    }
+    .menuitem-btn {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      color: #222;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.15s;
+    }
+    .menuitem-btn:hover, .menuitem-btn:focus {
+      background: #e3eafc;
+      color: #1976d2;
+      outline: none;
+    }
+
+    /* Checkbox accesible estilizado */
+    .checkbox-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7em;
+      background: #fff;
+      border: 2px solid #1976d2;
+      border-radius: 4px;
+      padding: 0.4em 1em;
+      font-size: 1em;
+      color: #222;
+      cursor: pointer;
+      transition: background 0.15s, border 0.15s;
+      position: relative;
+      min-width: 120px;
+    }
+    .checkbox-btn[aria-checked="true"] {
+      background: #e3eafc;
+      border-color: #388e3c;
+    }
+    .checkbox-icon {
+      display: inline-block;
+      width: 1.2em;
+      height: 1.2em;
+      border: 2px solid #1976d2;
+      border-radius: 3px;
+      background: #fff;
+      margin-right: 0.2em;
+      position: relative;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .checkbox-btn[aria-checked="true"] .checkbox-icon {
+      background: #388e3c;
+      border-color: #388e3c;
+    }
+    .checkbox-btn[aria-checked="true"] .checkbox-icon::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0.32em;
+      top: 0.08em;
+      width: 0.35em;
+      height: 0.7em;
+      border: solid #fff;
+      border-width: 0 0.18em 0.18em 0;
+      transform: rotate(45deg);
+    }
+    .checkbox-btn:focus-visible {
+      outline: 2px solid #1976d2;
+      background: #e3eafc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inicio.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Ejemplos de Atributos ARIA</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./exemple-aria.html">Ejemplos de Atributos ARIA</a></li>
+        <li><a href="./exemple-roles.html">Ejemplos de Roles ARIA</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="aria-exemples">
+    <!-- Ejemplo 1: aria-label -->
+    <section class="card">
+      <h2>Ejemplo 1: `aria-label`</h2>
+      <p>Este ejemplo muestra cómo utilizar el atributo <code>aria-label</code> para proporcionar una etiqueta personalizada a un elemento.</p>
+      <button class="btn" aria-label="Guardar los cambios">💾</button>
+      <div class="code-box">&lt;button class="btn" aria-label="Guardar los cambios"&gt;💾&lt;/button&gt;</div>
+    </section>
+
+    <!-- Ejemplo 2: aria-labelledby -->
+    <section class="card">
+      <h2>Ejemplo 2: `aria-labelledby`</h2>
+      <p>Este ejemplo muestra cómo utilizar el atributo <code>aria-labelledby</code> para asociar un elemento con una etiqueta externa.</p>
+      <div>
+        <h3 id="titulo-formulario">Formulario de contacto</h3>
+        <form aria-labelledby="titulo-formulario">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" />
+        </form>
+      </div>
+      <div class="code-box">&lt;h3 id="titulo-formulario"&gt;Formulario de contacto&lt;/h3&gt;
+&lt;form aria-labelledby="titulo-formulario"&gt;
+    &lt;label for="nombre"&gt;Nombre:&lt;/label&gt;
+    &lt;input type="text" id="nombre" /&gt;
+&lt;/form&gt;</div>
+    </section>
+
+    <!-- Ejemplo 3: aria-describedby -->
+    <section class="card">
+      <h2>Ejemplo 3: `aria-describedby`</h2>
+      <p>Este ejemplo muestra cómo utilizar el atributo <code>aria-describedby</code> para proporcionar una descripción adicional a un elemento.</p>
+      <form>
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" aria-describedby="ayuda-email" />
+        <div id="ayuda-email">Introduce un correo electrónico válido.</div>
+      </form>
+      <div class="code-box">&lt;label for="email"&gt;Correo electrónico:&lt;/label&gt;
+&lt;input type="email" id="email" aria-describedby="ayuda-email" /&gt;
+&lt;div id="ayuda-email"&gt;Introduce un correo electrónico válido.&lt;/div&gt;</div>
+    </section>
+
+    <!-- Ejemplo 4: aria-hidden -->
+    <section class="card">
+      <h2>Ejemplo 4: `aria-hidden`</h2>
+      <p>Este ejemplo muestra cómo utilizar el atributo <code>aria-hidden</code> para ocultar un elemento a todos los productos de soporte.</p>
+      <div>
+        <i class="fas fa-star" aria-hidden="true" style="color: #388e3c;" title="Correcto"></i>
+        <span>Valoración: 5 estrellas</span>
+        <span style="color: #388e3c; margin-left: 0.5em; font-size: 0.95em;" aria-hidden="true">✔️ Correcto</span>
+      </div>
+      <div>
+        <i class="fas fa-star" aria-label="filled--star--icon" style="color: #d32f2f;" title="Incorrecto"></i>
+        <span>Valoración: 1 estrella</span>
+        <span style="color: #d32f2f; margin-left: 0.5em; font-size: 0.95em;" aria-hidden="true">❌ Incorrecto</span>
+      </div>
+      <div class="code-box">
+&lt;!-- Correcto: icono oculto para lectores de pantalla --&gt;
+&lt;div&gt;
+  &lt;span&gt;Valoración: 5 estrellas&lt;/span&gt;
+</div>
+
+&lt;!-- Incorrecto: icono visible para lectores de pantalla sin contexto --&gt;
+&lt;div&gt;
+  &lt;i class="fas fa-star" aria-label="filled--star--icon"&gt;&lt;/i&gt;
+  &lt;span&gt;Valoración: 1 estrella&lt;/span&gt;
+&lt;/div&gt;
+</div>
+    </section>
+
+    <!-- Ejemplo 5: aria-live -->
+    <section class="card">
+      <h2>Ejemplo 5: `aria-live`</h2>
+      <p>Este ejemplo muestra cómo utilizar el atributo <code>aria-live</code> para anunciar cambios dinámicos en una región de la página.</p>
+      <button style=" margin-bottom: 0;" class="btn" onclick="actualizarMensaje()">Actualiza mensaje (polite)</button>
+      <div aria-live="polite" id="live-region" class="alert-box"></div>
+      <button style="margin-top: 2rem; margin-bottom: 0;" class="btn" onclick="actualizarMensajeAssertive()">Actualiza mensaje (assertive)</button>
+      <div aria-live="assertive" id="live-region-assertive" class="alert-box"></div>
+      <div class="code-box">&lt;button class="btn" onclick="actualizarMensaje()"&gt;Actualiza mensaje (polite)&lt;/button&gt;
+&lt;div aria-live="polite" id="live-region" class="alert-box"&gt;&lt;/div&gt;
+&lt;button class="btn" onclick="actualizarMensajeAssertive()"&gt;Actualiza mensaje (assertive)&lt;/button&gt;
+&lt;div aria-live="assertive" id="live-region-assertive" class="alert-box"&gt;&lt;/div&gt;
+
+let contador = 0;
+function actualizarMensaje() {
+    const liveRegion = document.getElementById('live-region');
+    contador++;
+    // Alterna el mensaje añadiendo o quitando un espacio al final
+    if (contador % 2 === 1) {
+        liveRegion.textContent = '¡El contenido se ha actualizado correctamente!\u00A0';
+    } else {
+        liveRegion.textContent = '¡El contenido se ha actualizado correctamente!';
+    }
+    liveRegion.hidden = false;
+}
+
+let contadorAssertive = 0;
+function actualizarMensajeAssertive() {
+    const liveRegion = document.getElementById('live-region-assertive');
+    contadorAssertive++;
+    if (contadorAssertive % 2 === 1) {
+        liveRegion.textContent = '¡Mensaje assertive actualizado!\u00A0';
+    } else {
+        liveRegion.textContent = '¡Mensaje assertive actualizado!';
+    }
+    liveRegion.hidden = false;
+}</div>
+    </section>
+
+    <!-- Ejemplo 6: aria-required -->
+    <section class="card">
+      <h2>Ejemplo 6: <code>aria-required</code></h2>
+      <p>
+        <code>aria-required="true"</code> indica que un campo es obligatorio, aunque no tenga el atributo <code>required</code> HTML.
+      </p>
+      <form>
+        <label for="nombre-req">Nombre:</label>
+        <input id="nombre-req" aria-required="true" />
+      </form>
+      <div class="code-box">&lt;input id="nombre-req" aria-required="true" /&gt;</div>
+    </section>
+
+    <!-- Ejemplo 7: aria-disabled -->
+    <section class="card">
+      <h2>Ejemplo 7: <code>aria-disabled</code></h2>
+      <p>
+        <code>aria-disabled="true"</code> indica que un elemento está desactivado para tecnología asistiva, aunque no tenga el atributo <code>disabled</code> HTML.
+        En este caso el ítem no será tabulable ya que deja de ser interactuable. 
+      </p>
+      <div class="btn" role="button" aria-disabled="true" style="opacity:0.5; pointer-events:none;">Botón desactivado</div>
+      <div class="code-box">&lt;div class="btn" role="button" aria-disabled="true" &gt;Botón desactivado&lt;/div&gt;</div>
+    </section>
+
+    <!-- Ejemplo 8: aria-haspopup con role="menuitem" y navegación por flechas -->
+    <section class="card">
+      <h2>Ejemplo 8: <code>aria-haspopup</code> y <code>role="menuitem"</code> con navegación por flechas</h2>
+      <p>
+        <code>aria-haspopup="true"</code> indica que el botón abre un menú, diálogo o lista desplegable.<br>
+        Si se utiliza <code>role="menuitem"</code>, hay que permitir la navegación con flechas.
+      </p>
+      <button class="btn" aria-haspopup="true" aria-controls="menu-exemple" aria-expanded="false" onclick="toggleMenuExemple(this)">
+        Muestra menú <i class="fas fa-caret-down"></i>
+      </button>
+      <div id="menu-exemple" role="menu" style="display:none; margin-top:0.5em; background:#fff; border:1px solid #ccc; border-radius:4px; min-width:160px; box-shadow:0 2px 8px #0002; padding:0.3em 0;">
+        <button role="menuitem" class="menuitem-btn" tabindex="0">Opción 1</button>
+        <button role="menuitem" class="menuitem-btn" tabindex="-1">Opción 2</button>
+        <button role="menuitem" class="menuitem-btn" tabindex="-1">Opción 3</button>
+      </div>
+      <div class="code-box">&lt;button aria-haspopup="true" aria-controls="menu-exemple" aria-expanded="false"&gt;Muestra menú&lt;/button&gt;
+&lt;div id="menu-exemple" role="menu"&gt;
+  &lt;button role="menuitem" tabindex="0"&gt;Opción 1&lt;/button&gt;
+  &lt;button role="menuitem" tabindex="-1"&gt;Opción 2&lt;/button&gt;
+  &lt;button role="menuitem" tabindex="-1"&gt;Opción 3&lt;/button&gt;
+&lt;/div&gt;</div>
+    </section>
+
+    <!-- Ejemplo 9: aria-checked -->
+    <section class="card">
+      <h2>Ejemplo 9: <code>aria-checked</code></h2>
+      <p>
+        <code>aria-checked</code> se utiliza para indicar el estado de elementos tipo checkbox, radio o botones toggle personalizados.
+      </p>
+      <button class="checkbox-btn" id="toggle-checked" role="checkbox" aria-checked="false" onclick="toggleCheckedExemple(this)">
+        <span class="checkbox-icon" aria-hidden="true"></span>
+        <span id="checked-label">Desactivado</span>
+      </button>
+      <div class="code-box">&lt;button role="checkbox" aria-checked="false" &gt;
+  &lt;span class="checkbox-icon" aria-hidden="true"&gt;&lt;/span&gt;
+  &lt;span&gt;Desactivado&lt;/span&gt;
+&lt;/button&gt;</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Formación ARIA y Atributos</p>
+  </footer>
+
+  <script>
+    // Ejemplo 5: aria-live
+    let contador = 0;
+    function actualizarMensaje() {
+      const liveRegion = document.getElementById('live-region');
+      contador++;
+      // Alterna el mensaje añadiendo o quitando un espacio al final
+      if (contador % 2 === 1) {
+        liveRegion.textContent = "¡El contenido se ha actualizado correctamente!\u00A0";
+      } else {
+        liveRegion.textContent = "¡El contenido se ha actualizado correctamente!";
+      }
+      liveRegion.hidden = false;
+    }
+
+    let contadorAssertive = 0;
+    function actualizarMensajeAssertive() {
+      const liveRegion = document.getElementById('live-region-assertive');
+      contadorAssertive++;
+      if (contadorAssertive % 2 === 1) {
+        liveRegion.textContent = "¡Mensaje assertive actualizado!\u00A0";
+      } else {
+        liveRegion.textContent = "¡Mensaje assertive actualizado!";
+      }
+      liveRegion.hidden = false;
+    }
+
+    // aria-haspopup ejemplo
+    function toggleMenuExemple(btn) {
+      const menu = document.getElementById('menu-exemple');
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      menu.style.display = expanded ? 'none' : 'block';
+      if (!expanded) {
+        // Focus primer elemento del menú cuando se abre
+        setTimeout(() => {
+          const firstItem = menu.querySelector('[role="menuitem"]');
+          if (firstItem) firstItem.focus();
+        }, 10);
+      }
+    }
+
+    // aria-haspopup ejemplo + navegación por flechas
+    function toggleMenuExemple(btn) {
+      const menu = document.getElementById('menu-exemple');
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      menu.style.display = expanded ? 'none' : 'block';
+      if (!expanded) {
+        // Focus primer elemento del menú cuando se abre
+        setTimeout(() => {
+          const items = menu.querySelectorAll('[role="menuitem"]');
+          if (items.length) {
+            items.forEach((item, i) => item.tabIndex = i === 0 ? 0 : -1);
+            items[0].focus();
+          }
+        }, 10);
+      }
+    }
+
+    // Navegación por flechas para role="menuitem"
+    document.addEventListener('DOMContentLoaded', function () {
+      const menu = document.getElementById('menu-exemple');
+      if (menu) {
+        const items = menu.querySelectorAll('[role="menuitem"]');
+        items.forEach((item, idx) => {
+          item.addEventListener('keydown', (e) => {
+            let nextIdx;
+            if (e.key === 'ArrowDown') {
+              nextIdx = (idx + 1) % items.length;
+              items[nextIdx].focus();
+              items.forEach((btn, i) => btn.tabIndex = i === nextIdx ? 0 : -1);
+              e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+              nextIdx = (idx - 1 + items.length) % items.length;
+              items[nextIdx].focus();
+              items.forEach((btn, i) => btn.tabIndex = i === nextIdx ? 0 : -1);
+              e.preventDefault();
+            }
+          });
+        });
+      }
+    });
+
+    // aria-checked ejemplo
+    function toggleCheckedExemple(btn) {
+      const checked = btn.getAttribute('aria-checked') === 'true';
+      btn.setAttribute('aria-checked', !checked);
+      document.getElementById('checked-label').textContent = checked ? 'Desactivado' : 'Activado';
+    }
+  </script>
+</body>
+</html>

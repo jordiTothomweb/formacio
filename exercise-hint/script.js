@@ -82,7 +82,7 @@ logoutDialog?.addEventListener('keydown', (e) => {
     /* ==========================================================================================
       FIXME: Podem fer algun selector que permeti saber tots els focusables del diàleg 
     ========================================================================================== */
-    const focusables = logoutDialog.querySelectorAll('button:not([disabled])');
+    const focusables = logoutDialog.querySelectorAll('');
     const focusable = Array.prototype.slice.call(focusables);
     const first = focusable[0];
     const last = focusable[focusable.length - 1];

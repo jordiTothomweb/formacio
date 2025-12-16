@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Interactivo - Formación Accesibilidad</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Caso 2: Focus nativo insuficiente */
+    .focus-insuficient, .focus-personalitzat, .focus-amb-espai, .focus-bicolor {
+      background-color: #015ECC;
+      color: white;
+    }
+
+    /* Caso 3: Focus personalizado */
+    .focus-personalitzat:focus-visible {
+      outline: 2px solid red; /* Contorno azul */
+    }
+
+    /* Caso 4: Focus con espacio */
+    .focus-amb-espai:focus-visible {
+      outline: 2px solid #1976d2;
+      outline-offset: 4px; /* Espacio entre el focus y el botón */
+    }
+
+    /* Caso 5: Focus colisionando con el fondo */
+    .focus-colisionant {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+    }
+
+    .focus-colisionant:focus-visible {
+      outline: 2px solid #1976d2; /* El focus se pierde con el fondo */
+      outline-offset: 4px; /* Espacio entre el focus y el botón */
+    }
+
+    /* Caso 6: Focus bicolor */
+    .focus-bicolor-invertit:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px black; /* Contorno negro externo */
+    }
+
+    /* Caso 7: Focus bicolor invertido */
+    .focus-bicolor:focus-visible {
+      outline: 3px solid black;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px white; /* Contorno blanco externo */
+    }
+
+    /* Añadido para centrar las cards y dar formato coherente con el resto */
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+    .card {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      width: 100%;
+      align-items: flex-start;
+    }
+    .card.correcte {
+      border-left: 5px solid #4caf50;
+    }
+    .card.incorrecte {
+      border-left: 5px solid #f44336;
+    }
+    .example {
+      flex: 1;
+      min-width: 220px;
+    }
+    .card .description {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    pre {
+      margin: 0;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+    @media (max-width: 900px) {
+      .card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    .focus-gruixut {
+      outline: 1px solid black;
+    }
+
+    /* Caso 9: Focus con borde grueso */
+    .focus-gruixut:focus-visible {
+      outline: 5px solid black;
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inicio.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Focus visible</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./focus-visible.html">Focus Visible</a></li>
+        <li><a href="./teclat-dolent.html">Teclado Incorrecto</a></li>
+        <li><a href="./teclat-bo.html">Teclado Correcto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Ejemplos de Foco Interactivo</h1>
+
+    <!-- Caso 1: Focus nativo -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Focus nativo</h3>
+        <button>Botón con focus nativo</button>
+        <p class="description">Este es el comportamiento por defecto del focus nativo. No es necesario hacer nada adicional.</p>
+      </div>
+      <div>
+        <pre><code>&lt;button&gt;Botón con focus nativo&lt;/button&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 2: Focus insuficiente -->
+    <div class="card incorrecte">
+      <div class="example">
+        <h3>Focus con contraste insuficiente</h3>
+        <button class="focus-insuficient">Botón con focus insuficiente</button>
+        <p class="description">El focus no es suficiente porque coincide con el color del botón.</p>
+      </div>
+      <div>
+        <pre><code>&lt;button class="focus-insuficient"&gt;
+  Botón con focus con contraste insuficiente
+&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-insuficient {
+    background-color: #015ECC;
+    color: white;
+    border: none;
+}
+
+.focus-insuficient:focus-visible {
+    outline: 2px solid #015ECC;
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 3: Focus personalizado -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Focus personalizado</h3>
+        <button class="focus-personalitzat">Botón con focus personalizado</button>
+        <p class="description">El focus se adapta al botón y cambia de color para hacerlo más visible.</p>
+      </div>
+      <div>
+        <pre><code>&lt;button class="focus-personalitzat"&gt;Botón con focus personalizado&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-personalitzat:focus-visible {
+    outline: 2px solid red;
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 4: Focus con espacio -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Focus con espacio</h3>
+        <button class="focus-amb-espai">Botón con focus con espacio</button>
+        <p class="description">El focus añade un espacio entre el contorno y el botón para mejorar la visibilidad.</p>
+      </div>
+      <div>
+        <pre><code>&lt;button class="focus-amb-espai"&gt;Botón con focus con espacio&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-amb-espai:focus-visible {
+    outline: 2px solid #1976d2;
+    outline-offset: 4px;
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 5: Focus colisionando con el fondo -->
+    <div class="card incorrecte" style="background-color: #83b7eb;">
+      <div class="example">
+        <h3>Focus colisionando con el fondo</h3>
+        <button class="focus-colisionant">Botón con focus colisionando</button>
+        <p class="description">El focus colisiona con el fondo y no es suficientemente visible.</p>
+      </div>
+      <div>
+        <pre><code>&lt;button class="focus-colisionant"&gt;Botón con focus colisionando&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-colisionant {
+    background-color: #1976d2;
+    color: white;
+    border: none;
+}
+
+.focus-colisionant:focus-visible {
+    outline: 2px solid #1976d2;
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 6: Focus bicolor -->
+    <div class="card correcte" style="background-color: #83b7eb;">
+      <div class="example">
+        <h3>Focus bicolor</h3>
+        <button class="focus-bicolor">Botón con focus bicolor</button>
+        <p class="description">El focus utiliza dos colores (blanco y negro) para destacarse claramente.</p>
+      </div>
+      <div>
+        <pre><code>&lt;button class="focus-bicolor"&gt;Botón con focus bicolor&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-bicolor:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px black;
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 7: Focus bicolor invertido -->
+    <div class="card correcte" style="background-color: #83b7eb;">
+      <div class="example">
+        <h3>Focus bicolor invertido</h3>
+        <button class="focus-bicolor-invertit">Botón con focus bicolor invertido</button>
+        <p class="description">El focus utiliza los mismos colores que el caso anterior, pero invertidos.</p>
+      </div>
+      <div>
+        <pre><code>&lt;button class="focus-bicolor-invertit"&gt;
+  Botón con focus bicolor invertido
+&lt;/button&gt;
+    
+&lt;style&gt;
+.focus-bicolor-invertit:focus-visible {
+    outline: 3px solid black;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px white;
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Caso 9: Focus con borde grueso -->
+    <div class="card correcte">
+      <div class="example">
+        <h3>Focus con borde grueso</h3>
+        <button class="focus-gruixut">Botón con focus grueso</button>
+        <p class="description">Un focus con un borde más grueso también puede ser suficiente para garantizar la visibilidad.</p>
+      </div>
+      <div>
+        <pre><code>&lt;button class="focus-gruixut"&gt;Botón con focus grueso&lt;/button&gt;
+
+&lt;style&gt;
+.focus-gruixut:focus-visible {
+  outline: 5px solid black;
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Formación Accesibilidad</p>
+  </footer>
+</body>
+</html>

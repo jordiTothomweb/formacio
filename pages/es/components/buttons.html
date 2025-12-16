@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos de Botones</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .example {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: white;
+    }
+
+    .example h2 {
+      margin-top: 0;
+    }
+
+    .fake-button {
+      display: inline-block;
+      padding: 1rem;
+      background-color: #e0e0e0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .fake-button.disabled {
+      background-color: #f0f0f0;
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    button {
+      padding: 1rem;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+    
+    button:focus {
+        outline-offset: 2px;
+    }
+
+    .split-screen {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .left-panel, .right-panel {
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    .code-box {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-top: 1rem;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inicio.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Ejemplos de Botones</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./buttons.html">Botones</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Ejemplos de Botones</h1>
+
+    <!-- Ejemplo 1: Botón estándar -->
+    <div class="example">
+      <h2>Ejemplo 1: Botón estándar</h2>
+      <button>Botón estándar</button>
+      <p>Este es un botón estándar con estilos básicos.</p>
+    </div>
+
+    <!-- Ejemplo 2: Botón deshabilitado -->
+    <div class="example">
+      <h2>Ejemplo 2: Botón deshabilitado</h2>
+      <button disabled>Botón deshabilitado</button>
+      <p>Un botón deshabilitado no es interactivo y está visualmente atenuado.</p>
+    </div>
+
+    <!-- Ejemplo 3: Botón simulado -->
+    <div class="example">
+      <h2>Ejemplo 3: Botón simulado</h2>
+      <div class="fake-button" role="button" tabindex="0">Botón simulado</div>
+      <p>Un botón simulado utiliza un <code>div</code> con <code>role="button"</code> y es accesible mediante el teclado.</p>
+    </div>
+
+    <!-- Ejemplo 4: Botón con icono -->
+    <div class="example">
+      <h2>Ejemplo 4: Botón con icono</h2>
+      <button>
+        <i class="fas fa-check"></i> Confirmar
+      </button>
+      <p>Un botón con un icono y texto para mayor claridad.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Formación Botones</p>
+  </footer>
+</body>
+</html>

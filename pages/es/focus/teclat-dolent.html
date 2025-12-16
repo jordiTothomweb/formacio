@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos Incorrectos</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .example {
+      margin-bottom: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      background-color: #f9f9f9;
+    }
+
+    .example h2 {
+      margin-top: 0;
+    }
+
+    .example-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      background-color: #f5f5f5;
+      margin: 0 auto;
+    }
+
+    .example-container button {
+      position: absolute;
+    }
+
+    .example-container button:focus {
+      outline: 2px solid #1976d2;
+    }
+
+    .dialog-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 100;
+    }
+    .dialog {
+      display: none;
+      z-index: 101;
+    }
+    .dialog.open {
+      display: block;
+      z-index: 101;
+    }
+    .dialog-backdrop.open {
+      display: block;
+    }
+
+    .menu-content {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .menu-content.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .tab-content {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .tab-content[aria-hidden="false"]{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Millora visual pestanyes */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #bbb;
+    }
+    .tabs button {
+      background: #eee;
+      border: 1px solid #bbb;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      padding: 0.5rem 1.2rem;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      margin-bottom: -2px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .tabs button[aria-selected="true"] {
+      background: #fff;
+      color: #1976d2;
+      border-bottom: 2px solid #fff;
+      z-index: 1;
+      position: relative;
+    }
+    .tabs button:focus {
+      outline: 2px solid #1976d2;
+      z-index: 2;
+    }
+
+    /* Millora visual acordió */
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 500px;
+    }
+    .accordion button {
+      width: 100%;
+      text-align: left;
+      padding: 0.7rem 1rem;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      background: #f5f5f5;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .accordion button:focus {
+      outline: 2px solid #1976d2;
+      background: #e3eafc;
+    }
+    .accordion-content {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 0 0 6px 6px;
+      margin-top: -0.5rem;
+      margin-bottom: 0.5rem;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 8px #0001;
+      display: none;
+    }
+    .accordion-content.open {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inicio.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Focus visible</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./focus-visible.html">Focus Visible</a></li>
+        <li><a href="./teclat-dolent.html">Teclado Incorrecto</a></li>
+        <li><a href="./teclat-bo.html">Teclado Correcto</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Ejemplos Incorrectos</h1>
+
+    <!-- Ejemplo 1: Orden de tabulación incorrecto -->
+    <div class="example">
+      <h2>1. Orden de tabulación incorrecto</h2>
+      <div class="example-container">
+        <button style="bottom: 1rem; left: 1rem;">Botón 2</button>
+        <button style="top: 1rem; right: 1rem;">Botón 1</button>
+        <button style="bottom: 1rem; right: 1rem;">Botón 3</button>
+      </div>
+    </div>
+
+    <!-- Ejemplo 2: Focus en modales -->
+    <div class="example">
+      <h2>2. Focus en modales</h2>
+      <button onclick="openDialog()">Abrir modal</button>
+      <div class="dialog-backdrop" id="dialog-backdrop"></div>
+      <div class="dialog" id="dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true">
+        <h3 id="dialog-title">Modal accesible</h3>
+        <button onclick="closeDialog()">Cerrar</button>
+        <button>Acción</button>
+      </div>
+    </div>
+
+    <!-- Ejemplo 3: Menú de usuario -->
+    <div class="example" id="menu-example">
+      <h2>3. Menú de usuario</h2>
+      <div class="menu" id="menu">
+        <button onclick="toggleMenu()"><i class="fas fa-user"></i></button>
+        <div class="menu-content" id="menu-content" role="menu">
+          <button role="menuitem">Opción 1</button>
+          <button role="menuitem">Opción 2</button>
+          <button role="menuitem">Opción 3</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ejemplo 4: Pestañas -->
+    <div class="example">
+      <h2>4. Pestañas</h2>
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" aria-controls="tab1" id="tab1-btn">Pestaña 1</button>
+        <button role="tab" aria-selected="false" aria-controls="tab2" id="tab2-btn">Pestaña 2</button>
+        <button role="tab" aria-selected="false" aria-controls="tab3" id="tab3-btn">Pestaña 3</button>
+      </div>
+      <div id="tab1" class="tab-content" role="tabpanel" aria-hidden="false">
+        <p>Contenido de la pestaña 1.</p>
+        <button>Acción dentro de la pestaña 1</button>
+      </div>
+      <div id="tab2" class="tab-content" role="tabpanel" aria-hidden="true">
+        <p>Contenido de la pestaña 2.</p>
+        <button>Acción dentro de la pestaña 2</button>
+      </div>
+      <div id="tab3" class="tab-content" role="tabpanel" aria-hidden="true">
+        <p>Contenido de la pestaña 3.</p>
+        <button>Acción dentro de la pestaña 3</button>
+      </div>
+    </div>
+
+    <!-- Ejemplo 5: Acordeón -->
+    <div class="example">
+      <h2>5. Acordeón</h2>
+      <div class="accordion">
+        <button aria-expanded="false" aria-controls="section1">Sección 1</button>
+        <div id="section1" class="accordion-content">
+          <p>Contenido de la sección 1.</p>
+          <button>Acción dentro de la sección 1</button>
+        </div>
+        <button aria-expanded="false" aria-controls="section2">Sección 2</button>
+        <div id="section2" class="accordion-content">
+          <p>Contenido de la sección 2.</p>
+          <button>Acción dentro de la sección 2</button>
+        </div>
+        <button aria-expanded="false" aria-controls="section3">Sección 3</button>
+        <div id="section3" class="accordion-content">
+          <p>Contenido de la sección 3.</p>
+          <button>Acción dentro de la sección 3</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ejemplo 6: Formulario Inaccesible -->
+    <div class="example">
+      <h2>6. Formulario Inaccesible</h2>
+      <form>
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <label for="topic">Tema</label>
+        <select id="topic" name="topic">
+          <option value="accessibility">Accesibilidad</option>
+          <option value="usability">Usabilidad</option>
+          <option value="design">Diseño</option>
+        </select>
+
+        <label>Selecciona tu color favorito:</label>
+        <div>
+          <input type="radio" id="color1" name="color1" value="rojo">
+          <label for="color1">Rojo</label>
+        </div>
+        <div>
+          <input type="radio" id="color2" name="color2" value="azul">
+          <label for="color2">Azul</label>
+        </div>
+        <div>
+          <input type="radio" id="color3" name="color3" value="verde">
+          <label for="color3">Verde</label>
+        </div>
+
+        <button type="submit">Enviar</button>
+      </form>
+      <p style="color:#d32f2f; font-size:0.95em;">❌ Solo se puede navegar entre opciones con Tab, no con flechas (incorrecto).</p>
+    </div>
+  </main>
+
+  <script>
+    // Exemple 2: Focus en modals (no reté el focus)
+    function openDialog() {
+      const dialog = document.getElementById('dialog');
+      const backdrop = document.getElementById('dialog-backdrop');
+      dialog.classList.add('open');
+      backdrop.classList.add('open');
+      // Tanca el modal amb Escape
+      document.addEventListener('keydown', escCloseDialog);
+    }
+
+    function closeDialog() {
+      const dialog = document.getElementById('dialog');
+      const backdrop = document.getElementById('dialog-backdrop');
+      dialog.classList.remove('open');
+      backdrop.classList.remove('open');
+      document.removeEventListener('keydown', escCloseDialog);
+    }
+
+    function escCloseDialog(e) {
+      if (e.key === 'Escape') {
+        closeDialog();
+      }
+    }
+
+    // Exemple 3: Menú d'usuari (focus a opcions ocultes)
+    function toggleMenu() {
+      const menuContent = document.getElementById('menu-content');
+      menuContent.classList.toggle('open');
+    }
+
+    // Exemple 4: Pestanyes (contingut amagat però focusable)
+    const tabs = document.querySelectorAll('[role="tab"]');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          document.getElementById(t.getAttribute('aria-controls')).setAttribute('aria-hidden', 'true');
+        });
+        document.getElementById(tab.getAttribute('aria-controls')).setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    // Exemple 4: Pestanyes (contingut amagat però focusable)
+    const accordion = document.querySelectorAll('[class="accordion-content"]');
+    accordion.forEach(acc => {
+        acc.addEventListener('click', () => {
+        accordion.forEach(t => {
+          document.getElementById(t.getAttribute('aria-controls')).setAttribute('aria-hidden', 'true');
+        });
+        document.getElementById(tab.getAttribute('aria-controls')).setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    // Exemple 5: Acordió (mal exemple: desplegar no funciona correctament)
+  const accordionButtons = document.querySelectorAll('.accordion button');
+
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const content = document.getElementById(button.getAttribute('aria-controls'));
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+            // Error intencionat: no es canvia correctament l'estat del contingut
+            button.setAttribute('aria-expanded', !isExpanded);
+            content.style.display = isExpanded ? 'none' : 'block'; // Error: lògica invertida
+        });
+    });
+
+    // Exemple 6: Bloqueig del focus al primer camp
+    const nameInput = document.getElementById('name');
+    nameInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab') {
+        event.preventDefault(); // Bloqueja el focus
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos de Eventos</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      width: 100%;
+    }
+    .card {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      width: 100%;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .card.correcte {
+      border-left: 5px solid #4caf50;
+    }
+    .card.incorrecte {
+      border-left: 5px solid #f44336;
+    }
+    .example {
+      flex: 1;
+      min-width: 220px;
+    }
+    .card .description {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .card h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.15rem;
+      font-weight: bold;
+    }
+    @media (max-width: 900px) {
+      .card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      pre {
+        max-width: 100%;
+        min-width: 0;
+        margin-top: 1rem;
+      }
+    }
+
+    /* Modal flotant per al comptador */
+    .event-display {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      width: 300px;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .event-display h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .event-display p {
+      margin: 0.5rem 0;
+    }
+
+    /* Estils addicionals per als exemples nous */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .incorrecte {
+      border-left: 4px solid #e53935;
+    }
+
+    .correcte {
+      border-left: 4px solid #43a047;
+    }
+
+    .description {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+
+    .example {
+      margin-bottom: 1rem;
+    }
+
+    .fake-button {
+      display: inline-block;
+      padding: 1rem;
+      background-color: #1976d2;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      border: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .fake-button:hover, .fake-button:focus {
+      background-color: #1565c0;
+      outline: 2px solid #1976d2;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a class="btn-back" href="../inicio.html" aria-label="Volver atrás">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1>Ejemplos de Eventos</h1>
+    </div>
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="./events.html">Eventos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Modal flotant per mostrar els events -->
+  <section class="event-display">
+    <h2>Events Capturats</h2>
+    <p><strong>Últim Event:</strong> <span id="last-event">Cap</span></p>
+    <p><strong>Comptador de Botons Premuts:</strong> <span id="button-counter">0</span></p>
+  </section>
+
+  <main class="container">
+    <h1>Exemples d'Events</h1>
+    <section class="cards-container">
+      <!-- Exemple 0: Només mousedown (incorrecte) -->
+      <div class="card incorrecte">
+        <div class="example">
+          <h3>Només <code>onmousedown</code> (no accessible)</h3>
+          <div id="mousedown-only" class="fake-button" onmousedown="incrementCounter()">
+            Fes click aquí (només mousedown)
+          </div>
+          <p class="description">
+            Aquest element només respon a l'esdeveniment <code>onmousedown</code>. No es pot activar amb el teclat ni amb altres dispositius d'entrada.
+          </p>
+        </div>
+        <div>
+          <pre><code>&lt;div onmousedown="incrementCounter()"&gt;...&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      <!-- Exemple 1: Només click (incorrecte) -->
+      <div class="card incorrecte">
+        <div class="example">
+          <h3>Només click (no accessible)</h3>
+          <div id="only-click" class="fake-button" onclick="incrementCounter()">
+            Fes click aquí
+          </div>
+          <p class="description">
+            Aquest element només respon a l'esdeveniment <code>onclick</code>. Els usuaris de teclat no poden activar-lo.
+          </p>
+        </div>
+        <div>
+          <pre><code>&lt;div onclick="incrementCounter()"&gt;Fes click aquí&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Exemple 2: Click i teclat (accessible) -->
+      <div class="card correcte">
+        <div class="example">
+          <h3>Click i teclat (accessible)</h3>
+          <div id="click-keyboard" tabindex="0" role="button" aria-pressed="false"
+            class="fake-button"
+            onclick="toggleActive(this)"
+            onkeydown="if(event.key==='Enter'||event.key===' '){toggleActive(this);}">
+            Afegir a favorits
+          </div>
+          <p class="description">
+            Aquest element es pot activar amb el ratolí (<code>click</code>) i amb el teclat (<code>Enter</code> o <code>Espai</code>). Té <code>role="button"</code> i <code>tabindex="0"</code> per ser accessible. El text mostra l'acció a fer.
+          </p>
+        </div>
+        <div>
+          <pre><code>&lt;div
+  tabindex="0"
+  role="button"
+  aria-pressed="false"
+  onclick="toggleActive(this)"
+  onkeydown="if(event.key==='Enter'||event.key===' '){...}"
+&gt;
+  Afegir a favorits
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Exemple 3: Millor amb <button> -->
+      <div class="card correcte">
+        <div class="example">
+          <h3>Millor: utilitza <code>&lt;button&gt;</code></h3>
+          <button onclick="toggleActive(this)" aria-pressed="false" id="btn-event">Afegir a favorits</button>
+          <p class="description">
+            Sempre que sigui possible, utilitza un <code>&lt;button&gt;</code> per garantir accessibilitat nativa a tots els dispositius i productes de suport. El text mostra l'acció a fer.
+          </p>
+        </div>
+        <div>
+          <pre><code>&lt;button onclick="toggleActive(this)" aria-pressed="false"&gt;
+  Afegir a favorits
+&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Funció per incrementar el comptador
+    function incrementCounter() {
+      const counter = document.getElementById('button-counter');
+      counter.textContent = parseInt(counter.textContent, 10) + 1;
+    }
+
+    // Funció per activar/desactivar estats
+    function toggleActive(element) {
+      const pressed = element.getAttribute('aria-pressed') === 'true';
+      element.setAttribute('aria-pressed', !pressed);
+      // Mostra el text de l'acció a fer, no l'estat actual
+      if (!pressed) {
+        element.textContent = 'Eliminar de favorits';
+      } else {
+        element.textContent = 'Afegir a favorits';
+      }
+      incrementCounter();
+    }
+  </script>
+</body>
+</html>
